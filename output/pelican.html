@@ -80,7 +80,13 @@ straightforward so far.</p>
 <h2>Customising Pelican</h2>
 <p>The only changes I've really made to Pelican are to the CSS (<a href="https://github.com/dominicrodger/dominicrodger.com/commit/61e81d568087a92e2bb41dc619966075566fb81e">fixing up the
 code style</a>, because I don't much like the default monospace font,
-and <a href="https://github.com/dominicrodger/dominicrodger.com/commit/54d99084c8b6777cd77c31fe1157718fc1a612b7">modifying the footnote link style</a>).</p>
+and <a href="https://github.com/dominicrodger/dominicrodger.com/commit/54d99084c8b6777cd77c31fe1157718fc1a612b7">modifying the footnote link style</a>). I did that by just
+copying the default theme into my directory (which I've called <code>plagiarism</code>),
+and modifying my call to re-compile my blog to:</p>
+<div class="codehilite"><pre><span class="n">pelican</span> <span class="n">src</span> <span class="o">-</span><span class="n">s</span> <span class="n">pelican</span><span class="p">.</span><span class="n">conf</span><span class="p">.</span><span class="n">py</span> <span class="o">-</span><span class="n">t</span> <span class="n">plagiarism</span>
+</pre></div>
+
+
 <h2>Deploying Pelican</h2>
 <p>I use <a href="http://www.webfaction.com/?affiliate=dominicrodger" title="Get hosted with WebFaction">WebFaction</a> for all my sites, and whilst deploying was easy,
 it wasn't entirely obvious that I did it the right way. WebFaction has a really
