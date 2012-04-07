@@ -430,3 +430,5 @@ li:last-child .hentry, #content > .hentry {border: 0; margin: 0;}
 	#add-comment * {margin-bottom: .5em;}
     
     div.codehilite pre, code {font-family:Consolas,"Lucida Console", monospace;}
+    sup { vertical-align: super; font-size: 80%; }
+    
