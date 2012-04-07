@@ -12,6 +12,7 @@ When using SQLite, the test runner doesn't bother to actually hit the filesystem
 
 My realisation was that if I turned off South, I could use SQLite, which I did with this rather hackish file called `test_settings.py`:
 
+    ::python
     from settings import *
 
     INSTALLED_APPS = [app for app in INSTALLED_APPS if app != 'south']
@@ -25,10 +26,12 @@ My realisation was that if I turned off South, I could use SQLite, which I did w
 
 I can then do a quick run of the test suite using:
 
+    ::bash
     manage.py test --settings=test_settings
 
 Obviously, this doesn't run through my South migrations, which I probably should do from time to time (especially when adding new migrations). I can still test those with:
 
+    ::bash
     manage.py test
 
 since by default the test runner will hit my normal settings module, which still has South in `INSTALLED_APPS`, and which hits my MySQL database.

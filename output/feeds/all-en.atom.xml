@@ -4,11 +4,11 @@
 &lt;h1&gt;SQLite&lt;/h1&gt;
 &lt;p&gt;When using SQLite, the test runner doesn't bother to actually hit the filesystem, it &lt;a href="http://docs.djangoproject.com/en/1.2/topics/testing/#the-test-database"&gt;just does the whole thing in memory&lt;/a&gt;, which is a good deal quicker. Previously, I couldn't use SQLite, because South doesn't like it (since SQLite doesn't support &lt;code&gt;ALTER TABLE&lt;/code&gt;).&lt;/p&gt;
 &lt;p&gt;My realisation was that if I turned off South, I could use SQLite, which I did with this rather hackish file called &lt;code&gt;test_settings.py&lt;/code&gt;:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt; &lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="kn"&gt;from&lt;/span&gt; &lt;span class="nn"&gt;settings&lt;/span&gt; &lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
 
-&lt;span class="n"&gt;INSTALLED_APPS&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;INSTALLED_APPS&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;app&lt;/span&gt; !&lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;south&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+&lt;span class="n"&gt;INSTALLED_APPS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;INSTALLED_APPS&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="o"&gt;!=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;south&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 
-&lt;span class="n"&gt;DATABASES&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="n"&gt;DATABASES&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="s"&gt;&amp;#39;default&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
         &lt;span class="s"&gt;&amp;#39;ENGINE&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;django.db.backends.sqlite3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
         &lt;span class="s"&gt;&amp;#39;NAME&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;test_database.db&amp;#39;&lt;/span&gt;
@@ -18,12 +18,12 @@
 
 
 &lt;p&gt;I can then do a quick run of the test suite using:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;manage&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="n"&gt;test&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;test_settings&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;manage.py &lt;span class="nb"&gt;test&lt;/span&gt; --settings&lt;span class="o"&gt;=&lt;/span&gt;test_settings
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Obviously, this doesn't run through my South migrations, which I probably should do from time to time (especially when adding new migrations). I can still test those with:&lt;/p&gt;
-&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;manage&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="n"&gt;test&lt;/span&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;manage.py &lt;span class="nb"&gt;test&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 

@@ -63,11 +63,11 @@
 <h1>SQLite</h1>
 <p>When using SQLite, the test runner doesn't bother to actually hit the filesystem, it <a href="http://docs.djangoproject.com/en/1.2/topics/testing/#the-test-database">just does the whole thing in memory</a>, which is a good deal quicker. Previously, I couldn't use SQLite, because South doesn't like it (since SQLite doesn't support <code>ALTER TABLE</code>).</p>
 <p>My realisation was that if I turned off South, I could use SQLite, which I did with this rather hackish file called <code>test_settings.py</code>:</p>
-<div class="codehilite"><pre><span class="n">from</span> <span class="n">settings</span> <span class="n">import</span> <span class="o">*</span>
+<div class="codehilite"><pre><span class="kn">from</span> <span class="nn">settings</span> <span class="kn">import</span> <span class="o">*</span>
 
-<span class="n">INSTALLED_APPS</span> <span class="p">=</span> <span class="p">[</span><span class="n">app</span> <span class="k">for</span> <span class="n">app</span> <span class="n">in</span> <span class="n">INSTALLED_APPS</span> <span class="k">if</span> <span class="n">app</span> !<span class="p">=</span> <span class="s">&#39;south&#39;</span><span class="p">]</span>
+<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">[</span><span class="n">app</span> <span class="k">for</span> <span class="n">app</span> <span class="ow">in</span> <span class="n">INSTALLED_APPS</span> <span class="k">if</span> <span class="n">app</span> <span class="o">!=</span> <span class="s">&#39;south&#39;</span><span class="p">]</span>
 
-<span class="n">DATABASES</span> <span class="p">=</span> <span class="p">{</span>
+<span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
         <span class="s">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s">&#39;django.db.backends.sqlite3&#39;</span><span class="p">,</span>
         <span class="s">&#39;NAME&#39;</span><span class="p">:</span> <span class="s">&#39;test_database.db&#39;</span>
@@ -77,12 +77,12 @@
 
 
 <p>I can then do a quick run of the test suite using:</p>
-<div class="codehilite"><pre><span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">test</span> <span class="o">--</span><span class="n">settings</span><span class="p">=</span><span class="n">test_settings</span>
+<div class="codehilite"><pre>manage.py <span class="nb">test</span> --settings<span class="o">=</span>test_settings
 </pre></div>
 
 
 <p>Obviously, this doesn't run through my South migrations, which I probably should do from time to time (especially when adding new migrations). I can still test those with:</p>
-<div class="codehilite"><pre><span class="n">manage</span><span class="p">.</span><span class="n">py</span> <span class="n">test</span>
+<div class="codehilite"><pre>manage.py <span class="nb">test</span>
 </pre></div>
 
 
