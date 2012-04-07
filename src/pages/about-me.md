@@ -11,18 +11,21 @@ For fun, I build websites - currently I look after:
  * [A][connected]
    [few][trinity]
    [other][moorside]
-   [sites][hadath], also built with Kal&#233;o.
+   [sites][hadath], also built with Kal&#233;o[^1];
  * [paulbeasleymurray.com][pbm]: my minister's personal site, containing
-   resources for ministers, including sermon transcripts, articles and a blog.
+   resources for ministers, including sermon transcripts, articles and a blog;
  * [ministrytoday.org.uk][mt]: a journal for those in Christian leadership,
    built using my open-source projects [django-magazine][django-magazine] and
-   [django-board][django-board].
+   [django-board][django-board];
  * [aarongriffin.co.uk][ajg]: A photography site for my brother-in-law.
 
 This blog is written with [Pelican][pelican].
 
 The code (and all blog posts) are available on [GitHub][github-repo],
 and the site is hosted by [WebFaction][webfaction].
+
+[^1]: These sites aren't directly run by me - I just look after the software
+      and the servers.
 
 [dominicrodger]: http://dominicrodger.com "My personal blog"
 [cbc]: http://www.centralbaptistchelmsford.org "My Church - Central Baptist in the great city of Chelmsford"
