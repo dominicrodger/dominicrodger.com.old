@@ -43,7 +43,7 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href=".././starting-over.html">Starting Over</a></h1> 
+                    <h1 class="entry-title"><a href=".././pelican.html">Starting with Pelican</a></h1> 
                     <footer class="post-info">
         <abbr class="published" title="2012-04-07T00:00:00">
                 Saturday 07 April 2012
@@ -58,72 +58,44 @@
 
 
 
-</footer><!-- /.post-info --><h1>Please sir, can I start again?</h1>
-<p>Every once in a while, I want to start again.</p>
-<p>I currently have 6 different sites using Kal&#233;o<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>. The code is stored in
-a private git repository, and synced out to 6 different places every time I
-need to make a change.</p>
-<p>Most these changes are fairly simple, and upgrading each site looks roughly
-like this:</p>
-<div class="codehilite"><pre><span class="nb">source </span>myvirtualenv/bin/activate
-git pull
-python manage.py migrate
-python manage.py collectstatic
-apache2/bin/restart
-<span class="c"># profit!</span>
-</pre></div>
-
-
-<p>Since this is all eminently scriptable, it's scripted, and I've got a quick
-Python script on my desktop that SSHs to each site in turn, and updates them.</p>
-<p>The problem is, not every upgrade is that simple<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>. In practice, I end up
-having to run a few different commands - generally when I want to install new
-dependencies<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>.</p>
-<h1>What I should have done</h1>
-<p>Kal&#233;o is built with <a href="https://www.djangoproject.com/" title="Read about Django, a Python web framework">Django</a>, which has a
-really nice system for <a href="https://docs.djangoproject.com/en/dev/ref/contrib/sites/" title="The Django Sites framework">dealing with multiple sites</a>.</p>
-<p>I should have used that, but back <a href="http://stackoverflow.com/questions/744866/reverse-not-found-sending-request-context-in-from-templates" title="My first ever Django question on Stack Overflow">when I started</a> in 2009 I
-was just building something for my Church (and learning Django at the same
-time), and it didn't occur to me that I might want to re-use it.</p>
-<h1>What I want to do</h1>
-<p>So now I have 6 different installations of Kal&#233;o, and a maintenance
-headache every time I want to make a significant change (e.g. switching
-from Python 2.6 to Python 2.7, as I did recently).</p>
-<p>This maintenance headache makes me want to just throw it all away and start
-again. I'd make it leaner - Kal&#233;o's full of cruft that seemed like a good
-idea at the time. I'd use sites, so I could more easily manage upgrades, and
-be able to spin up new sites quicker. I'd probably separate out parts of it
-into apps, so other people could use just the parts of it they need. I'd write
-better tests.</p>
-<h1>Why I don't</h1>
-<p>But then I remember that most of this code just works, and there's a better way
-to do it. I can add tests for what I've already got. I can gradually pull apart
-the dependencies I've got, and spin off parts of it into separate places. I can
-get to where I want eventually, piece by piece.</p>
-<blockquote>
-<p>Programmers are, in their hearts, architects, and the first thing they want
-to do when they get to a site is to bulldoze the place flat and build
-something grand. We're not excited by incremental renovation: tinkering,
-improving, planting flower beds.
-&mdash; <cite><a href="http://www.joelonsoftware.com/articles/fog0000000069.html" title="Read Joel's article on throwing things away">Joel Spolsky: "Things you should never do"</a></cite></p>
-</blockquote>
-<p>So tiny step by tiny step I'm getting my code to a better place, tiny refactor
-by tiny refactor, and I'm doing it all without breaking anything (much).</p>
+</footer><!-- /.post-info --><h1>A brief history of my (failed) blogs</h1>
+<p>In about 1998, I was building a website for a friend. The site was entirely
+static. I'd already learned the hard way about the pain of trying to keep lots
+of separate static HTML files visually consistent.</p>
+<p>To build the site, I used a system (whose name has since faded from memory)
+which took as its input some template files, some files containing the
+content, and combined them together to build a website. I'd run a script,
+and FTP the resulting HTML to a server somewhere.</p>
+<p>Since then, I've tried various different things. I used <a href="http://en.wikipedia.org/wiki/Greymatter_(software)">Greymatter</a>
+for a while, and then mostly wrote my own - first in PHP, and then more
+recently in Django. The only thing that all these blogs had in common was this:
+I spent more time building the system than I ever spent using it.</p>
+<h1>Today</h1>
+<p>14 years after my first static site generator experience, I'm back. This time
+I'm using <a href="http://pelican.readthedocs.org/en/latest/" title="Find out about Pelican">Pelican</a>, and hoping that the auto-reload stuff will make
+writing easier - as I can write in <a href="http://daringfireball.net/projects/markdown/" title="Find out about Markdown, a text-to-HTML tool for web writers by John Gruber">Markdown</a>, and see the results
+as they will be rendered live<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
+<p>Thanks to <a href="http://pydanny.com/choosing-a-new-python-based-blog-engine.html" title="Read Daniel Greenfeld's entry on getting started with Pelican">pydanny</a> for the tip about Pelican - it's been pretty
+straightforward so far.</p>
+<h2>Customising Pelican</h2>
+<p>The only changes I've really made to Pelican are to the CSS (<a href="https://github.com/dominicrodger/dominicrodger.com/commit/61e81d568087a92e2bb41dc619966075566fb81e">fixing up the
+code style</a>, because I don't much like the default monospace font,
+and <a href="https://github.com/dominicrodger/dominicrodger.com/commit/54d99084c8b6777cd77c31fe1157718fc1a612b7">modifying the footnote link style</a>).</p>
+<h2>Deploying Pelican</h2>
+<p>I use <a href="http://www.webfaction.com/?affiliate=dominicrodger" title="Get hosted with WebFaction">WebFaction</a> for all my sites, and whilst deploying was easy,
+it wasn't entirely obvious that I did it the right way. WebFaction has a really
+nice model for managing sites (<a href="http://docs.webfaction.com/user-guide/websites.html">domains, applications, and websites</a>),
+but Pelican didn't really fit into any of them. Eventually I settled on
+creating a Pelican installation in my root directory, and then used
+"Symbolic link to static only app" with the path set to Pelican's output
+directory.</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>Some software I wrote for managing Church websites, which I'll write
-  about another time.&#160;<a href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:2">
-<p>This is where I should probably be using something like <a href="http://fabfile.org">Fabric</a>,
-  but I haven't got around to it yet.&#160;<a href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
-<li id="fn:3">
-<p>There's probably a better way of doing this - I'm using <code>pip</code> and have a <code>requirements.txt</code>
-  file, but I don't want to re-install everything, I just want to install
-  the things I haven't got installed.&#160;<a href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>Sort of, anyway - I'm using an auto-refresh extension in Chrome, and
+  using the <a href="http://pelican.notmyidea.org/en/2.8/getting_started.html#autoreload">auto-reload functionality</a> in Pelican, so I
+  see updates every 5 seconds or so.&#160;<a href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -137,6 +109,44 @@ by tiny refactor, and I'm doing it all without breaking anything (much).</p>
                     <ol id="posts-list" class="hfeed">
             
         
+        
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                        <h1><a href=".././starting-over.html" rel="bookmark" title="Permalink to Starting Over">Starting Over</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-04-07T00:00:00">
+                Saturday 07 April 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/dominic-rodger.html">Dominic Rodger</a>
+        </address>
+        
+<p>In <a href=".././category/code.html">code</a>. </p>
+
+
+
+</footer><!-- /.post-info -->
+                <h1>Please sir, can I start again?</h1>
+<p>Every once in a while, I want to start again.</p>
+<p>I currently have 6 different sites using Kal&#233;o<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>. The code is stored in
+a private git repository, and synced out to 6 different places every time I
+need to make a change ...</p>
+                <a class="readmore" href=".././starting-over.html">read more</a>
+                
+                </div><!-- /.entry-content -->
+            </article></li>
         
         
         
