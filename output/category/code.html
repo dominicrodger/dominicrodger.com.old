@@ -66,7 +66,7 @@ of separate static HTML files visually consistent.</p>
 which took as its input some template files, some files containing the
 content, and combined them together to build a website. I'd run a script,
 and FTP the resulting HTML to a server somewhere.</p>
-<p>Since then, I've tried various different things. I used <a href="http://en.wikipedia.org/wiki/Greymatter_(software)">Greymatter</a>
+<p>Since then, I've tried various different things. I used <a href="http://en.wikipedia.org/wiki/Greymatter_(software)" title="Read the history of Greymatter">Greymatter</a>
 for a while, and then mostly wrote my own - first in PHP, and then more
 recently in Django. The only thing that all these blogs had in common was this:
 I spent more time building the system than I ever spent using it.</p>
@@ -90,14 +90,14 @@ and modifying my call to re-compile my blog to:</p>
 <h2>Deploying Pelican</h2>
 <p>I use <a href="http://www.webfaction.com/?affiliate=dominicrodger" title="Get hosted with WebFaction">WebFaction</a> for all my sites, and whilst deploying was easy,
 it wasn't entirely obvious that I did it the right way. WebFaction has a really
-nice model for managing sites (<a href="http://docs.webfaction.com/user-guide/websites.html">domains, applications, and websites</a>),
+nice model for managing sites (<a href="http://docs.webfaction.com/user-guide/websites.html" title="Read a bit about WebFaction's model for managing websites">domains, applications, and websites</a>),
 but Pelican didn't really fit into any of them. Eventually I settled on
 creating a Pelican installation in my root directory, and then used
 "Symbolic link to static only app" with the path set to Pelican's output
 directory.</p>
 <p>I've added a cron job to my WebFaction account which just pulls from my public
-GitHub repository, so any changes I push to GitHub get deployed to the site
-without any intervention.</p>
+GitHub repository, so any changes I push to <a href="https://github.com/dominicrodger/dominicrodger.com" title="View this site's GitHub repository">GitHub</a> get deployed to
+the site without any intervention.</p>
 <div class="footnote">
 <hr />
 <ol>

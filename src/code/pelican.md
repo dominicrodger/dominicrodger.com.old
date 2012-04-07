@@ -49,15 +49,15 @@ creating a Pelican installation in my root directory, and then used
 directory.
 
 I've added a cron job to my WebFaction account which just pulls from my public
-GitHub repository, so any changes I push to GitHub get deployed to the site
-without any intervention.
+GitHub repository, so any changes I push to [GitHub][dmr-repo] get deployed to
+the site without any intervention.
 
 
 [^1]: Sort of, anyway - I'm using an auto-refresh extension in Chrome, and
       using the [auto-reload functionality][pelican-reload] in Pelican, so I
       see updates every 5 seconds or so.
 
-[greymatter]: http://en.wikipedia.org/wiki/Greymatter_(software)
+[greymatter]: http://en.wikipedia.org/wiki/Greymatter_(software) "Read the history of Greymatter"
 [pelican]: http://pelican.readthedocs.org/en/latest/ "Find out about Pelican"
 [markdown]: http://daringfireball.net/projects/markdown/ "Find out about Markdown, a text-to-HTML tool for web writers by John Gruber"
 [pelican-reload]: http://pelican.notmyidea.org/en/2.8/getting_started.html#autoreload
@@ -65,4 +65,5 @@ without any intervention.
 [css-code]: https://github.com/dominicrodger/dominicrodger.com/commit/61e81d568087a92e2bb41dc619966075566fb81e
 [css-footnotes]: https://github.com/dominicrodger/dominicrodger.com/commit/54d99084c8b6777cd77c31fe1157718fc1a612b7
 [webfaction]: http://www.webfaction.com/?affiliate=dominicrodger "Get hosted with WebFaction"
-[webfaction-help]: http://docs.webfaction.com/user-guide/websites.html
+[webfaction-help]: http://docs.webfaction.com/user-guide/websites.html "Read a bit about WebFaction's model for managing websites"
+[dmr-repo]: https://github.com/dominicrodger/dominicrodger.com "View this site's GitHub repository"

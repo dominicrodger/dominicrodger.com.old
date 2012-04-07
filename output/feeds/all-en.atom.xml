@@ -7,7 +7,7 @@ of separate static HTML files visually consistent.&lt;/p&gt;
 which took as its input some template files, some files containing the
 content, and combined them together to build a website. I'd run a script,
 and FTP the resulting HTML to a server somewhere.&lt;/p&gt;
-&lt;p&gt;Since then, I've tried various different things. I used &lt;a href="http://en.wikipedia.org/wiki/Greymatter_(software)"&gt;Greymatter&lt;/a&gt;
+&lt;p&gt;Since then, I've tried various different things. I used &lt;a href="http://en.wikipedia.org/wiki/Greymatter_(software)" title="Read the history of Greymatter"&gt;Greymatter&lt;/a&gt;
 for a while, and then mostly wrote my own - first in PHP, and then more
 recently in Django. The only thing that all these blogs had in common was this:
 I spent more time building the system than I ever spent using it.&lt;/p&gt;
@@ -31,14 +31,14 @@ and modifying my call to re-compile my blog to:&lt;/p&gt;
 &lt;h2&gt;Deploying Pelican&lt;/h2&gt;
 &lt;p&gt;I use &lt;a href="http://www.webfaction.com/?affiliate=dominicrodger" title="Get hosted with WebFaction"&gt;WebFaction&lt;/a&gt; for all my sites, and whilst deploying was easy,
 it wasn't entirely obvious that I did it the right way. WebFaction has a really
-nice model for managing sites (&lt;a href="http://docs.webfaction.com/user-guide/websites.html"&gt;domains, applications, and websites&lt;/a&gt;),
+nice model for managing sites (&lt;a href="http://docs.webfaction.com/user-guide/websites.html" title="Read a bit about WebFaction's model for managing websites"&gt;domains, applications, and websites&lt;/a&gt;),
 but Pelican didn't really fit into any of them. Eventually I settled on
 creating a Pelican installation in my root directory, and then used
 "Symbolic link to static only app" with the path set to Pelican's output
 directory.&lt;/p&gt;
 &lt;p&gt;I've added a cron job to my WebFaction account which just pulls from my public
-GitHub repository, so any changes I push to GitHub get deployed to the site
-without any intervention.&lt;/p&gt;
+GitHub repository, so any changes I push to &lt;a href="https://github.com/dominicrodger/dominicrodger.com" title="View this site's GitHub repository"&gt;GitHub&lt;/a&gt; get deployed to
+the site without any intervention.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
