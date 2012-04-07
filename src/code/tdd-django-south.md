@@ -6,6 +6,8 @@ I'd basically given up on attempting test-driven with Django, given the project 
 
 I've had an idea in the back of my mind for a while, and today I finally got around to making it work.
 
+# SQLite
+
 When using SQLite, the test runner doesn't bother to actually hit the filesystem, it [just does the whole thing in memory](http://docs.djangoproject.com/en/1.2/topics/testing/#the-test-database), which is a good deal quicker. Previously, I couldn't use SQLite, because South doesn't like it (since SQLite doesn't support `ALTER TABLE`).
 
 My realisation was that if I turned off South, I could use SQLite, which I did with this rather hackish file called `test_settings.py`:
@@ -30,6 +32,8 @@ Obviously, this doesn't run through my South migrations, which I probably should
     manage.py test
 
 since by default the test runner will hit my normal settings module, which still has South in `INSTALLED_APPS`, and which hits my MySQL database.
+
+# The Results
 
 With my `test_settings`, I get the following output:
 
