@@ -36,6 +36,9 @@ but Pelican didn't really fit into any of them. Eventually I settled on
 creating a Pelican installation in my root directory, and then used
 "Symbolic link to static only app" with the path set to Pelican's output
 directory.&lt;/p&gt;
+&lt;p&gt;I've added a cron job to my WebFaction account which just pulls from my public
+GitHub repository, so any changes I push to GitHub get deployed to the site
+without any intervention.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;

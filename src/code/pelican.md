@@ -48,6 +48,11 @@ creating a Pelican installation in my root directory, and then used
 "Symbolic link to static only app" with the path set to Pelican's output
 directory.
 
+I've added a cron job to my WebFaction account which just pulls from my public
+GitHub repository, so any changes I push to GitHub get deployed to the site
+without any intervention.
+
+
 [^1]: Sort of, anyway - I'm using an auto-refresh extension in Chrome, and
       using the [auto-reload functionality][pelican-reload] in Pelican, so I
       see updates every 5 seconds or so.
