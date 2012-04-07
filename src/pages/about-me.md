@@ -7,11 +7,11 @@ For fun, I build websites - currently I look after:
 
  * [This site][dominicrodger]: my personal blog, where I write about code;
  * [centralbaptistchelmsford.org][cbc]: my Church's website, built with
-   Kal&#233;o.
+   Kal&#233;o[^1].
  * [A][connected]
    [few][trinity]
    [other][moorside]
-   [sites][hadath], also built with Kal&#233;o[^1];
+   [sites][hadath], also built with Kal&#233;o[^2];
  * [paulbeasleymurray.com][pbm]: my minister's personal site, containing
    resources for ministers, including sermon transcripts, articles and a blog;
  * [ministrytoday.org.uk][mt]: a journal for those in Christian leadership,
@@ -24,7 +24,10 @@ This blog is written with [Pelican][pelican].
 The code (and all blog posts) are available on [GitHub][github-repo],
 and the site is hosted by [WebFaction][webfaction].
 
-[^1]: These sites aren't directly run by me - I just look after the software
+[^1]: Kal&#233;o is a Django application which I've written for managing
+      websites for Churches. It is currently closed-source, though I'd
+      eventually like to change that (see [Starting Over](http://www.dominicrodger.com/starting-over.html))
+[^2]: These sites aren't directly run by me - I just look after the software
       and the servers.
 
 [dominicrodger]: http://dominicrodger.com "My personal blog"
