@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>dominicrodger.com</title><link href="http://dominicrodger.com/" rel="alternate"></link><link href="http://dominicrodger.com/feeds/all-en.atom.xml" rel="self"></link><id>http://dominicrodger.com/</id><updated>2011-01-11T00:00:00+00:00</updated><entry><title>Test-Driven Development with Django &amp; South</title><link href="http://dominicrodger.comtdd-django-south.html" rel="alternate"></link><updated>2011-01-11T00:00:00+00:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2011-01-11:tdd-django-south.html</id><summary type="html">&lt;p&gt;I'd basically given up on attempting test-driven with Django, given the project I'm currently working on uses models with a lot of &lt;a href="south.aeracode.org"&gt;South&lt;/a&gt; migrations. Just building the database and running the migrations could take a minute or so when running &lt;code&gt;manage.py test&lt;/code&gt;, and resetting the database to a clean state meant the test suite would take several minutes to run.&lt;/p&gt;
+&lt;p&gt;I've had an idea in the back of my mind for a while, and today I finally got around to making it work.&lt;/p&gt;
+&lt;p&gt;When using SQLite, the test runner doesn't bother to actually hit the filesystem, it &lt;a href="http://docs.djangoproject.com/en/1.2/topics/testing/#the-test-database"&gt;just does the whole thing in memory&lt;/a&gt;, which is a good deal quicker. Previously, I couldn't use SQLite, because South doesn't like it (since SQLite doesn't support &lt;code&gt;ALTER TABLE&lt;/code&gt;).&lt;/p&gt;
+&lt;p&gt;My realisation was that if I turned off South, I could use SQLite, which I did with this rather hackish file called &lt;code&gt;test_settings.py&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;from&lt;/span&gt; &lt;span class="n"&gt;settings&lt;/span&gt; &lt;span class="n"&gt;import&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt;
+
+&lt;span class="n"&gt;INSTALLED_APPS&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="k"&gt;for&lt;/span&gt; &lt;span class="n"&gt;app&lt;/span&gt; &lt;span class="n"&gt;in&lt;/span&gt; &lt;span class="n"&gt;INSTALLED_APPS&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="n"&gt;app&lt;/span&gt; !&lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;south&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
+
+&lt;span class="n"&gt;DATABASES&lt;/span&gt; &lt;span class="p"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="s"&gt;&amp;#39;default&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;#39;ENGINE&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;django.db.backends.sqlite3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;#39;NAME&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;test_database.db&amp;#39;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I can then do a quick run of the test suite using:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;manage&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="n"&gt;test&lt;/span&gt; &lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;settings&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;test_settings&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Obviously, this doesn't run through my South migrations, which I probably should do from time to time (especially when adding new migrations). I can still test those with:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;manage&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="n"&gt;test&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;since by default the test runner will hit my normal settings module, which still has South in &lt;code&gt;INSTALLED_APPS&lt;/code&gt;, and which hits my MySQL database.&lt;/p&gt;
+&lt;p&gt;With my &lt;code&gt;test_settings&lt;/code&gt;, I get the following output:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Ran 121 tests in 3.218s&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;With my default settings, I get:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Ran 121 tests in 326.742s&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;If I run tests for a particular app (which is generally all I need to do), that difference is 0.312s to 31.064s.&lt;/p&gt;
+&lt;p&gt;That makes my test run approximately &lt;strong&gt;99% quicker&lt;/strong&gt;, and well within what I consider an acceptable time to run every time I make small changes to my code.&lt;/p&gt;</summary></entry></feed>
