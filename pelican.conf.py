@@ -8,6 +8,7 @@ SITEURL = 'http://dominicrodger.com'
 TIMEZONE = 'Europe/London'
 
 DEFAULT_LANG='en'
+DEFAULT_DATE_FORMAT = '%A %d %B %Y'
 
 LINKS = (
         )
