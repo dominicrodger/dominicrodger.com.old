@@ -18,7 +18,7 @@ apache2/bin/restart
 &lt;p&gt;Since this is all eminently scriptable, it's scripted, and I've got a quick
 Python script on my desktop that SSHs to each site in turn, and updates them.&lt;/p&gt;
 &lt;p&gt;The problem is, not every upgrade is that simple&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;. In practice, I end up
-having to run a few different commands - perhaps installing new
+having to run a few different commands - generally when I want to install new
 dependencies&lt;sup id="fnref:3"&gt;&lt;a href="#fn:3" rel="footnote"&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;h1&gt;What I should have done&lt;/h1&gt;
 &lt;p&gt;Kal&amp;#233;o is built with &lt;a href="https://www.djangoproject.com/" title="Read about Django, a Python web framework"&gt;Django&lt;/a&gt;, which has a

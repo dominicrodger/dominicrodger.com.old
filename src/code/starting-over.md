@@ -25,7 +25,7 @@ Since this is all eminently scriptable, it's scripted, and I've got a quick
 Python script on my desktop that SSHs to each site in turn, and updates them.
 
 The problem is, not every upgrade is that simple[^2]. In practice, I end up
-having to run a few different commands - perhaps installing new
+having to run a few different commands - generally when I want to install new
 dependencies[^3].
 
 # What I should have done
