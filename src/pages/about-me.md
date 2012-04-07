@@ -38,6 +38,6 @@ and the site is hosted by [WebFaction][webfaction].
 [django-magazine]: https://github.com/dominicrodger/django-magazine "A system for managing magazines"
 [django-board]: https://github.com/dominicrodger/django-board "A system for managing profile pages for boards of organisations"
 [ajg]: http://aarongriffin.co.uk "My brother-in-law's site - a photography portfolio"
-[pelican]: http://pelican.notmyidea.org/en/2.8/index.html
-[webfaction]: http://www.webfaction.com?affiliate=dominicrodger
-[github-repo]: https://github.com/dominicrodger/dominicrodger.com
+[pelican]: http://pelican.readthedocs.org/en/latest/ "Find out about Pelican"
+[webfaction]: http://www.webfaction.com?affiliate=dominicrodger "Get hosting from WebFaction"
+[github-repo]: https://github.com/dominicrodger/dominicrodger.com "Use the source, Luke!"
