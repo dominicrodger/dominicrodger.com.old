@@ -43,10 +43,9 @@ and modifying my call to re-compile my blog to:
 I use [WebFaction][webfaction] for all my sites, and whilst deploying was easy,
 it wasn't entirely obvious that I did it the right way. WebFaction has a really
 nice model for managing sites ([domains, applications, and websites][webfaction-help]),
-but Pelican didn't really fit into any of them. Eventually I settled on
-creating a Pelican installation in my root directory, and then used
-"Symbolic link to static only app" with the path set to Pelican's output
-directory.
+but Pelican didn't really fit into its model. Eventually I settled on creating
+a Pelican installation in my root directory, and then used "Symbolic link to
+static only app" with the path set to Pelican's output directory.
 
 I've added a cron job to my WebFaction account which just pulls from my public
 GitHub repository, so any changes I push to [GitHub][dmr-repo] get deployed to
