@@ -14,7 +14,8 @@ LINKS = (
         )
 
 SOCIAL = (
-    ('twitter', 'http://twitter.com/dominicrodger'),
+    ('Twitter', 'http://twitter.com/dominicrodger'),
+    ('GitHub', 'http://github.com/dominicrodger'),
          )
 
 TWITTER_USERNAME = 'dominicrodger'
