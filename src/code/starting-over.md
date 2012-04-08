@@ -45,10 +45,10 @@ from Python 2.6 to Python 2.7, as I did recently).
 
 This maintenance headache makes me want to just throw it all away and start
 again. I'd make it leaner - Kal&#233;o's full of cruft that seemed like a good
-idea at the time. I'd use sites, so I could more easily manage upgrades, and
-be able to spin up new sites quicker. I'd probably separate out parts of it
-into apps, so other people could use just the parts of it they need. I'd write
-better tests.
+idea at the time. I'd use the sites framework, so I could more easily manage
+upgrades, and be able to spin up new sites quicker. I'd probably separate out
+parts of it into apps, so other people could use just the parts of it they
+need. I'd write better tests.
 
 # Why I don't
 
