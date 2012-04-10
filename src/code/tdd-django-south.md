@@ -2,13 +2,13 @@ Date: 2011-01-11
 Title: Test-Driven Development with Django & South
 Slug: tdd-django-south
 
-I'd basically given up on attempting test-driven with Django, given the project I'm currently working on uses models with a lot of [South](http://south.aeracode.org) migrations. Just building the database and running the migrations could take a minute or so when running `manage.py test`, and resetting the database to a clean state meant the test suite would take several minutes to run.
+I'd basically given up on attempting test-driven with Django, given the project I'm currently working on uses models with a lot of [South][south] migrations. Just building the database and running the migrations could take a minute or so when running `manage.py test`, and resetting the database to a clean state meant the test suite would take several minutes to run.
 
 I've had an idea in the back of my mind for a while, and today I finally got around to making it work.
 
 # SQLite
 
-When using SQLite, the test runner doesn't bother to actually hit the filesystem, it [just does the whole thing in memory](http://docs.djangoproject.com/en/1.2/topics/testing/#the-test-database), which is a good deal quicker. Previously, I couldn't use SQLite, because South doesn't like it (since SQLite doesn't support `ALTER TABLE`).
+When using SQLite, the test runner doesn't bother to actually hit the filesystem, it [just does the whole thing in memory][sqlite-in-memory], which is a good deal quicker. Previously, I couldn't use SQLite, because South doesn't like it (since SQLite doesn't support `ALTER TABLE`).
 
 My realisation was that if I turned off South, I could use SQLite, which I did with this rather hackish file called `test_settings.py`:
 
@@ -49,3 +49,6 @@ With my default settings, I get:
 If I run tests for a particular app (which is generally all I need to do), that difference is 0.312s to 31.064s.
 
 That makes my test run approximately **99% quicker**, and well within what I consider an acceptable time to run every time I make small changes to my code.
+
+[south]: http://south.aeracode.org "Find out about South, a tool for managing database migrations in Django."
+[sqlite-in-memory]: http://docs.djangoproject.com/en/1.2/topics/testing/#the-test-database "Read the section of the Django docs about using SQLite's in memory model"

@@ -58,10 +58,10 @@
 
 
 </footer><!-- /.post-info -->
-        <p>I'd basically given up on attempting test-driven with Django, given the project I'm currently working on uses models with a lot of <a href="http://south.aeracode.org">South</a> migrations. Just building the database and running the migrations could take a minute or so when running <code>manage.py test</code>, and resetting the database to a clean state meant the test suite would take several minutes to run.</p>
+        <p>I'd basically given up on attempting test-driven with Django, given the project I'm currently working on uses models with a lot of <a href="http://south.aeracode.org" title="Find out about South, a tool for managing database migrations in Django.">South</a> migrations. Just building the database and running the migrations could take a minute or so when running <code>manage.py test</code>, and resetting the database to a clean state meant the test suite would take several minutes to run.</p>
 <p>I've had an idea in the back of my mind for a while, and today I finally got around to making it work.</p>
 <h1>SQLite</h1>
-<p>When using SQLite, the test runner doesn't bother to actually hit the filesystem, it <a href="http://docs.djangoproject.com/en/1.2/topics/testing/#the-test-database">just does the whole thing in memory</a>, which is a good deal quicker. Previously, I couldn't use SQLite, because South doesn't like it (since SQLite doesn't support <code>ALTER TABLE</code>).</p>
+<p>When using SQLite, the test runner doesn't bother to actually hit the filesystem, it <a href="http://docs.djangoproject.com/en/1.2/topics/testing/#the-test-database" title="Read the section of the Django docs about using SQLite's in memory model">just does the whole thing in memory</a>, which is a good deal quicker. Previously, I couldn't use SQLite, because South doesn't like it (since SQLite doesn't support <code>ALTER TABLE</code>).</p>
 <p>My realisation was that if I turned off South, I could use SQLite, which I did with this rather hackish file called <code>test_settings.py</code>:</p>
 <div class="codehilite"><pre><span class="kn">from</span> <span class="nn">settings</span> <span class="kn">import</span> <span class="o">*</span>
 
