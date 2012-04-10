@@ -2,7 +2,7 @@ Date: 2011-01-11
 Title: Test-Driven Development with Django & South
 Slug: tdd-django-south
 
-I'd basically given up on attempting test-driven with Django, given the project I'm currently working on uses models with a lot of [South](south.aeracode.org) migrations. Just building the database and running the migrations could take a minute or so when running `manage.py test`, and resetting the database to a clean state meant the test suite would take several minutes to run.
+I'd basically given up on attempting test-driven with Django, given the project I'm currently working on uses models with a lot of [South](http://south.aeracode.org) migrations. Just building the database and running the migrations could take a minute or so when running `manage.py test`, and resetting the database to a clean state meant the test suite would take several minutes to run.
 
 I've had an idea in the back of my mind for a while, and today I finally got around to making it work.
 
