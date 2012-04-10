@@ -313,6 +313,7 @@ img.left, figure.left {float: right; margin: 0 0 2em 2em;}
 		.social a[href*='twitter.com'] {background-image: url('../images/icons/twitter.png');}
 		.social a[href*='linkedin.com'] {background-image: url('../images/icons/linkedin.png');}
 		.social a[href*='github.com'] {background-image: url('../images/icons/github.png');}
+        .social a[href*='stackoverflow.com'] {background-image: url('../images/icons/stackoverflow.png');}
 
 /*
 	About
