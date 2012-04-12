@@ -1,13 +1,13 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*- #
 
-AUTHOR = u"Dominic Rodger"
-SITENAME = u"dominicrodger.com"
-SITEURL = 'http://dominicrodger.com'
+AUTHOR = u'Dominic Rodger'
+SITENAME = u'dominicrodger.com'
+SITEURL = u'http://dominicrodger.com'
 
-TIMEZONE = 'Europe/London'
+TIMEZONE = u'Europe/London'
 
-DEFAULT_LANG='en'
+DEFAULT_LANG = 'en'
 DEFAULT_DATE_FORMAT = '%A %d %B %Y'
 
 LINKS = (
