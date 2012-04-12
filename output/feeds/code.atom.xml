@@ -1,5 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>dominicrodger.com</title><link href="http://dominicrodger.com/" rel="alternate"></link><link href="http://dominicrodger.com/feeds/code.atom.xml" rel="self"></link><id>http://dominicrodger.com/</id><updated>2012-04-07T09:39:00+01:00</updated><entry><title>Starting with Pelican</title><link href="http://dominicrodger.compelican.html" rel="alternate"></link><updated>2012-04-07T09:39:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-04-07:pelican.html</id><summary type="html">&lt;h1&gt;A brief history of my (failed) blogs&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>dominicrodger.com</title><link href="http://dominicrodger.com/" rel="alternate"></link><link href="http://dominicrodger.com/feeds/code.atom.xml" rel="self"></link><id>http://dominicrodger.com/</id><updated>2012-04-12T19:18:00+01:00</updated><entry><title>Getting Better at Testing</title><link href="http://dominicrodger.combetter-testing.html" rel="alternate"></link><updated>2012-04-12T19:18:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-04-12:better-testing.html</id><summary type="html">&lt;p&gt;I started with unit testing about 4 years ago. I started writing what were
+probably integration tests, when I was working on the database backend of our
+application. The tests I wrote were designed to make sure that our process
+which saved data actually saved data. Saving data involved creating a document,
+calling save on it, which would save it in the filesystem-based database,
+which would hit the filesystem. Testing it was saved correctly meant calling
+open on a document, which hit the database, which hit the filesystem.&lt;/p&gt;
+&lt;h1&gt;I'm doing it wrong&lt;/h1&gt;
+&lt;p&gt;A bit later, I came across this quote:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;A test is not a unit test if:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;It talks to the database&lt;/li&gt;
+&lt;li&gt;It communicates across the network&lt;/li&gt;
+&lt;li&gt;It touches the file system&lt;/li&gt;
+&lt;li&gt;It can't run at the same time as any of your other unit tests&lt;/li&gt;
+&lt;li&gt;You have to do special things to your environment (such as editing config
+  files) to run it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&amp;mdash; &lt;a href="http://www.artima.com/weblogs/viewpost.jsp?thread=126923" title="Read Michael Feathers' Unit Testing Rules"&gt;Michael Feathers: A Set of Unit Testing Rules&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;I hadn't done all those things, but most of my tests did at least 2 of them&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;Regardless of the philosophical point of whether what I had written were unit
+tests, there was a more fundamental problem: &lt;strong&gt;they were slow&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;In order to set up the tests I had to create a database, and initialise its
+schema. Then I had to repeatedly open and close the database, saving documents,
+and checking they were saved correctly. At the end of the tests they had to
+clear up the database.&lt;/p&gt;
+&lt;h1&gt;Impatience&lt;/h1&gt;
+&lt;blockquote&gt;
+&lt;p&gt;We will encourage you to develop the three great virtues of a programmer:
+laziness, impatience, and hubris.&lt;br /&gt;
+&amp;mdash; &lt;a href="http://en.wikipedia.org/wiki/Larry_Wall" title="The quote is from Programming Perl, by Larry Wall - go take a look at his Wikipedia profile"&gt;Larry Wall, Programming Perl&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Increasingly I was writing unit tests which I didn't bother to run during
+development - they became another item on my check-list of things to do
+before checking code in. If they failed, the specific thing I changed which
+might have broken them might have been a while ago, making it hard to track
+down.&lt;/p&gt;
+&lt;p&gt;So a while ago I tried a strange experiment. I tried to build an entire
+website&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt; without opening a browser. I didn't quite make it (eventually I had
+to open a browser to check that it looked reasonable), but I got all the models
+and views built by writing tests for them&lt;sup id="fnref:3"&gt;&lt;a href="#fn:3" rel="footnote"&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;Using a &lt;a href="http://www.dominicrodger.com/tdd-django-south.html" title="Read about a quick trick for making test runs in Django faster"&gt;quick trick&lt;/a&gt;, my app's test suite runs in 2.1s on my
+machine, which meant that it was pretty easy to run tests before each
+commit&lt;sup id="fnref:4"&gt;&lt;a href="#fn:4" rel="footnote"&gt;4&lt;/a&gt;&lt;/sup&gt;. Being able to specify &lt;a href="https://docs.djangoproject.com/en/dev/topics/testing/#running-tests" title="Django Documentation for running just a subset of your unit tests"&gt;particular tests&lt;/a&gt; to
+run makes test-driven development a practical possibility.&lt;/p&gt;
+&lt;p&gt;And each time I start a project this way, with a basic set of tests, I find
+that I'm more likely to write tests next time I work on it. The tests I write
+help me be confident that any changes I make are good, and confidence helps me
+get stuff done, and getting stuff done makes me happy.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;Since writing those first tests, I've started working on a team which
+  works on database technology, so avoiding talking to the database is
+  pretty tricky, since if you've not talked to the database, you've not
+  tested your code.&amp;#160;&lt;a href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;The website was &lt;a href="http://ministrytoday.org.uk" title="Visit the Ministry Today site, a journal for Christian leaders"&gt;Ministry Today&lt;/a&gt;, if you're curious. The
+  less kind amongst you might well suggest that it looks like a site which
+  was built with design as an afterthought.&amp;#160;&lt;a href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:3"&gt;
+&lt;p&gt;Most of the tests are part of &lt;a href="https://github.com/dominicrodger/django-magazine" title="Take a look at django-magazine, the main open source app behind Ministry Today"&gt;django-magazine&lt;/a&gt;, and
+  you can see them on &lt;a href="https://github.com/dominicrodger/django-magazine/tree/master/magazine/tests" title="Browse the code for the tests of django-magazine"&gt;GitHub&lt;/a&gt;.&amp;#160;&lt;a href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:4"&gt;
+&lt;p&gt;I really ought to play around with &lt;a href="http://tech.yipit.com/2011/11/16/183772396/" title="Read about Django pre-commit hooks at the Yipit Django Blog."&gt;pre-commit hooks&lt;/a&gt;
+  for this stuff some day.&amp;#160;&lt;a href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</summary></entry><entry><title>Starting with Pelican</title><link href="http://dominicrodger.compelican.html" rel="alternate"></link><updated>2012-04-07T09:39:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-04-07:pelican.html</id><summary type="html">&lt;h1&gt;A brief history of my (failed) blogs&lt;/h1&gt;
 &lt;p&gt;In about 1998, I was building a website for a friend. The site was entirely
 static. I'd already learned the hard way about the pain of trying to keep lots
 of separate static HTML files visually consistent.&lt;/p&gt;

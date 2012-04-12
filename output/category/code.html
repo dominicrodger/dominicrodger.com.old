@@ -49,10 +49,10 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href=".././pelican.html">Starting with Pelican</a></h1> 
+                    <h1 class="entry-title"><a href=".././better-testing.html">Getting Better at Testing</a></h1> 
                     <footer class="post-info">
-        <abbr class="published" title="2012-04-07T09:39:00">
-                Saturday 07 April 2012
+        <abbr class="published" title="2012-04-12T19:18:00">
+                Thursday 12 April 2012
         </abbr>
 
         
@@ -64,52 +64,78 @@
 
 
 
-</footer><!-- /.post-info --><h1>A brief history of my (failed) blogs</h1>
-<p>In about 1998, I was building a website for a friend. The site was entirely
-static. I'd already learned the hard way about the pain of trying to keep lots
-of separate static HTML files visually consistent.</p>
-<p>To build the site, I used a system (whose name has since faded from memory)
-which took as its input some template files, some files containing the
-content, and combined them together to build a website. I'd run a script,
-and FTP the resulting HTML to a server somewhere.</p>
-<p>Since then, I've tried various different things. I used <a href="http://en.wikipedia.org/wiki/Greymatter_(software)" title="Read the history of Greymatter">Greymatter</a>
-for a while, and then mostly wrote my own - first in PHP, and then more
-recently in Django. The only thing that all these blogs had in common was this:
-I spent more time building the system than I ever spent using it.</p>
-<h1>Today</h1>
-<p>14 years after my first static site generator experience, I'm back. This time
-I'm using <a href="http://pelican.readthedocs.org/en/latest/" title="Find out about Pelican">Pelican</a>, and hoping that the auto-reload stuff will make
-writing easier - as I can write in <a href="http://daringfireball.net/projects/markdown/" title="Find out about Markdown, a text-to-HTML tool for web writers by John Gruber">Markdown</a>, and see the results
-as they will be rendered live<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
-<p>Thanks to <a href="http://pydanny.com/choosing-a-new-python-based-blog-engine.html" title="Read Daniel Greenfeld's entry on getting started with Pelican">pydanny</a> for the tip about Pelican - it's been pretty
-straightforward so far.</p>
-<h2>Customising Pelican</h2>
-<p>The only changes I've really made to Pelican are to the CSS (<a href="https://github.com/dominicrodger/dominicrodger.com/commit/61e81d568087a92e2bb41dc619966075566fb81e">fixing up the
-code style</a>, because I don't much like the default monospace font,
-and <a href="https://github.com/dominicrodger/dominicrodger.com/commit/54d99084c8b6777cd77c31fe1157718fc1a612b7">modifying the footnote link style</a>). I did that by just
-copying the default theme into my directory (which I've called <code>plagiarism</code>),
-and modifying my call to re-compile my blog to:</p>
-<div class="codehilite"><pre><span class="n">pelican</span> <span class="n">src</span> <span class="o">-</span><span class="n">s</span> <span class="n">pelican</span><span class="p">.</span><span class="n">conf</span><span class="p">.</span><span class="n">py</span> <span class="o">-</span><span class="n">t</span> <span class="n">plagiarism</span>
-</pre></div>
-
-
-<h2>Deploying Pelican</h2>
-<p>I use <a href="http://www.webfaction.com/?affiliate=dominicrodger" title="Get hosted with WebFaction">WebFaction</a> for all my sites, and whilst deploying was easy,
-it wasn't entirely obvious that I did it the right way. WebFaction has a really
-nice model for managing sites (<a href="http://docs.webfaction.com/user-guide/websites.html" title="Read a bit about WebFaction's model for managing websites">domains, applications, and websites</a>),
-but Pelican didn't really fit into its model. Eventually I settled on creating
-a Pelican installation in my root directory, and then used "Symbolic link to
-static only app" with the path set to Pelican's output directory.</p>
-<p>I've added a cron job to my WebFaction account which just pulls from my public
-GitHub repository, so any changes I push to <a href="https://github.com/dominicrodger/dominicrodger.com" title="View this site's GitHub repository">GitHub</a> get deployed to
-the site without any intervention.</p>
+</footer><!-- /.post-info --><p>I started with unit testing about 4 years ago. I started writing what were
+probably integration tests, when I was working on the database backend of our
+application. The tests I wrote were designed to make sure that our process
+which saved data actually saved data. Saving data involved creating a document,
+calling save on it, which would save it in the filesystem-based database,
+which would hit the filesystem. Testing it was saved correctly meant calling
+open on a document, which hit the database, which hit the filesystem.</p>
+<h1>I'm doing it wrong</h1>
+<p>A bit later, I came across this quote:</p>
+<blockquote>
+<p>A test is not a unit test if:</p>
+<ul>
+<li>It talks to the database</li>
+<li>It communicates across the network</li>
+<li>It touches the file system</li>
+<li>It can't run at the same time as any of your other unit tests</li>
+<li>You have to do special things to your environment (such as editing config
+  files) to run it.</li>
+</ul>
+<p>&mdash; <a href="http://www.artima.com/weblogs/viewpost.jsp?thread=126923" title="Read Michael Feathers' Unit Testing Rules">Michael Feathers: A Set of Unit Testing Rules</a></p>
+</blockquote>
+<p>I hadn't done all those things, but most of my tests did at least 2 of them<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
+<p>Regardless of the philosophical point of whether what I had written were unit
+tests, there was a more fundamental problem: <strong>they were slow</strong>.</p>
+<p>In order to set up the tests I had to create a database, and initialise its
+schema. Then I had to repeatedly open and close the database, saving documents,
+and checking they were saved correctly. At the end of the tests they had to
+clear up the database.</p>
+<h1>Impatience</h1>
+<blockquote>
+<p>We will encourage you to develop the three great virtues of a programmer:
+laziness, impatience, and hubris.<br />
+&mdash; <a href="http://en.wikipedia.org/wiki/Larry_Wall" title="The quote is from Programming Perl, by Larry Wall - go take a look at his Wikipedia profile">Larry Wall, Programming Perl</a></p>
+</blockquote>
+<p>Increasingly I was writing unit tests which I didn't bother to run during
+development - they became another item on my check-list of things to do
+before checking code in. If they failed, the specific thing I changed which
+might have broken them might have been a while ago, making it hard to track
+down.</p>
+<p>So a while ago I tried a strange experiment. I tried to build an entire
+website<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> without opening a browser. I didn't quite make it (eventually I had
+to open a browser to check that it looked reasonable), but I got all the models
+and views built by writing tests for them<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>.</p>
+<p>Using a <a href="http://www.dominicrodger.com/tdd-django-south.html" title="Read about a quick trick for making test runs in Django faster">quick trick</a>, my app's test suite runs in 2.1s on my
+machine, which meant that it was pretty easy to run tests before each
+commit<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>. Being able to specify <a href="https://docs.djangoproject.com/en/dev/topics/testing/#running-tests" title="Django Documentation for running just a subset of your unit tests">particular tests</a> to
+run makes test-driven development a practical possibility.</p>
+<p>And each time I start a project this way, with a basic set of tests, I find
+that I'm more likely to write tests next time I work on it. The tests I write
+help me be confident that any changes I make are good, and confidence helps me
+get stuff done, and getting stuff done makes me happy.</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>Sort of, anyway - I'm using an auto-refresh extension in Chrome, and
-  using the <a href="http://pelican.notmyidea.org/en/2.8/getting_started.html#autoreload">auto-reload functionality</a> in Pelican, so I
-  see updates every 5 seconds or so.&#160;<a href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>Since writing those first tests, I've started working on a team which
+  works on database technology, so avoiding talking to the database is
+  pretty tricky, since if you've not talked to the database, you've not
+  tested your code.&#160;<a href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>The website was <a href="http://ministrytoday.org.uk" title="Visit the Ministry Today site, a journal for Christian leaders">Ministry Today</a>, if you're curious. The
+  less kind amongst you might well suggest that it looks like a site which
+  was built with design as an afterthought.&#160;<a href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:3">
+<p>Most of the tests are part of <a href="https://github.com/dominicrodger/django-magazine" title="Take a look at django-magazine, the main open source app behind Ministry Today">django-magazine</a>, and
+  you can see them on <a href="https://github.com/dominicrodger/django-magazine/tree/master/magazine/tests" title="Browse the code for the tests of django-magazine">GitHub</a>.&#160;<a href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>I really ought to play around with <a href="http://tech.yipit.com/2011/11/16/183772396/" title="Read about Django pre-commit hooks at the Yipit Django Blog.">pre-commit hooks</a>
+  for this stuff some day.&#160;<a href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -123,6 +149,44 @@ the site without any intervention.</p>
                     <ol id="posts-list" class="hfeed">
             
         
+        
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                        <h1><a href=".././pelican.html" rel="bookmark" title="Permalink to Starting with Pelican">Starting with Pelican</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-04-07T09:39:00">
+                Saturday 07 April 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/dominic-rodger.html">Dominic Rodger</a>
+        </address>
+        
+<p>In <a href=".././category/code.html">code</a>. </p>
+
+
+
+</footer><!-- /.post-info -->
+                <h1>A brief history of my (failed) blogs</h1>
+<p>In about 1998, I was building a website for a friend. The site was entirely
+static. I'd already learned the hard way about the pain of trying to keep lots
+of separate static HTML files visually consistent.</p>
+<p>To build the site, I ...</p>
+                <a class="readmore" href=".././pelican.html">read more</a>
+                
+                </div><!-- /.entry-content -->
+            </article></li>
         
         
         
