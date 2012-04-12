@@ -1,4 +1,4 @@
-Date: 2012-04-07
+Date: 2012-04-07 09:39
 Title: Starting with Pelican
 Slug: pelican
 

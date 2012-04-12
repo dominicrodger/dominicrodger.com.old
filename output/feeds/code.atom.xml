@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>dominicrodger.com</title><link href="http://dominicrodger.com/" rel="alternate"></link><link href="http://dominicrodger.com/feeds/code.atom.xml" rel="self"></link><id>http://dominicrodger.com/</id><updated>2012-04-07T00:00:00+01:00</updated><entry><title>Starting with Pelican</title><link href="http://dominicrodger.compelican.html" rel="alternate"></link><updated>2012-04-07T00:00:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-04-07:pelican.html</id><summary type="html">&lt;h1&gt;A brief history of my (failed) blogs&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>dominicrodger.com</title><link href="http://dominicrodger.com/" rel="alternate"></link><link href="http://dominicrodger.com/feeds/code.atom.xml" rel="self"></link><id>http://dominicrodger.com/</id><updated>2012-04-07T09:39:00+01:00</updated><entry><title>Starting with Pelican</title><link href="http://dominicrodger.compelican.html" rel="alternate"></link><updated>2012-04-07T09:39:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-04-07:pelican.html</id><summary type="html">&lt;h1&gt;A brief history of my (failed) blogs&lt;/h1&gt;
 &lt;p&gt;In about 1998, I was building a website for a friend. The site was entirely
 static. I'd already learned the hard way about the pain of trying to keep lots
 of separate static HTML files visually consistent.&lt;/p&gt;
@@ -47,7 +47,7 @@ the site without any intervention.&lt;/p&gt;
   see updates every 5 seconds or so.&amp;#160;&lt;a href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</summary></entry><entry><title>Starting Over</title><link href="http://dominicrodger.comstarting-over.html" rel="alternate"></link><updated>2012-04-07T00:00:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-04-07:starting-over.html</id><summary type="html">&lt;h1&gt;Please sir, can I start again?&lt;/h1&gt;
+&lt;/div&gt;</summary></entry><entry><title>Starting Over</title><link href="http://dominicrodger.comstarting-over.html" rel="alternate"></link><updated>2012-04-07T07:58:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-04-07:starting-over.html</id><summary type="html">&lt;h1&gt;Please sir, can I start again?&lt;/h1&gt;
 &lt;p&gt;Every once in a while, I want to start again.&lt;/p&gt;
 &lt;p&gt;I currently have 6 different sites using Kal&amp;#233;o&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;. The code is stored in
 a private git repository, and synced out to 6 different places every time I
