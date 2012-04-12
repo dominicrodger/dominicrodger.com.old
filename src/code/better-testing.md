@@ -6,9 +6,9 @@ I started with unit testing about 4 years ago. I started writing what were
 probably integration tests, when I was working on the database backend of our
 application. The tests I wrote were designed to make sure that our process
 which saved data actually saved data. Saving data involved creating a document,
-calling save on it, which would save it in the filesystem-based database,
-which would hit the filesystem. Testing it was saved correctly meant calling
-open on a document, which hit the database, which hit the filesystem.
+calling save on it, which would save it in the file system-based database,
+which would hit the file system. Testing it was saved correctly meant calling
+open on a document, which hit the database, which hit the file system.
 
 # I'm doing it wrong
 
