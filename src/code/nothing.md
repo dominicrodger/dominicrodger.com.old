@@ -1,7 +1,6 @@
 Date: 2012-04-07
 Title: I Know Nothing
 Slug: nothing
-Status: draft
 
 > See, I know nothing! &mdash; [Manuel][manuel]
 
