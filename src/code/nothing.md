@@ -39,8 +39,8 @@ to questions where I thought I could. Sometimes the answers I gave were good
 enough, sometimes other people posted better answers, and I learned[^3].
 
 All this is to say that I've learned how little I know by accidentally
-surrounding myself with me who know better. If you think you're smart, chances
-are you just haven't discovered all the things you don't know yet.
+surrounding myself with people who know better. If you think you're smart,
+chances are you just haven't discovered all the things you don't know yet.
 
 ## Demonstrable Ignorance
 
