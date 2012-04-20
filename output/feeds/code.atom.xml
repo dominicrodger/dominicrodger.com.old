@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>dominicrodger.com</title><link href="http://dominicrodger.com/" rel="alternate"></link><link href="http://dominicrodger.com/feeds/code.atom.xml" rel="self"></link><id>http://dominicrodger.com/</id><updated>2012-04-12T19:18:00+01:00</updated><entry><title>Getting Better at Testing</title><link href="http://dominicrodger.combetter-testing.html" rel="alternate"></link><updated>2012-04-12T19:18:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-04-12:better-testing.html</id><summary type="html">&lt;p&gt;I started with unit testing about 4 years ago. I started writing what were
+<feed xmlns="http://www.w3.org/2005/Atom"><title>dominicrodger.com</title><link href="http://dominicrodger.com/" rel="alternate"></link><link href="http://dominicrodger.com/feeds/code.atom.xml" rel="self"></link><id>http://dominicrodger.com/</id><updated>2012-04-12T19:18:00+01:00</updated><entry><title>Getting Better at Testing</title><link href="http://dominicrodger.com/better-testing.html" rel="alternate"></link><updated>2012-04-12T19:18:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-04-12:better-testing.html</id><summary type="html">&lt;p&gt;I started with unit testing about 4 years ago. I started writing what were
 probably integration tests, when I was working on the database backend of our
 application. The tests I wrote were designed to make sure that our process
 which saved data actually saved data. Saving data involved creating a document,
@@ -73,7 +73,7 @@ get stuff done, and getting stuff done makes me happy.&lt;/p&gt;
   for this stuff some day.&amp;#160;&lt;a href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</summary></entry><entry><title>Starting with Pelican</title><link href="http://dominicrodger.compelican.html" rel="alternate"></link><updated>2012-04-07T09:39:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-04-07:pelican.html</id><summary type="html">&lt;h1&gt;A brief history of my (failed) blogs&lt;/h1&gt;
+&lt;/div&gt;</summary></entry><entry><title>Starting with Pelican</title><link href="http://dominicrodger.com/pelican.html" rel="alternate"></link><updated>2012-04-07T09:39:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-04-07:pelican.html</id><summary type="html">&lt;h1&gt;A brief history of my (failed) blogs&lt;/h1&gt;
 &lt;p&gt;In about 1998, I was building a website for a friend. The site was entirely
 static. I'd already learned the hard way about the pain of trying to keep lots
 of separate static HTML files visually consistent.&lt;/p&gt;
@@ -121,7 +121,7 @@ the site without any intervention.&lt;/p&gt;
   see updates every 5 seconds or so.&amp;#160;&lt;a href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</summary></entry><entry><title>Starting Over</title><link href="http://dominicrodger.comstarting-over.html" rel="alternate"></link><updated>2012-04-07T07:58:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-04-07:starting-over.html</id><summary type="html">&lt;h1&gt;Please sir, can I start again?&lt;/h1&gt;
+&lt;/div&gt;</summary></entry><entry><title>Starting Over</title><link href="http://dominicrodger.com/starting-over.html" rel="alternate"></link><updated>2012-04-07T07:58:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-04-07:starting-over.html</id><summary type="html">&lt;h1&gt;Please sir, can I start again?&lt;/h1&gt;
 &lt;p&gt;Every once in a while, I want to start again.&lt;/p&gt;
 &lt;p&gt;I currently have 6 different sites using Kal&amp;#233;o&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;. The code is stored in
 a private git repository, and synced out to 6 different places every time I
@@ -189,7 +189,7 @@ by tiny refactor, and I'm doing it all without breaking anything (much).&lt;/p&g
   the things I haven't got installed.&amp;#160;&lt;a href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;/div&gt;</summary></entry><entry><title>Test-Driven Development with Django &amp; South</title><link href="http://dominicrodger.comtdd-django-south.html" rel="alternate"></link><updated>2011-01-11T00:00:00+00:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2011-01-11:tdd-django-south.html</id><summary type="html">&lt;p&gt;I'd basically given up on attempting test-driven with Django, given
+&lt;/div&gt;</summary></entry><entry><title>Test-Driven Development with Django &amp; South</title><link href="http://dominicrodger.com/tdd-django-south.html" rel="alternate"></link><updated>2011-01-11T00:00:00+00:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2011-01-11:tdd-django-south.html</id><summary type="html">&lt;p&gt;I'd basically given up on attempting test-driven with Django, given
 the project I'm currently working on uses models with a lot of
 &lt;a href="http://south.aeracode.org" title="Find out about South, a tool for managing database migrations in Django."&gt;South&lt;/a&gt; migrations. Just building the database and running the
 migrations could take a minute or so when running &lt;code&gt;manage.py test&lt;/code&gt;,
