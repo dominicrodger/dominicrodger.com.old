@@ -49,10 +49,10 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="./better-testing.html">Getting Better at Testing</a></h1> 
+                    <h1 class="entry-title"><a href="./nothing.html">I Know Nothing</a></h1> 
                     <footer class="post-info">
-        <abbr class="published" title="2012-04-12T19:18:00">
-                Thursday 12 April 2012
+        <abbr class="published" title="2012-04-20T22:52:00">
+                Friday 20 April 2012
         </abbr>
 
         
@@ -64,78 +64,67 @@
 
 
 
-</footer><!-- /.post-info --><p>I started with unit testing about 4 years ago. I started writing what were
-probably integration tests, when I was working on the database backend of our
-application. The tests I wrote were designed to make sure that our process
-which saved data actually saved data. Saving data involved creating a document,
-calling save on it, which would save it in the file system-based database,
-which would hit the file system. Testing it was saved correctly meant calling
-open on a document, which hit the database, which hit the file system.</p>
-<h1>I'm doing it wrong</h1>
-<p>A bit later, I came across this quote:</p>
-<blockquote>
-<p>A test is not a unit test if:</p>
-<ul>
-<li>It talks to the database</li>
-<li>It communicates across the network</li>
-<li>It touches the file system</li>
-<li>It can't run at the same time as any of your other unit tests</li>
-<li>You have to do special things to your environment (such as editing config
-  files) to run it.</li>
-</ul>
-<p>&mdash; <a href="http://www.artima.com/weblogs/viewpost.jsp?thread=126923" title="Read Michael Feathers' Unit Testing Rules">Michael Feathers: A Set of Unit Testing Rules</a></p>
+</footer><!-- /.post-info --><blockquote>
+<p>See, I know nothing! &mdash; <a href="http://www.imdb.com/character/ch0023128/quotes" title="Manuel, from Fawlty Towers">Manuel</a></p>
 </blockquote>
-<p>I hadn't done all those things, but most of my tests did at least 2 of them<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
-<p>Regardless of the philosophical point of whether what I had written were unit
-tests, there was a more fundamental problem: <strong>they were slow</strong>.</p>
-<p>In order to set up the tests I had to create a database, and initialise its
-schema. Then I had to repeatedly open and close the database, saving documents,
-and checking they were saved correctly. At the end of the tests they had to
-clear up the database.</p>
-<h1>Impatience</h1>
+<p>I distinctly remember being 17 years old, I'd just finished re-launching a
+site for <a href="http://www.oxygen-online.org" title="Find out about Oxygen">a charity</a> I was involved with<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>, and I confidently declared
+that I knew all there was to know about building websites. And I believed it.</p>
+<p>At the time, I was building sites in <a href="http://php.net/" title="Find out about PHP">PHP</a>, and like every other 17
+year-old learning PHP, I'd built entirely my own system for managing the site.</p>
+<p>I'd experimented with Flash. I knew some JavaScript, and was reasonably
+proficient in PHP (a skill that has since been burned from my brain). As far as
+I was concerned websites were just combinations of text, images and some degree
+of interactivity, so I could do anything that was possible.</p>
+<p>It seems ridiculous now, of course. I didn't know anything about caching,
+didn't know a thing about HTTP, or load balancers<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>, or deploying properly
+(apparently there's something wrong with copy-pasting files around to live
+servers).</p>
+<h2>Working alone</h2>
+<p>Aside from a few years' more experience, one important thing has changed: <em>I no
+longer work alone</em>.</p>
+<p>Working alone meant I was always the smartest person in my team. My ideas were
+always the best, and I was always the one to fix my mistakes. No one ever
+disagreed with me, no one ever had a better idea, no one ever pointed out why
+my idea was stupid.</p>
+<p>All that changed when I finished university and started work - people pointed
+me at ways of solving problems that were in categories I'd never even heard of.</p>
+<p>I started participating in <a href="http://stackoverflow.com/users/20972/dominic-rodger" title="View my profile on Stack Overflow, a Q&amp;A site for programmers">Stack Overflow</a>, and gave answers
+to questions where I thought I could. Sometimes the answers I gave were good
+enough, sometimes other people posted better answers, and I learned<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>.</p>
+<p>All this is to say that I've learned how little I know by accidentally
+surrounding myself with me who know better. If you think you're smart, chances
+are you just haven't discovered all the things you don't know yet.</p>
+<h2>Demonstrable Ignorance</h2>
 <blockquote>
-<p>We will encourage you to develop the three great virtues of a programmer:
-laziness, impatience, and hubris.<br />
-&mdash; <a href="http://en.wikipedia.org/wiki/Larry_Wall" title="The quote is from Programming Perl, by Larry Wall - go take a look at his Wikipedia profile">Larry Wall, Programming Perl</a></p>
+<p>It's amazing how much you find you don't know when you try to explain
+something in detail to someone else. It can start a whole new process of
+discovery. &mdash; <a href="http://blog.stackoverflow.com/2009/10/podcast-71/#comment-40649" title="Jon Skeet's comment on a Stack Overflow podcast">Jon Skeet</a></p>
 </blockquote>
-<p>Increasingly I was writing unit tests which I didn't bother to run during
-development - they became another item on my check-list of things to do
-before checking code in. If they failed, the specific thing I changed which
-might have broken them might have been a while ago, making it hard to track
-down.</p>
-<p>So a while ago I tried a strange experiment. I tried to build an entire
-website<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup> without opening a browser. I didn't quite make it (eventually I had
-to open a browser to check that it looked reasonable), but I got all the models
-and views built by writing tests for them<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>.</p>
-<p>Using a <a href="http://www.dominicrodger.com/tdd-django-south.html" title="Read about a quick trick for making test runs in Django faster">quick trick</a>, my app's test suite runs in 2.1s on my
-machine, which meant that it was pretty easy to run tests before each
-commit<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>. Being able to specify <a href="https://docs.djangoproject.com/en/dev/topics/testing/#running-tests" title="Django Documentation for running just a subset of your unit tests">particular tests</a> to
-run makes test-driven development a practical possibility.</p>
-<p>And each time I start a project this way, with a basic set of tests, I find
-that I'm more likely to write tests next time I work on it. The tests I write
-help me be confident that any changes I make are good, and confidence helps me
-get stuff done, and getting stuff done makes me happy.</p>
+<p>A few of the training sessions I run from time to time at work involve live
+coding demonstrations. I open up Emacs, write some code, and then show it
+running. Invariably someone will ask me what will happen if I change <em>a</em> to
+<em>b</em>, and painfully frequently the answer is <em>"I'd never thought of doing that,
+I've no idea"</em>. So I make the change, run it, and I try to piece together
+what's going on with everyone watching. It's embarrassing, but maybe it's good
+that I'm able to so quickly crush anyone's misperceptions that I know
+everything about anything.</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>Since writing those first tests, I've started working on a team which
-  works on database technology, so avoiding talking to the database is
-  pretty tricky, since if you've not talked to the database, you've not
-  tested your code.&#160;<a href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p><a href="http://www.oxygen-online.org" title="Find out about Oxygen">Oxygen's site</a> has gone through several versions since I moved
+  away in 2004 to start university. The wonderful Wayback Machine has
+  a <a href="http://web.archive.org/web/20041126110503/http://www.oxygen-online.org/">cache of the site</a> from around that time.&#160;<a href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>The website was <a href="http://ministrytoday.org.uk" title="Visit the Ministry Today site, a journal for Christian leaders">Ministry Today</a>, if you're curious. The
-  less kind amongst you might well suggest that it looks like a site which
-  was built with design as an afterthought.&#160;<a href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>I still don't (since none of <a href="http://www.dominicrodger.com/pages/about-me.html" title="See a list of the sites I currently run, if you're curious">my various sites</a> get significant
+  amounts of traffic), but hey, at least I know the categories of things
+  which I know nothing about.&#160;<a href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>Most of the tests are part of <a href="https://github.com/dominicrodger/django-magazine" title="Take a look at django-magazine, the main open source app behind Ministry Today">django-magazine</a>, and
-  you can see them on <a href="https://github.com/dominicrodger/django-magazine/tree/master/magazine/tests" title="Browse the code for the tests of django-magazine">GitHub</a>.&#160;<a href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
-</li>
-<li id="fn:4">
-<p>I really ought to play around with <a href="http://tech.yipit.com/2011/11/16/183772396/" title="Read about Django pre-commit hooks at the Yipit Django Blog.">pre-commit hooks</a>
-  for this stuff some day.&#160;<a href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<p><a href="http://stackoverflow.com/users/20972/dominic-rodger" title="View my profile on Stack Overflow, a Q&amp;A site for programmers">Stack Overflow</a> was also a pretty good way to get better
+  at writing, as <a href="http://www.codinghorror.com/blog/2011/02/how-to-write-without-writing.html" title="Jeff Atwood on learning to write with Stack Overflow">others have said</a>.&#160;<a href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -149,6 +138,43 @@ get stuff done, and getting stuff done makes me happy.</p>
                     <ol id="posts-list" class="hfeed">
             
         
+        
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                        <h1><a href="./better-testing.html" rel="bookmark" title="Permalink to Getting Better at Testing">Getting Better at Testing</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-04-12T19:18:00">
+                Thursday 12 April 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/dominic-rodger.html">Dominic Rodger</a>
+        </address>
+        
+<p>In <a href="./category/code.html">code</a>. </p>
+
+
+
+</footer><!-- /.post-info -->
+                <p>I started with unit testing about 4 years ago. I started writing what were
+probably integration tests, when I was working on the database backend of our
+application. The tests I wrote were designed to make sure that our process
+which saved data actually saved data. Saving data involved creating ...</p>
+                <a class="readmore" href="./better-testing.html">read more</a>
+                
+                </div><!-- /.entry-content -->
+            </article></li>
         
         
         
@@ -222,46 +248,6 @@ of separate static HTML files visually consistent.</p>
 a private git repository, and synced out to 6 different places every time I
 need to make a change ...</p>
                 <a class="readmore" href="./starting-over.html">read more</a>
-                
-                </div><!-- /.entry-content -->
-            </article></li>
-        
-        
-        
-            
-
-        
-         
-            
-            <li><article class="hentry">    
-                <header>
-                        <h1><a href="./nothing.html" rel="bookmark" title="Permalink to I Know Nothing">I Know Nothing</a></h1>
-                </header>
-                
-                <div class="entry-content">
-                <footer class="post-info">
-        <abbr class="published" title="2012-04-07T00:00:00">
-                Saturday 07 April 2012
-        </abbr>
-
-        
-        <address class="vcard author">
-                By <a class="url fn" href="./author/dominic-rodger.html">Dominic Rodger</a>
-        </address>
-        
-<p>In <a href="./category/code.html">code</a>. </p>
-
-
-
-</footer><!-- /.post-info -->
-                <blockquote>
-<p>See, I know nothing! &mdash; <a href="http://www.imdb.com/character/ch0023128/quotes" title="Manuel, from Fawlty Towers">Manuel</a></p>
-</blockquote>
-<p>I distinctly remember being 17 years old, I'd just finished re-launching a
-site for <a href="http://www.oxygen-online.org" title="Find out about Oxygen">a charity</a> I was involved with<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>, and I confidently declared
-that I knew all there was to know about building websites. And I believed it.</p>
-<p>At the time, I ...</p>
-                <a class="readmore" href="./nothing.html">read more</a>
                 
                 </div><!-- /.entry-content -->
             </article></li>
