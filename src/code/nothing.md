@@ -24,10 +24,11 @@ caching, didn't know a thing about HTTP, or load balancers[^2], or
 deploying properly (apparently there's something wrong with
 copy-pasting files around to live servers).
 
-## Working alone
+Aside from a few years' more experience, two important things have
+changed: I no longer work alone, and I've been training, from time to
+time.
 
-Aside from a few years' more experience, one important thing has
-changed: *I no longer work alone*.
+## Working alone
 
 Working alone meant I was always the smartest person in my team. My
 ideas were always the best, and I was always the one to fix my
@@ -48,7 +49,7 @@ surrounding myself with people who know better. If you think you're
 smart, chances are you just haven't discovered all the things you
 don't know yet.
 
-## Demonstrable Ignorance
+## Demonstrating my ignorance
 
 > It's amazing how much you find you don't know when you try to
 > explain something in detail to someone else. It can start a whole
