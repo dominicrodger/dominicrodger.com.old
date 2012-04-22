@@ -2,48 +2,55 @@
 <feed xmlns="http://www.w3.org/2005/Atom"><title>dominicrodger.com</title><link href="http://dominicrodger.com/" rel="alternate"></link><link href="http://dominicrodger.com/feeds/code.atom.xml" rel="self"></link><id>http://dominicrodger.com/</id><updated>2012-04-20T22:52:00+01:00</updated><entry><title>I Know Nothing</title><link href="http://dominicrodger.com/nothing.html" rel="alternate"></link><updated>2012-04-20T22:52:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-04-20:nothing.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;See, I know nothing! &amp;mdash; &lt;a href="http://www.imdb.com/character/ch0023128/quotes" title="Manuel, from Fawlty Towers"&gt;Manuel&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;I distinctly remember being 17 years old, I'd just finished re-launching a
-site for &lt;a href="http://www.oxygen-online.org" title="Find out about Oxygen"&gt;a charity&lt;/a&gt; I was involved with&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;, and I confidently declared
-that I knew all there was to know about building websites. And I believed it.&lt;/p&gt;
-&lt;p&gt;At the time, I was building sites in &lt;a href="http://php.net/" title="Find out about PHP"&gt;PHP&lt;/a&gt;, and like every other 17
-year-old learning PHP, I'd built entirely my own system for managing the site.&lt;/p&gt;
-&lt;p&gt;I'd experimented with Flash. I knew some JavaScript, and was reasonably
-proficient in PHP (a skill that has since been burned from my brain). As far as
-I was concerned websites were just combinations of text, images and some degree
-of interactivity, so I could do anything that was possible.&lt;/p&gt;
-&lt;p&gt;It seems ridiculous now, of course. I didn't know anything about caching,
-didn't know a thing about HTTP, or load balancers&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;, or deploying properly
-(apparently there's something wrong with copy-pasting files around to live
-servers).&lt;/p&gt;
+&lt;p&gt;I distinctly remember being 17 years old, I'd just finished
+re-launching a site for &lt;a href="http://www.oxygen-online.org" title="Find out about Oxygen"&gt;a charity&lt;/a&gt; I was involved with&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;,
+and I confidently declared that I knew all there was to know about
+building websites. And I believed it.&lt;/p&gt;
+&lt;p&gt;At the time, I was building sites in &lt;a href="http://php.net/" title="Find out about PHP"&gt;PHP&lt;/a&gt;, and like every other
+17 year-old learning PHP, I'd built entirely my own system for
+managing the site.&lt;/p&gt;
+&lt;p&gt;I'd experimented with Flash. I knew some JavaScript, and was
+reasonably proficient in PHP (a skill that has since been burned from
+my brain). As far as I was concerned websites were just combinations
+of text, images and some degree of interactivity, so I could do
+anything that was possible.&lt;/p&gt;
+&lt;p&gt;It seems ridiculous now, of course. I didn't know anything about
+caching, didn't know a thing about HTTP, or load balancers&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;, or
+deploying properly (apparently there's something wrong with
+copy-pasting files around to live servers).&lt;/p&gt;
 &lt;h2&gt;Working alone&lt;/h2&gt;
-&lt;p&gt;Aside from a few years' more experience, one important thing has changed: &lt;em&gt;I no
-longer work alone&lt;/em&gt;.&lt;/p&gt;
-&lt;p&gt;Working alone meant I was always the smartest person in my team. My ideas were
-always the best, and I was always the one to fix my mistakes. No one ever
-disagreed with me, no one ever had a better idea, no one ever pointed out why
-my idea was stupid.&lt;/p&gt;
-&lt;p&gt;All that changed when I finished university and started work - people pointed
-me at ways of solving problems that were in categories I'd never even heard of.&lt;/p&gt;
-&lt;p&gt;I started participating in &lt;a href="http://stackoverflow.com/users/20972/dominic-rodger" title="View my profile on Stack Overflow, a Q&amp;amp;A site for programmers"&gt;Stack Overflow&lt;/a&gt;, and gave answers
-to questions where I thought I could. Sometimes the answers I gave were good
-enough, sometimes other people posted better answers, and I learned&lt;sup id="fnref:3"&gt;&lt;a href="#fn:3" rel="footnote"&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;Aside from a few years' more experience, one important thing has
+changed: &lt;em&gt;I no longer work alone&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Working alone meant I was always the smartest person in my team. My
+ideas were always the best, and I was always the one to fix my
+mistakes. No one ever disagreed with me, no one ever had a better
+idea, no one ever pointed out why my idea was stupid.&lt;/p&gt;
+&lt;p&gt;All that changed when I finished university and started work - people
+pointed me at ways of solving problems that were in categories I'd
+never even heard of.&lt;/p&gt;
+&lt;p&gt;I started participating in &lt;a href="http://stackoverflow.com/users/20972/dominic-rodger" title="View my profile on Stack Overflow, a Q&amp;amp;A site for programmers"&gt;Stack Overflow&lt;/a&gt;, and gave
+answers to questions where I thought I could. Sometimes the answers I
+gave were good enough, sometimes other people posted better answers,
+and I learned&lt;sup id="fnref:3"&gt;&lt;a href="#fn:3" rel="footnote"&gt;3&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;All this is to say that I've learned how little I know by accidentally
-surrounding myself with people who know better. If you think you're smart,
-chances are you just haven't discovered all the things you don't know yet.&lt;/p&gt;
+surrounding myself with people who know better. If you think you're
+smart, chances are you just haven't discovered all the things you
+don't know yet.&lt;/p&gt;
 &lt;h2&gt;Demonstrable Ignorance&lt;/h2&gt;
 &lt;blockquote&gt;
-&lt;p&gt;It's amazing how much you find you don't know when you try to explain
-something in detail to someone else. It can start a whole new process of
-discovery. &amp;mdash; &lt;a href="http://blog.stackoverflow.com/2009/10/podcast-71/#comment-40649" title="Jon Skeet's comment on a Stack Overflow podcast"&gt;Jon Skeet&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;It's amazing how much you find you don't know when you try to
+explain something in detail to someone else. It can start a whole
+new process of discovery. &amp;mdash; &lt;a href="http://blog.stackoverflow.com/2009/10/podcast-71/#comment-40649" title="Jon Skeet's comment on a Stack Overflow podcast"&gt;Jon Skeet&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
-&lt;p&gt;A few of the training sessions I run from time to time at work involve live
-coding demonstrations. I open up Emacs, write some code, and then show it
-running. Invariably someone will ask me what will happen if I change &lt;em&gt;a&lt;/em&gt; to
-&lt;em&gt;b&lt;/em&gt;, and painfully frequently the answer is &lt;em&gt;"I'd never thought of doing that,
-I've no idea"&lt;/em&gt;. So I make the change, run it, and I try to piece together
-what's going on with everyone watching. It's embarrassing, but maybe it's good
-that I'm able to so quickly crush anyone's misperceptions that I know
-everything about anything.&lt;/p&gt;
+&lt;p&gt;A few of the training sessions I run from time to time at work involve
+live coding demonstrations. I open up Emacs, write some code, and then
+show it running. Invariably someone will ask me what will happen if I
+change &lt;em&gt;a&lt;/em&gt; to &lt;em&gt;b&lt;/em&gt;, and painfully frequently the answer is &lt;em&gt;"I'd never
+thought of doing that, I've no idea"&lt;/em&gt;. So I make the change, run it,
+and I try to piece together what's going on with everyone
+watching. It's embarrassing, but maybe it's good that I'm able to so
+quickly crush anyone's misperceptions that I know everything about
+anything.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
