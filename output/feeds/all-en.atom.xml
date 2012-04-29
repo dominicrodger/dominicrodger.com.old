@@ -1,5 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>dominicrodger.com</title><link href="http://dominicrodger.com/" rel="alternate"></link><link href="http://dominicrodger.com/feeds/all-en.atom.xml" rel="self"></link><id>http://dominicrodger.com/</id><updated>2012-04-20T22:52:00+01:00</updated><entry><title>I Know Nothing</title><link href="http://dominicrodger.com/nothing.html" rel="alternate"></link><updated>2012-04-20T22:52:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-04-20:nothing.html</id><summary type="html">&lt;blockquote&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>dominicrodger.com</title><link href="http://dominicrodger.com/" rel="alternate"></link><link href="http://dominicrodger.com/feeds/all-en.atom.xml" rel="self"></link><id>http://dominicrodger.com/</id><updated>2012-04-29T12:27:00+01:00</updated><entry><title>Travis, You Are Awesome</title><link href="http://dominicrodger.com/build-breaking.html" rel="alternate"></link><updated>2012-04-29T12:27:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-04-29:build-breaking.html</id><summary type="html">&lt;p&gt;I came across &lt;a href="http://travis-ci.org" title="Find out about Travis CI"&gt;Travis CI&lt;/a&gt; this week, and it's awesome.&lt;/p&gt;
+&lt;p&gt;I've got a bunch of tests for &lt;a href="https://github.com/dominicrodger/django-magazine" title="View django-magazine on GitHub"&gt;django-magazine&lt;/a&gt;, but
+I'm not very good at running them. It turns out that unit tests aren't
+very useful if you don't run them, so I wanted to make sure that every
+time I pushed code to it, the tests run. Enter Travis CI.&lt;/p&gt;
+&lt;h2&gt;Easy Unit Testing for Reusable Apps&lt;/h2&gt;
+&lt;p&gt;django-magazine is a reusable app - that is, it doesn't ship with
+settings files, so you can't run its tests just after installing
+it&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;I wasn't sure what the easiest way to handle this was, so I looked
+around for Django reusable apps that were already using Travis, and
+stumbled across &lt;a href="https://github.com/stephenmcd/django-forms-builder" title="View django-forms-builder on GitHub"&gt;django-forms-builder&lt;/a&gt;. They'd
+solved this by adding an &lt;code&gt;example_project&lt;/code&gt; folder, which had a simple
+settings file, a urls file and a &lt;code&gt;manage.py&lt;/code&gt;&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;That allows me to run the tests without any extra set-up, though I
+still haven't worked out how to allow people who've just installed
+from pip&lt;sup id="fnref:3"&gt;&lt;a href="#fn:3" rel="footnote"&gt;3&lt;/a&gt;&lt;/sup&gt; to run the tests right out of the box.&lt;/p&gt;
+&lt;h2&gt;.travis.yml&lt;/h2&gt;
+&lt;p&gt;There are just two things you need to do to get Travis CI working for
+your project.&lt;/p&gt;
+&lt;p&gt;Firstly - sign in on their website. There's a slightly scary message
+about giving it write access to your repositories, but there's a
+decent enough reason on the Travis site explaining why they need
+it&lt;sup id="fnref:4"&gt;&lt;a href="#fn:4" rel="footnote"&gt;4&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;Secondly - add a .travis.yml file to your root directory, commit, and
+push to GitHub. Travis CI will pick up your change, and start
+building. My file currently looks like this:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="l-Scalar-Plain"&gt;language&lt;/span&gt;&lt;span class="p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l-Scalar-Plain"&gt;python&lt;/span&gt;
+&lt;span class="l-Scalar-Plain"&gt;python&lt;/span&gt;&lt;span class="p-Indicator"&gt;:&lt;/span&gt;
+  &lt;span class="p-Indicator"&gt;-&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;2.6&amp;quot;&lt;/span&gt;
+  &lt;span class="p-Indicator"&gt;-&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;2.7&amp;quot;&lt;/span&gt;
+&lt;span class="l-Scalar-Plain"&gt;env&lt;/span&gt;&lt;span class="p-Indicator"&gt;:&lt;/span&gt;
+  &lt;span class="p-Indicator"&gt;-&lt;/span&gt; &lt;span class="l-Scalar-Plain"&gt;DJANGO=1.3.1&lt;/span&gt;
+  &lt;span class="p-Indicator"&gt;-&lt;/span&gt; &lt;span class="l-Scalar-Plain"&gt;DJANGO=1.4&lt;/span&gt;
+&lt;span class="l-Scalar-Plain"&gt;install&lt;/span&gt;&lt;span class="p-Indicator"&gt;:&lt;/span&gt;
+  &lt;span class="p-Indicator"&gt;-&lt;/span&gt; &lt;span class="l-Scalar-Plain"&gt;pip install -q Django==$DJANGO --use-mirrors&lt;/span&gt;
+  &lt;span class="p-Indicator"&gt;-&lt;/span&gt; &lt;span class="l-Scalar-Plain"&gt;pip install -r requirements.txt --use-mirrors&lt;/span&gt;
+  &lt;span class="p-Indicator"&gt;-&lt;/span&gt; &lt;span class="l-Scalar-Plain"&gt;pip install pep8&lt;/span&gt;
+&lt;span class="l-Scalar-Plain"&gt;script&lt;/span&gt;&lt;span class="p-Indicator"&gt;:&lt;/span&gt;
+  &lt;span class="p-Indicator"&gt;-&lt;/span&gt; &lt;span class="l-Scalar-Plain"&gt;pep8 --exclude=migrations magazine&lt;/span&gt;
+  &lt;span class="p-Indicator"&gt;-&lt;/span&gt; &lt;span class="l-Scalar-Plain"&gt;./magazine/example_project/manage.py test magazine&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This will kick off four builds:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;Python 2.6 and Django 1.3.1;&lt;/li&gt;
+&lt;li&gt;Python 2.6 and Django 1.4;&lt;/li&gt;
+&lt;li&gt;Python 2.7 and Django 1.3.1;&lt;/li&gt;
+&lt;li&gt;Python 2.7 and Django 1.4.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Each of those will run in parallel, and you'll then get an e-mail with
+the status of your build, if it changed (pleasingly, it doesn't e-mail
+you for every build - open if the status of it has switched between
+fixed and broken).&lt;/p&gt;
+&lt;p&gt;The &lt;code&gt;--use-mirrors&lt;/code&gt; stuff is an attempt to help Travis CI avoid
+overloading PyPI.&lt;/p&gt;
+&lt;h2&gt;Bonus Points: PEP-8&lt;/h2&gt;
+&lt;p&gt;I've recently discovered PEP-8, which I half knew about, but I'd never
+attempted to make my code meet it. Then &lt;a href="https://github.com/joshuajonah/django-magazine" title="View Joshua Jonah's fork of django-magazine"&gt;someone forked&lt;/a&gt;
+django-magazine to make it meet PEP-8, and I was shamed into fixing
+it. I've added a line to my &lt;code&gt;.travis.yml&lt;/code&gt; file so the build fails if
+checked-in code is not PEP-8 friendly.&lt;/p&gt;
+&lt;h2&gt;Advertise Your Status&lt;/h2&gt;
+&lt;p&gt;Travis CI even provides an image that'll show your current build
+status - adding it to my &lt;code&gt;README.md&lt;/code&gt; file allows me to advertise that
+(and implicitly, that I'm a bit obsessive) using:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;https&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;//&lt;/span&gt;&lt;span class="n"&gt;secure&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;travis&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;ci&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;org&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;dominicrodger&lt;/span&gt;&lt;span class="o"&gt;/&lt;/span&gt;&lt;span class="n"&gt;django&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;magazine&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;png&lt;/span&gt;?&lt;span class="n"&gt;branch&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;master&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Currently, that looks like: &lt;a href="http://travis-ci.org/dominicrodger/django-magazine"&gt;&lt;img alt="Build Status" src="https://secure.travis-ci.org/dominicrodger/django-magazine.png?branch=master" /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;All this is to say, Travis CI is awesome, and you should use it.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;This is probably a good time to point out that django-magazine
+  is not available on PyPI yet. I've never added anything to PyPI
+  before, and there's a couple of things I'd like to sort out
+  before doing that.  Firstly I'd like to make sure I've tagged
+  things properly, and secondly I need to factor out the book
+  review stuff which is currently not tested, and is very specific
+  to my particular use case.&amp;#160;&lt;a href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;They all had a &lt;code&gt;templates&lt;/code&gt; folder, with a base template, which
+  django-magazine doesn't need. That might be because I've done
+  something wrong (every template extends
+&lt;br /&gt;
+&lt;code&gt;magazine/magazine_base.html&lt;/code&gt;, which doesn't have much in the
+  way of HTML, but enough that all the tests pass, one of these
+  days I should probably give it some simple styles).&amp;#160;&lt;a href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:3"&gt;
+&lt;p&gt;As opposed to &lt;code&gt;git clone&lt;/code&gt;, which is what Travis CI does, which
+  means that the &lt;code&gt;example_project&lt;/code&gt; code is in a predictable
+  location (also, I've not yet added &lt;code&gt;example_project&lt;/code&gt; to my
+  manifest file, so it's not installed by pip).&amp;#160;&lt;a href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:4"&gt;
+&lt;p&gt;I'd love there to be a workaround for this, but Travis is
+  awesome enough that I mostly just don't care.&amp;#160;&lt;a href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</summary></entry><entry><title>I Know Nothing</title><link href="http://dominicrodger.com/nothing.html" rel="alternate"></link><updated>2012-04-20T22:52:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-04-20:nothing.html</id><summary type="html">&lt;blockquote&gt;
 &lt;p&gt;See, I know nothing! &amp;mdash; &lt;a href="http://www.imdb.com/character/ch0023128/quotes" title="Manuel, from Fawlty Towers"&gt;Manuel&lt;/a&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;I distinctly remember being 17 years old, I'd just finished
