@@ -37,7 +37,7 @@ it[^4].
 
 Secondly - add a .travis.yml file to your root directory, commit, and
 push to GitHub. Travis CI will pick up your change, and start
-building. My file currently looks like this:
+building. [My file][my-travis-yml] currently looks like this:
 
     ::yaml
     language: python
@@ -117,3 +117,4 @@ All this is to say, Travis CI is awesome, and you should use it.
 [django-magazine]: https://github.com/dominicrodger/django-magazine "View django-magazine on GitHub"
 [django-forms-builder]: https://github.com/stephenmcd/django-forms-builder "View django-forms-builder on GitHub"
 [fork]: https://github.com/joshuajonah/django-magazine "View Joshua Jonah's fork of django-magazine"
+[my-travis-yml]: https://github.com/dominicrodger/django-magazine/blob/28086f124e6752bad9f78466739673871adb5242/.travis.yml "View my .travis.yml file for django-magazine"

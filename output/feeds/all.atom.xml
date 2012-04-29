@@ -25,7 +25,7 @@ decent enough reason on the Travis site explaining why they need
 it&lt;sup id="fnref:4"&gt;&lt;a href="#fn:4" rel="footnote"&gt;4&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
 &lt;p&gt;Secondly - add a .travis.yml file to your root directory, commit, and
 push to GitHub. Travis CI will pick up your change, and start
-building. My file currently looks like this:&lt;/p&gt;
+building. &lt;a href="https://github.com/dominicrodger/django-magazine/blob/28086f124e6752bad9f78466739673871adb5242/.travis.yml" title="View my .travis.yml file for django-magazine"&gt;My file&lt;/a&gt; currently looks like this:&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="l-Scalar-Plain"&gt;language&lt;/span&gt;&lt;span class="p-Indicator"&gt;:&lt;/span&gt; &lt;span class="l-Scalar-Plain"&gt;python&lt;/span&gt;
 &lt;span class="l-Scalar-Plain"&gt;python&lt;/span&gt;&lt;span class="p-Indicator"&gt;:&lt;/span&gt;
   &lt;span class="p-Indicator"&gt;-&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;2.6&amp;quot;&lt;/span&gt;
