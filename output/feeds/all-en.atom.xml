@@ -100,6 +100,10 @@ status - adding it to my &lt;code&gt;README.md&lt;/code&gt; file allows me to ad
   manifest file, so it's not installed by pip).&amp;#160;&lt;a href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:4"&gt;
+&lt;p&gt;&lt;em&gt;"Travis CI needs write access for setting up service hooks for
+  your repositories when you request it, but it won't touch
+  anything else."&lt;/em&gt; &amp;mdash;
+  &lt;a href="http://about.travis-ci.org/docs/user/getting-started/" title="View this quote in context"&gt;Getting Started - Travis CI Documentation&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;I'd love there to be a workaround for this, but Travis is
   awesome enough that I mostly just don't care.&amp;#160;&lt;a href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;

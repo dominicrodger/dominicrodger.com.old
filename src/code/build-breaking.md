@@ -110,7 +110,12 @@ All this is to say, Travis CI is awesome, and you should use it.
       location (also, I've not yet added `example_project` to my
       manifest file, so it's not installed by pip).
 
-[^4]: I'd love there to be a workaround for this, but Travis is
+[^4]: *"Travis CI needs write access for setting up service hooks for
+      your repositories when you request it, but it won't touch
+      anything else."* &mdash;
+      [Getting Started - Travis CI Documentation][travis-docs]
+
+      I'd love there to be a workaround for this, but Travis is
       awesome enough that I mostly just don't care.
 
 [travis-ci]: http://travis-ci.org "Find out about Travis CI"
@@ -119,3 +124,4 @@ All this is to say, Travis CI is awesome, and you should use it.
 [fork]: https://github.com/joshuajonah/django-magazine "View Joshua Jonah's fork of django-magazine"
 [my-travis-yml]: https://github.com/dominicrodger/django-magazine/blob/28086f124e6752bad9f78466739673871adb5242/.travis.yml "View my .travis.yml file for django-magazine"
 [build]: http://travis-ci.org/#!/dominicrodger/django-magazine/builds/1199479 "View a successful build of django-magazine"
+[travis-docs]: http://about.travis-ci.org/docs/user/getting-started/ "View this quote in context"
