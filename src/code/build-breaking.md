@@ -64,7 +64,7 @@ This will kick off four builds:
 
 Each of those will run in parallel, and you'll then get an e-mail with
 the status of your build, if it changed (pleasingly, it doesn't e-mail
-you for every build - open if the status of it has switched between
+you for every build - only if the status of it has switched between
 fixed and broken). Go take a look at an [example build result][build].
 
 The `--use-mirrors` stuff is an attempt to help Travis CI avoid
