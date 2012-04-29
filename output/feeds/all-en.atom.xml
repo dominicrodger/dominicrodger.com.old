@@ -53,7 +53,7 @@ building. &lt;a href="https://github.com/dominicrodger/django-magazine/blob/2808
 &lt;p&gt;Each of those will run in parallel, and you'll then get an e-mail with
 the status of your build, if it changed (pleasingly, it doesn't e-mail
 you for every build - open if the status of it has switched between
-fixed and broken).&lt;/p&gt;
+fixed and broken). Go take a look at an &lt;a href="http://travis-ci.org/#!/dominicrodger/django-magazine/builds/1199479" title="View a successful build of django-magazine"&gt;example build result&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;The &lt;code&gt;--use-mirrors&lt;/code&gt; stuff is an attempt to help Travis CI avoid
 overloading PyPI.&lt;/p&gt;
 &lt;h2&gt;Bonus Points: PEP-8&lt;/h2&gt;

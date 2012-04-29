@@ -65,7 +65,7 @@ This will kick off four builds:
 Each of those will run in parallel, and you'll then get an e-mail with
 the status of your build, if it changed (pleasingly, it doesn't e-mail
 you for every build - open if the status of it has switched between
-fixed and broken).
+fixed and broken). Go take a look at an [example build result][build].
 
 The `--use-mirrors` stuff is an attempt to help Travis CI avoid
 overloading PyPI.
@@ -118,3 +118,4 @@ All this is to say, Travis CI is awesome, and you should use it.
 [django-forms-builder]: https://github.com/stephenmcd/django-forms-builder "View django-forms-builder on GitHub"
 [fork]: https://github.com/joshuajonah/django-magazine "View Joshua Jonah's fork of django-magazine"
 [my-travis-yml]: https://github.com/dominicrodger/django-magazine/blob/28086f124e6752bad9f78466739673871adb5242/.travis.yml "View my .travis.yml file for django-magazine"
+[build]: http://travis-ci.org/#!/dominicrodger/django-magazine/builds/1199479 "View a successful build of django-magazine"
