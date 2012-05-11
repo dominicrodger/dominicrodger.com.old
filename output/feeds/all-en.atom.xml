@@ -87,11 +87,10 @@ status - adding it to my &lt;code&gt;README.md&lt;/code&gt; file allows me to ad
 &lt;li id="fn:2"&gt;
 &lt;p&gt;They all had a &lt;code&gt;templates&lt;/code&gt; folder, with a base template, which
   django-magazine doesn't need. That might be because I've done
-  something wrong (every template extends
-&lt;br /&gt;
-&lt;code&gt;magazine/magazine_base.html&lt;/code&gt;, which doesn't have much in the
-  way of HTML, but enough that all the tests pass, one of these
-  days I should probably give it some simple styles).&amp;#160;&lt;a href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+  something wrong (every template extends &lt;code&gt;magazine/magazine_base.html&lt;/code&gt;,
+  which doesn't have much in the way of HTML, but enough that all
+  the tests pass &amp;mdash; one of these days I should probably give
+  it some simple styles).&amp;#160;&lt;a href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li id="fn:3"&gt;
 &lt;p&gt;As opposed to &lt;code&gt;git clone&lt;/code&gt;, which is what Travis CI does, which

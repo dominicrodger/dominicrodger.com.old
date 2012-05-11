@@ -100,10 +100,10 @@ All this is to say, Travis CI is awesome, and you should use it.
 
 [^2]: They all had a `templates` folder, with a base template, which
       django-magazine doesn't need. That might be because I've done
-      something wrong (every template extends
-      `magazine/magazine_base.html`, which doesn't have much in the
-      way of HTML, but enough that all the tests pass, one of these
-      days I should probably give it some simple styles).
+      something wrong (every template extends `magazine/magazine_base.html`,
+      which doesn't have much in the way of HTML, but enough that all
+      the tests pass &mdash; one of these days I should probably give
+      it some simple styles).
 
 [^3]: As opposed to `git clone`, which is what Travis CI does, which
       means that the `example_project` code is in a predictable
