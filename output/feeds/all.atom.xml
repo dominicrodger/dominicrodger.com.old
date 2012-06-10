@@ -1,5 +1,72 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>dominicrodger.com</title><link href="http://dominicrodger.com/" rel="alternate"></link><link href="http://dominicrodger.com/feeds/all.atom.xml" rel="self"></link><id>http://dominicrodger.com/</id><updated>2012-04-29T12:27:00+01:00</updated><entry><title>Travis, You Are Awesome</title><link href="http://dominicrodger.com/build-breaking.html" rel="alternate"></link><updated>2012-04-29T12:27:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-04-29:build-breaking.html</id><summary type="html">&lt;p&gt;I came across &lt;a href="http://travis-ci.org" title="Find out about Travis CI"&gt;Travis CI&lt;/a&gt; this week, and it's awesome.&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>dominicrodger.com</title><link href="http://dominicrodger.com/" rel="alternate"></link><link href="http://dominicrodger.com/feeds/all.atom.xml" rel="self"></link><id>http://dominicrodger.com/</id><updated>2012-05-10T07:11:00+01:00</updated><entry><title>Faster Django Tests</title><link href="http://dominicrodger.com/faster-django-tests.html" rel="alternate"></link><updated>2012-05-10T07:11:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-05-10:faster-django-tests.html</id><summary type="html">&lt;p&gt;A &lt;a href="http://www.dominicrodger.com/tdd-django-south.html" title="Read my original post on making test runs in Django faster"&gt;long while ago&lt;/a&gt;, I discovered that running Django tests
+is much faster if you use SQLite, and if you turn off South (this now
+seems pretty obvious, but at the time was a bit of a revelation to
+me).&lt;/p&gt;
+&lt;p&gt;Since then, I've come across a better way of setting this up, to avoid
+having a &lt;code&gt;test_settings.py&lt;/code&gt;:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# If manage.py test was called, use SQLite&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;test&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;DATABASES&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;#39;default&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;#39;ENGINE&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;django.db.backends.sqlite3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;#39;NAME&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;test_sqlite.db&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;That pretty well does what my old approach with &lt;code&gt;test_settings.py&lt;/code&gt;, but
+instead of having to type:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;python manage.py &lt;span class="nb"&gt;test&lt;/span&gt; --settings&lt;span class="o"&gt;=&lt;/span&gt;test_settings
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;I can now just type:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;python manage.py &lt;span class="nb"&gt;test&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;and the faster settings get loaded.&lt;/p&gt;
+&lt;p&gt;This morning I was perusing
+&lt;a href="https://github.com/django/django/commits/master" title="View recent commits to Django"&gt;commits to Django on GitHub&lt;/a&gt;&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;, when I came across
+&lt;a href="https://github.com/django/django/commit/17d6cd90299e39823e80a005e7a04bc24ee8af4c" title="View the commit on GitHub"&gt;this one&lt;/a&gt;:&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;Documented that setting &lt;code&gt;PASSWORD_HASHERS&lt;/code&gt; can speed up tests.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Turns out there's another way to speed up tests if you're
+authenticating users. Now my extra settings that I set if I'm running
+tests look like this:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="c"&gt;# If manage.py test was called, use SQLite&lt;/span&gt;
+&lt;span class="kn"&gt;import&lt;/span&gt; &lt;span class="nn"&gt;sys&lt;/span&gt;
+&lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;test&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;sys&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;argv&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+    &lt;span class="n"&gt;DATABASES&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;#39;default&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;#39;ENGINE&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;django.db.backends.sqlite3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+            &lt;span class="s"&gt;&amp;#39;NAME&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;j&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;test_sqlite.db&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+        &lt;span class="p"&gt;}&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+
+    &lt;span class="n"&gt;PASSWORD_HASHERS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;#39;django.contrib.auth.hashers.MD5PasswordHasher&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+    &lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Doing that took a sample run of the tests for my &lt;a href="https://github.com/dominicrodger/kanisa" title="View Kanisa on GitHub"&gt;new project&lt;/a&gt;
+down from 3.6s to 1.0s, which is pretty good for 3 lines of code.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;This is probably something everyone who works with Django should
+  do, it's a great way of finding out what's coming up, and also
+  for stumbling across random tips like the one I've not quite got
+  to yet.&amp;#160;&lt;a href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</summary></entry><entry><title>Travis, You Are Awesome</title><link href="http://dominicrodger.com/build-breaking.html" rel="alternate"></link><updated>2012-04-29T12:27:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-04-29:build-breaking.html</id><summary type="html">&lt;p&gt;I came across &lt;a href="http://travis-ci.org" title="Find out about Travis CI"&gt;Travis CI&lt;/a&gt; this week, and it's awesome.&lt;/p&gt;
 &lt;p&gt;I've got a bunch of tests for &lt;a href="https://github.com/dominicrodger/django-magazine" title="View django-magazine on GitHub"&gt;django-magazine&lt;/a&gt;, but
 I'm not very good at running them. It turns out that unit tests aren't
 very useful if you don't run them, so I wanted to make sure that every

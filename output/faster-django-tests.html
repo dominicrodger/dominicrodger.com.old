@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+        <title>Faster Django Tests</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="./theme/css/main.css" type="text/css" />
+        <link href="http://dominicrodger.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate" title="dominicrodger.com Atom Feed" />
+        
+
+        <!--[if IE]>
+                <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+
+        <!--[if lte IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="./css/ie.css"/>
+                <script src="./js/IE8.js" type="text/javascript"></script><![endif]-->
+
+        <!--[if lt IE 7]>
+                <link rel="stylesheet" type="text/css" media="all" href="./css/ie6.css"/><![endif]-->
+
+</head>
+
+<body id="index" class="home">
+
+<a href="https://github.com/dominicrodger/dominicrodger.com">
+
+<img style="position: absolute; top: 0; right: 0; border: 0;" src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" />
+
+</a>
+
+        <header id="banner" class="body">
+                <h1><a href=".">dominicrodger.com </a></h1>
+                <nav><ul>
+                
+                
+                
+                    <li><a href="./pages/about-me.html">about me</a></li>
+                
+                
+                
+                    <li class="active"><a href="./category/code.html">code</a></li>
+                
+                </ul></nav>
+        </header><!-- /#banner -->
+                
+<section id="content" class="body">    
+<article>
+        <header> <h1 class="entry-title"><a href=""
+        rel="bookmark" title="Permalink to Faster Django Tests">Faster Django Tests</a></h1> 
+<a href="http://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="dominicrodger">Tweet</a><script type="text/javascript" src="http://platform.twitter.com/widgets.js"></script>
+ </header>
+        <div class="entry-content">
+        <footer class="post-info">
+        <abbr class="published" title="2012-05-10T07:11:00">
+                Thursday 10 May 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/dominic-rodger.html">Dominic Rodger</a>
+        </address>
+        
+<p>In <a href="./category/code.html">code</a>. </p>
+
+
+
+</footer><!-- /.post-info -->
+        <p>A <a href="http://www.dominicrodger.com/tdd-django-south.html" title="Read my original post on making test runs in Django faster">long while ago</a>, I discovered that running Django tests
+is much faster if you use SQLite, and if you turn off South (this now
+seems pretty obvious, but at the time was a bit of a revelation to
+me).</p>
+<p>Since then, I've come across a better way of setting this up, to avoid
+having a <code>test_settings.py</code>:</p>
+<div class="codehilite"><pre><span class="c"># If manage.py test was called, use SQLite</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">if</span> <span class="s">&#39;test&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">:</span>
+    <span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s">&#39;django.db.backends.sqlite3&#39;</span><span class="p">,</span>
+            <span class="s">&#39;NAME&#39;</span><span class="p">:</span> <span class="n">j</span><span class="p">(</span><span class="s">&#39;test_sqlite.db&#39;</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+</pre></div>
+
+
+<p>That pretty well does what my old approach with <code>test_settings.py</code>, but
+instead of having to type:</p>
+<div class="codehilite"><pre>python manage.py <span class="nb">test</span> --settings<span class="o">=</span>test_settings
+</pre></div>
+
+
+<p>I can now just type:</p>
+<div class="codehilite"><pre>python manage.py <span class="nb">test</span>
+</pre></div>
+
+
+<p>and the faster settings get loaded.</p>
+<p>This morning I was perusing
+<a href="https://github.com/django/django/commits/master" title="View recent commits to Django">commits to Django on GitHub</a><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>, when I came across
+<a href="https://github.com/django/django/commit/17d6cd90299e39823e80a005e7a04bc24ee8af4c" title="View the commit on GitHub">this one</a>:</p>
+<blockquote>
+<p>Documented that setting <code>PASSWORD_HASHERS</code> can speed up tests.</p>
+</blockquote>
+<p>Turns out there's another way to speed up tests if you're
+authenticating users. Now my extra settings that I set if I'm running
+tests look like this:</p>
+<div class="codehilite"><pre><span class="c"># If manage.py test was called, use SQLite</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">if</span> <span class="s">&#39;test&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">:</span>
+    <span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s">&#39;django.db.backends.sqlite3&#39;</span><span class="p">,</span>
+            <span class="s">&#39;NAME&#39;</span><span class="p">:</span> <span class="n">j</span><span class="p">(</span><span class="s">&#39;test_sqlite.db&#39;</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">PASSWORD_HASHERS</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s">&#39;django.contrib.auth.hashers.MD5PasswordHasher&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+
+
+<p>Doing that took a sample run of the tests for my <a href="https://github.com/dominicrodger/kanisa" title="View Kanisa on GitHub">new project</a>
+down from 3.6s to 1.0s, which is pretty good for 3 lines of code.</p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>This is probably something everyone who works with Django should
+  do, it's a great way of finding out what's coming up, and also
+  for stumbling across random tips like the one I've not quite got
+  to yet.&#160;<a href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+        </div><!-- /.entry-content -->
+        
+
+</article>
+</section>
+
+        <section id="extras" class="body">
+        
+        
+                <div class="social">
+                        <h2>social</h2>
+                        <ul>
+                            <li><a href="http://dominicrodger.com/feeds/all.atom.xml" type="application/atom+xml" rel="alternate">atom feed</a></li>
+                            
+
+                        
+                            <li><a href="http://twitter.com/dominicrodger">Twitter</a></li>
+                        
+                            <li><a href="http://github.com/dominicrodger">GitHub</a></li>
+                        
+                            <li><a href="http://stackoverflow.com/users/20972/dominic-rodger">Stack Overflow</a></li>
+                        
+                        </ul>
+                </div><!-- /.social -->
+        
+        </section><!-- /#extras -->
+
+        <footer id="contentinfo" class="body">
+                <address id="about" class="vcard body">
+                Proudly powered by <a href="http://pelican.notmyidea.org/">Pelican</a>, which takes great advantage of <a href="http://python.org">Python</a>.
+                Site hosted by <a href="http://www.webfaction.com?affiliate=dominicrodger" title="Get hosted by WebFaction">WebFaction</a>.
+                </address><!-- /#about -->
+
+                <p>The theme is by <a href="http://coding.smashingmagazine.com/2009/08/04/designing-a-html-5-layout-from-scratch/">Smashing Magazine</a>, thanks!</p>
+        </footer><!-- /#contentinfo -->
+
+
+    <script type="text/javascript">
+    var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+    document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    <script type="text/javascript">
+    try {
+        var pageTracker = _gat._getTracker("UA-11204085-1");
+    pageTracker._trackPageview();
+    } catch(err) {}</script>
+
+
+
+</body>
+</html>

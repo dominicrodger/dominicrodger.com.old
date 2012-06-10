@@ -49,10 +49,10 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="./build-breaking.html">Travis, You Are Awesome</a></h1> 
+                    <h1 class="entry-title"><a href="./faster-django-tests.html">Faster Django Tests</a></h1> 
                     <footer class="post-info">
-        <abbr class="published" title="2012-04-29T12:27:00">
-                Sunday 29 April 2012
+        <abbr class="published" title="2012-05-10T07:11:00">
+                Thursday 10 May 2012
         </abbr>
 
         
@@ -64,112 +64,71 @@
 
 
 
-</footer><!-- /.post-info --><p>I came across <a href="http://travis-ci.org" title="Find out about Travis CI">Travis CI</a> this week, and it's awesome.</p>
-<p>I've got a bunch of tests for <a href="https://github.com/dominicrodger/django-magazine" title="View django-magazine on GitHub">django-magazine</a>, but
-I'm not very good at running them. It turns out that unit tests aren't
-very useful if you don't run them, so I wanted to make sure that every
-time I pushed code to it, the tests run. Enter Travis CI.</p>
-<h2>Easy Unit Testing for Reusable Apps</h2>
-<p>django-magazine is a reusable app - that is, it doesn't ship with
-settings files, so you can't run its tests just after installing
-it<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
-<p>I wasn't sure what the easiest way to handle this was, so I looked
-around for Django reusable apps that were already using Travis, and
-stumbled across <a href="https://github.com/stephenmcd/django-forms-builder" title="View django-forms-builder on GitHub">django-forms-builder</a>. They'd
-solved this by adding an <code>example_project</code> folder, which had a simple
-settings file, a urls file and a <code>manage.py</code><sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>.</p>
-<p>That allows me to run the tests without any extra set-up, though I
-still haven't worked out how to allow people who've just installed
-from pip<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup> to run the tests right out of the box.</p>
-<h2>.travis.yml</h2>
-<p>There are just two things you need to do to get Travis CI working for
-your project.</p>
-<p>Firstly - sign in on their website. There's a slightly scary message
-about giving it write access to your repositories, but there's a
-decent enough reason on the Travis site explaining why they need
-it<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>.</p>
-<p>Secondly - add a .travis.yml file to your root directory, commit, and
-push to GitHub. Travis CI will pick up your change, and start
-building. <a href="https://github.com/dominicrodger/django-magazine/blob/28086f124e6752bad9f78466739673871adb5242/.travis.yml" title="View my .travis.yml file for django-magazine">My file</a> currently looks like this:</p>
-<div class="codehilite"><pre><span class="l-Scalar-Plain">language</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">python</span>
-<span class="l-Scalar-Plain">python</span><span class="p-Indicator">:</span>
-  <span class="p-Indicator">-</span> <span class="s">&quot;2.6&quot;</span>
-  <span class="p-Indicator">-</span> <span class="s">&quot;2.7&quot;</span>
-<span class="l-Scalar-Plain">env</span><span class="p-Indicator">:</span>
-  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">DJANGO=1.3.1</span>
-  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">DJANGO=1.4</span>
-<span class="l-Scalar-Plain">install</span><span class="p-Indicator">:</span>
-  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">pip install -q Django==$DJANGO --use-mirrors</span>
-  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">pip install -r requirements.txt --use-mirrors</span>
-  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">pip install pep8</span>
-<span class="l-Scalar-Plain">script</span><span class="p-Indicator">:</span>
-  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">pep8 --exclude=migrations magazine</span>
-  <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">./magazine/example_project/manage.py test magazine</span>
+</footer><!-- /.post-info --><p>A <a href="http://www.dominicrodger.com/tdd-django-south.html" title="Read my original post on making test runs in Django faster">long while ago</a>, I discovered that running Django tests
+is much faster if you use SQLite, and if you turn off South (this now
+seems pretty obvious, but at the time was a bit of a revelation to
+me).</p>
+<p>Since then, I've come across a better way of setting this up, to avoid
+having a <code>test_settings.py</code>:</p>
+<div class="codehilite"><pre><span class="c"># If manage.py test was called, use SQLite</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">if</span> <span class="s">&#39;test&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">:</span>
+    <span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s">&#39;django.db.backends.sqlite3&#39;</span><span class="p">,</span>
+            <span class="s">&#39;NAME&#39;</span><span class="p">:</span> <span class="n">j</span><span class="p">(</span><span class="s">&#39;test_sqlite.db&#39;</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
 </pre></div>
 
 
-<p>This will kick off four builds:</p>
-<ol>
-<li>Python 2.6 and Django 1.3.1;</li>
-<li>Python 2.6 and Django 1.4;</li>
-<li>Python 2.7 and Django 1.3.1;</li>
-<li>Python 2.7 and Django 1.4.</li>
-</ol>
-<p>Each of those will run in parallel, and you'll then get an e-mail with
-the status of your build, if it changed (pleasingly, it doesn't e-mail
-you for every build - only if the status of it has switched between
-fixed and broken). Go take a look at an <a href="http://travis-ci.org/#!/dominicrodger/django-magazine/builds/1199479" title="View a successful build of django-magazine">example build result</a>.</p>
-<p>The <code>--use-mirrors</code> stuff is an attempt to help Travis CI avoid
-overloading PyPI.</p>
-<h2>Bonus Points: PEP-8</h2>
-<p>I've recently discovered PEP-8, which I half knew about, but I'd never
-attempted to make my code meet it. Then <a href="https://github.com/joshuajonah/django-magazine" title="View Joshua Jonah's fork of django-magazine">someone forked</a>
-django-magazine to make it meet PEP-8, and I was shamed into fixing
-it. I've added a line to my <code>.travis.yml</code> file so the build fails if
-checked-in code is not PEP-8 friendly.</p>
-<h2>Advertise Your Status</h2>
-<p>Travis CI even provides an image that'll show your current build
-status - adding it to my <code>README.md</code> file allows me to advertise that
-(and implicitly, that I'm a bit obsessive) using:</p>
-<div class="codehilite"><pre><span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">secure</span><span class="p">.</span><span class="n">travis</span><span class="o">-</span><span class="n">ci</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">dominicrodger</span><span class="o">/</span><span class="n">django</span><span class="o">-</span><span class="n">magazine</span><span class="p">.</span><span class="n">png</span>?<span class="n">branch</span><span class="p">=</span><span class="n">master</span>
+<p>That pretty well does what my old approach with <code>test_settings.py</code>, but
+instead of having to type:</p>
+<div class="codehilite"><pre>python manage.py <span class="nb">test</span> --settings<span class="o">=</span>test_settings
 </pre></div>
 
 
-<p>Currently, that looks like: <a href="http://travis-ci.org/dominicrodger/django-magazine"><img alt="Build Status" src="https://secure.travis-ci.org/dominicrodger/django-magazine.png?branch=master" /></a></p>
-<p>All this is to say, Travis CI is awesome, and you should use it.</p>
+<p>I can now just type:</p>
+<div class="codehilite"><pre>python manage.py <span class="nb">test</span>
+</pre></div>
+
+
+<p>and the faster settings get loaded.</p>
+<p>This morning I was perusing
+<a href="https://github.com/django/django/commits/master" title="View recent commits to Django">commits to Django on GitHub</a><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>, when I came across
+<a href="https://github.com/django/django/commit/17d6cd90299e39823e80a005e7a04bc24ee8af4c" title="View the commit on GitHub">this one</a>:</p>
+<blockquote>
+<p>Documented that setting <code>PASSWORD_HASHERS</code> can speed up tests.</p>
+</blockquote>
+<p>Turns out there's another way to speed up tests if you're
+authenticating users. Now my extra settings that I set if I'm running
+tests look like this:</p>
+<div class="codehilite"><pre><span class="c"># If manage.py test was called, use SQLite</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="k">if</span> <span class="s">&#39;test&#39;</span> <span class="ow">in</span> <span class="n">sys</span><span class="o">.</span><span class="n">argv</span><span class="p">:</span>
+    <span class="n">DATABASES</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="s">&#39;default&#39;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s">&#39;ENGINE&#39;</span><span class="p">:</span> <span class="s">&#39;django.db.backends.sqlite3&#39;</span><span class="p">,</span>
+            <span class="s">&#39;NAME&#39;</span><span class="p">:</span> <span class="n">j</span><span class="p">(</span><span class="s">&#39;test_sqlite.db&#39;</span><span class="p">)</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+
+    <span class="n">PASSWORD_HASHERS</span> <span class="o">=</span> <span class="p">(</span>
+        <span class="s">&#39;django.contrib.auth.hashers.MD5PasswordHasher&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+</pre></div>
+
+
+<p>Doing that took a sample run of the tests for my <a href="https://github.com/dominicrodger/kanisa" title="View Kanisa on GitHub">new project</a>
+down from 3.6s to 1.0s, which is pretty good for 3 lines of code.</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>This is probably a good time to point out that django-magazine
-  is not available on PyPI yet. I've never added anything to PyPI
-  before, and there's a couple of things I'd like to sort out
-  before doing that.  Firstly I'd like to make sure I've tagged
-  things properly, and secondly I need to factor out the book
-  review stuff which is currently not tested, and is very specific
-  to my particular use case.&#160;<a href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
-</li>
-<li id="fn:2">
-<p>They all had a <code>templates</code> folder, with a base template, which
-  django-magazine doesn't need. That might be because I've done
-  something wrong (every template extends <code>magazine/magazine_base.html</code>,
-  which doesn't have much in the way of HTML, but enough that all
-  the tests pass &mdash; one of these days I should probably give
-  it some simple styles).&#160;<a href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
-</li>
-<li id="fn:3">
-<p>As opposed to <code>git clone</code>, which is what Travis CI does, which
-  means that the <code>example_project</code> code is in a predictable
-  location (also, I've not yet added <code>example_project</code> to my
-  manifest file, so it's not installed by pip).&#160;<a href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
-</li>
-<li id="fn:4">
-<p><em>"Travis CI needs write access for setting up service hooks for
-  your repositories when you request it, but it won't touch
-  anything else."</em> &mdash;
-  <a href="http://about.travis-ci.org/docs/user/getting-started/" title="View this quote in context">Getting Started - Travis CI Documentation</a></p>
-<p>I'd love there to be a workaround for this, but Travis is
-  awesome enough that I mostly just don't care.&#160;<a href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
+<p>This is probably something everyone who works with Django should
+  do, it's a great way of finding out what's coming up, and also
+  for stumbling across random tips like the one I've not quite got
+  to yet.&#160;<a href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -183,6 +142,43 @@ status - adding it to my <code>README.md</code> file allows me to advertise that
                     <ol id="posts-list" class="hfeed">
             
         
+        
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                        <h1><a href="./build-breaking.html" rel="bookmark" title="Permalink to Travis, You Are Awesome">Travis, You Are Awesome</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-04-29T12:27:00">
+                Sunday 29 April 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/dominic-rodger.html">Dominic Rodger</a>
+        </address>
+        
+<p>In <a href="./category/code.html">code</a>. </p>
+
+
+
+</footer><!-- /.post-info -->
+                <p>I came across <a href="http://travis-ci.org" title="Find out about Travis CI">Travis CI</a> this week, and it's awesome.</p>
+<p>I've got a bunch of tests for <a href="https://github.com/dominicrodger/django-magazine" title="View django-magazine on GitHub">django-magazine</a>, but
+I'm not very good at running them. It turns out that unit tests aren't
+very useful if you don't run them, so I wanted to make ...</p>
+                <a class="readmore" href="./build-breaking.html">read more</a>
+                
+                </div><!-- /.entry-content -->
+            </article></li>
         
         
         
