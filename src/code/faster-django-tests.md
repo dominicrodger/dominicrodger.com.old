@@ -1,4 +1,4 @@
-Date: 2012-05-10 07:11
+Date: 2012-06-10 07:11
 Title: Faster Django Tests
 Slug: faster-django-tests
 
