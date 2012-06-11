@@ -24,6 +24,18 @@ This blog is written with [Pelican][pelican].
 The code (and all blog posts) are available on [GitHub][github-repo],
 and the site is hosted by [WebFaction][webfaction].
 
+My current major project (as of June 2012) is [Kanisa][kanisa], a system for
+managing Church websites. I've somewhat stalled on developing Kal&#233;o, for
+2 reasons:
+
+1. It was the first Django project I ever started, so there's a lot of built up
+   technical debt.
+2. It was my first attempt at a system for managing Church websites, so there's
+   a lot of things I didn't anticipate that I now need, and a lot of things I
+   thought I'd need that it turned out I didn't.
+
+I am looking forward to the pain of the [Second-system effect][sse].
+
 [^1]: Kal&#233;o is a Django application which I've written for managing
       websites for Churches. It is currently closed-source, though I'd
       eventually like to change that (see [Starting Over](http://www.dominicrodger.com/starting-over.html))
@@ -44,3 +56,5 @@ and the site is hosted by [WebFaction][webfaction].
 [pelican]: http://pelican.readthedocs.org/en/latest/ "Find out about Pelican"
 [webfaction]: http://www.webfaction.com?affiliate=dominicrodger "Get hosting from WebFaction"
 [github-repo]: https://github.com/dominicrodger/dominicrodger.com "Use the source, Luke!"
+[kanisa]: https://github.com/dominicrodger/kanisa "View Kanisa on GitHub"
+[sse]: http://en.wikipedia.org/wiki/Second-system_effect "Read about 'the tendency of small, elegant, and successful systems to have elephantine, feature-laden monstrosities as their successors' on Wikipedia"
