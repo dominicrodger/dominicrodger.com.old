@@ -24,6 +24,8 @@ This blog is written with [Pelican][pelican].
 The code (and all blog posts) are available on [GitHub][github-repo],
 and the site is hosted by [WebFaction][webfaction].
 
+## Kanisa
+
 My current major project (as of June 2012) is [Kanisa][kanisa], a system for
 managing Church websites. I've somewhat stalled on developing Kal&#233;o, for
 2 reasons:
@@ -36,11 +38,12 @@ managing Church websites. I've somewhat stalled on developing Kal&#233;o, for
 
 I am looking forward to the pain of the [Second-system effect][sse].
 
-[^1]: Kal&#233;o is a Django application which I've written for managing
-      websites for Churches. It is currently closed-source, though I'd
-      eventually like to change that (see [Starting Over](http://www.dominicrodger.com/starting-over.html))
-[^2]: These sites aren't directly run by me - I just look after the software
-      and the servers.
+[^1]: Kal&#233;o is a Django application which I've written for
+      managing websites for Churches. It is currently closed-source,
+      and I'm hoping to replace it with Kanisa (despite what I said in
+      [Starting Over](http://www.dominicrodger.com/starting-over.html)).
+[^2]: These sites aren't directly run by me - I just look after the
+      software and the servers.
 
 [dominicrodger]: http://dominicrodger.com "My personal blog"
 [cbc]: http://www.centralbaptistchelmsford.org "My Church - Central Baptist in the great city of Chelmsford"
