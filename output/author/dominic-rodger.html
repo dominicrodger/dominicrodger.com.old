@@ -275,6 +275,49 @@ building websites. And I believed it.</p>
             
             <li><article class="hentry">    
                 <header>
+                        <h1><a href=".././order-n-haystack.html" rel="bookmark" title="Permalink to Avoiding database queries with Haystack">Avoiding database queries with Haystack</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-07-05T17:20:00">
+                Thursday 05 July 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/dominic-rodger.html">Dominic Rodger</a>
+        </address>
+        
+<p>In <a href=".././category/code.html">code</a>. </p>
+
+
+
+</footer><!-- /.post-info -->
+                <h1>Order(n) is a pretty bad idea.</h1>
+<p>Originally, my SearchIndexes for <a href="http://haystacksearch.org/" title="Haystack is a search solution for Django apps">Haystack</a> looked a bit
+like this:</p>
+<div class="codehilite"><pre><span class="k">class</span> <span class="nc">RegularEventIndex</span><span class="p">(</span><span class="n">indexes</span><span class="o">.</span><span class="n">SearchIndex</span><span class="p">):</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">document</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_template</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Then, when someone ran a search, and I wanted to display a result, I'd
+load up a template (which template I ...</p>
+                <a class="readmore" href=".././order-n-haystack.html">read more</a>
+                
+                </div><!-- /.entry-content -->
+            </article></li>
+        
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
                         <h1><a href=".././pelican.html" rel="bookmark" title="Permalink to Starting with Pelican">Starting with Pelican</a></h1>
                 </header>
                 
