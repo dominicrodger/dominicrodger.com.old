@@ -1,5 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>dominicrodger.com</title><link href="http://dominicrodger.com/" rel="alternate"></link><link href="http://dominicrodger.com/feeds/all-en.atom.xml" rel="self"></link><id>http://dominicrodger.com/</id><updated>2012-07-05T17:20:00+01:00</updated><entry><title>Avoiding database queries with Haystack</title><link href="http://dominicrodger.com/order-n-haystack.html" rel="alternate"></link><updated>2012-07-05T17:20:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-07-05:order-n-haystack.html</id><summary type="html">&lt;h1&gt;Order(n) is a pretty bad idea.&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>dominicrodger.com</title><link href="http://dominicrodger.com/" rel="alternate"></link><link href="http://dominicrodger.com/feeds/all-en.atom.xml" rel="self"></link><id>http://dominicrodger.com/</id><updated>2012-07-09T17:46:00+01:00</updated><entry><title>Moving to Ubuntu for mobile development</title><link href="http://dominicrodger.com/ubuntu-netbook.html" rel="alternate"></link><updated>2012-07-09T17:46:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-07-09:ubuntu-netbook.html</id><summary type="html">&lt;h1&gt;My mobile office&lt;/h1&gt;
+&lt;p&gt;My web-development office is a fast-moving place.&lt;/p&gt;
+&lt;p&gt;It averages around 50 miles per hour&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;, and I work on a laptop
+normally squished between two people on the train to and from the
+office.&lt;/p&gt;
+&lt;p&gt;When I happen to have a spare moment to build websites at home, I tend
+to use my desktop, which is running Ubuntu. I do my editing in emacs,
+where I've gradually got things set up more or less as I like them.&lt;/p&gt;
+&lt;p&gt;On my laptop that I've been using on the train, I'm working in
+Notepad++, because I've never got around to installing emacs on
+Windows.&lt;/p&gt;
+&lt;h1&gt;Hurrah for tiny laptops&lt;/h1&gt;
+&lt;p&gt;I've recently (re-)acquired an Asus Aspire One. It's a pretty cheap
+computer that I bought about 3 years ago. I gradually stopped using
+it, as it tended to be too slow to do much with (it came with Windows
+Vista, which may not have helped).&lt;/p&gt;
+&lt;p&gt;It's really quite a lot better as a portable laptop than the rather
+heavy Dell I was using - mostly because it's light, it's narrower
+(which is good for the fairly small seats on the train), and its
+battery lasts for approximately a millenium.&lt;/p&gt;
+&lt;p&gt;Having got used to (and grown rather fond of) Ubuntu on my desktop, I
+thought it was worth a go trying it on my Aspire One. It's taken me
+several hours (most of which was spent watching progress bars and a
+&lt;a href="http://www.bbc.co.uk/sport/0/tennis/18755331" title="Roger Federer beat Andy Murray in 4 sets"&gt;tragically inevitable Wimbledon final&lt;/a&gt;), so I thought
+I'd write up how I got it working, partly in case I ever need to do it
+again.&lt;/p&gt;
+&lt;h1&gt;Pain&lt;/h1&gt;
+&lt;p&gt;First, I tried downloading the latest release of Ubuntu (12.04),
+dumping it on a USB stick, and booting from that. I quickly got into
+Ubuntu, only to get an &lt;code&gt;io-remap&lt;/code&gt; error, at which point the bottom of
+the screen to go black, and the top half of the screen tried to
+display both halves simultaneously. I went through the installation
+process anyway&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;, hoping the problem would go away. It didn't.&lt;/p&gt;
+&lt;p&gt;Next, I thought I'd try Linux Mint. Same thing, no dice.&lt;/p&gt;
+&lt;p&gt;Next, I did some reading, and discovered that I'd bumped into a known
+issue, which may or may not be fixed in the latest pre-release of
+Ubuntu (12.10). I downloaded that. Also no dice.&lt;/p&gt;
+&lt;p&gt;Next, I read some workarounds for Ubuntu 12.04, so I re-installed and
+tried those. Still no dice.&lt;/p&gt;
+&lt;p&gt;I tried Linux Mint again, tweaking some display options. Still no luck.&lt;/p&gt;
+&lt;p&gt;Then, I tried Ubuntu 12.04 again, and discovered that if I hit quit
+when asked whether I wanted to install Ubuntu 12.04, the screen would
+redraw, and everything looked fine. I installed, went to restart, and
+was presented with a pitch black screen.&lt;/p&gt;
+&lt;p&gt;I discovered then that Ctrl-Alt-F1 got me a terminal&lt;sup id="fnref:3"&gt;&lt;a href="#fn:3" rel="footnote"&gt;3&lt;/a&gt;&lt;/sup&gt;, but that
+wasn't going to help me build websites. I installed some things just
+for fun.&lt;/p&gt;
+&lt;p&gt;Googling around brought me to &lt;a href="http://askubuntu.com/a/130847" title="Ask Ubuntu - fixing the black screen problem"&gt;this answer&lt;/a&gt;, which told me
+to type the magic incantation at the prompt:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;sudo&lt;/span&gt; &lt;span class="n"&gt;service&lt;/span&gt; &lt;span class="n"&gt;lightdm&lt;/span&gt; &lt;span class="n"&gt;restart&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;A &lt;a href="http://blog.bodhizazen.net/linux/ubuntu-12-04-gma500-poulsbo-boot-options/" title="The blog post that got me fixed"&gt;blog post&lt;/a&gt; linked from that answer told me to edit
+&lt;code&gt;/etc/default/grub&lt;/code&gt; and add this line (in place of the previous
+setting of &lt;code&gt;GRUB_CMDLINE_LINUX_DEFAULT&lt;/code&gt;):&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="n"&gt;GRUB_CMDLINE_LINUX_DEFAULT&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&amp;quot;&lt;span class="n"&gt;quiet&lt;/span&gt; &lt;span class="n"&gt;console&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;tty1&lt;/span&gt; &lt;span class="n"&gt;acpi_backlight&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;vendor&lt;/span&gt;&lt;span class="o"&gt;\&lt;/span&gt;
+&lt;span class="n"&gt;acpi_osi&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;Linux&lt;/span&gt; &lt;span class="n"&gt;acer_wmi&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="n"&gt;blacklist&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;&lt;span class="n"&gt;yes&lt;/span&gt; &lt;span class="n"&gt;mem&lt;/span&gt;&lt;span class="p"&gt;=&lt;/span&gt;1920&lt;span class="n"&gt;mb&lt;/span&gt;&amp;quot;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;Once I'd done that, it all worked.&lt;/p&gt;
+&lt;p&gt;Not for the first time, I had a feeling that I didn't really know what
+I was doing (though I am of course very happy to be using my vendor's
+acpi_backlight, I hope he doesn't mind).&lt;/p&gt;
+&lt;p&gt;Admittedly my laptop's a little old (I think it came out three
+years ago or so), but that was a serious amount of pain just to get
+things working. Now I've got things working, it's great, but I can't
+help wondering how many people would have been sufficiently stubborn
+to get this far. I had a similarly painful experience upgrading my
+Desktop from Ubuntu 11 to Ubuntu 12, so maybe I've just got really,
+really bad luck.&lt;/p&gt;
+&lt;h1&gt;Good Things&lt;/h1&gt;
+&lt;p&gt;All this means that the editing environment I use on my laptop is now
+identical to the one I use on my desktop. I've synced my emacs
+configurations with Dropbox, and logged in to Google Chrome so my
+bookmarks are synced. I now get to work in a development environment
+where I can use &lt;a href="http://www.doughellmann.com/projects/virtualenvwrapper/" title="virtualenvwrapper - for, erm, wrapping your virtualenvs"&gt;virtualenvwrapper&lt;/a&gt; and where most
+things are pip-installable. Even better, I didn't have to spend a load
+of money on a Macbook Air, and I get to retain my free-software
+smugness.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;As far as speed goes at least. Its average velocity, my A-level
+  physics teacher would probably wish me to point out, is roughly
+  0 miles per hour.&amp;#160;&lt;a href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;The top half of the screen would redraw to display whatever your
+  mouse was on, which made progress a challenge, but not impossible.&amp;#160;&lt;a href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:3"&gt;
+&lt;p&gt;A couple of people seemed surprised that I didn't know that - I
+  guess it's the sort of thing you learn once and then just
+  assume.&amp;#160;&lt;a href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</summary></entry><entry><title>Avoiding database queries with Haystack</title><link href="http://dominicrodger.com/order-n-haystack.html" rel="alternate"></link><updated>2012-07-05T17:20:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-07-05:order-n-haystack.html</id><summary type="html">&lt;h1&gt;Order(n) is a pretty bad idea.&lt;/h1&gt;
 &lt;p&gt;Originally, my SearchIndexes for &lt;a href="http://haystacksearch.org/" title="Haystack is a search solution for Django apps"&gt;Haystack&lt;/a&gt; looked a bit
 like this:&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;class&lt;/span&gt; &lt;span class="nc"&gt;RegularEventIndex&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;indexes&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;SearchIndex&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;

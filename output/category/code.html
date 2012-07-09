@@ -49,10 +49,10 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href=".././order-n-haystack.html">Avoiding database queries with Haystack</a></h1> 
+                    <h1 class="entry-title"><a href=".././ubuntu-netbook.html">Moving to Ubuntu for mobile development</a></h1> 
                     <footer class="post-info">
-        <abbr class="published" title="2012-07-05T17:20:00">
-                Thursday 05 July 2012
+        <abbr class="published" title="2012-07-09T17:46:00">
+                Monday 09 July 2012
         </abbr>
 
         
@@ -64,111 +64,103 @@
 
 
 
-</footer><!-- /.post-info --><h1>Order(n) is a pretty bad idea.</h1>
-<p>Originally, my SearchIndexes for <a href="http://haystacksearch.org/" title="Haystack is a search solution for Django apps">Haystack</a> looked a bit
-like this:</p>
-<div class="codehilite"><pre><span class="k">class</span> <span class="nc">RegularEventIndex</span><span class="p">(</span><span class="n">indexes</span><span class="o">.</span><span class="n">SearchIndex</span><span class="p">):</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">document</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_template</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</footer><!-- /.post-info --><h1>My mobile office</h1>
+<p>My web-development office is a fast-moving place.</p>
+<p>It averages around 50 miles per hour<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>, and I work on a laptop
+normally squished between two people on the train to and from the
+office.</p>
+<p>When I happen to have a spare moment to build websites at home, I tend
+to use my desktop, which is running Ubuntu. I do my editing in emacs,
+where I've gradually got things set up more or less as I like them.</p>
+<p>On my laptop that I've been using on the train, I'm working in
+Notepad++, because I've never got around to installing emacs on
+Windows.</p>
+<h1>Hurrah for tiny laptops</h1>
+<p>I've recently (re-)acquired an Asus Aspire One. It's a pretty cheap
+computer that I bought about 3 years ago. I gradually stopped using
+it, as it tended to be too slow to do much with (it came with Windows
+Vista, which may not have helped).</p>
+<p>It's really quite a lot better as a portable laptop than the rather
+heavy Dell I was using - mostly because it's light, it's narrower
+(which is good for the fairly small seats on the train), and its
+battery lasts for approximately a millenium.</p>
+<p>Having got used to (and grown rather fond of) Ubuntu on my desktop, I
+thought it was worth a go trying it on my Aspire One. It's taken me
+several hours (most of which was spent watching progress bars and a
+<a href="http://www.bbc.co.uk/sport/0/tennis/18755331" title="Roger Federer beat Andy Murray in 4 sets">tragically inevitable Wimbledon final</a>), so I thought
+I'd write up how I got it working, partly in case I ever need to do it
+again.</p>
+<h1>Pain</h1>
+<p>First, I tried downloading the latest release of Ubuntu (12.04),
+dumping it on a USB stick, and booting from that. I quickly got into
+Ubuntu, only to get an <code>io-remap</code> error, at which point the bottom of
+the screen to go black, and the top half of the screen tried to
+display both halves simultaneously. I went through the installation
+process anyway<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>, hoping the problem would go away. It didn't.</p>
+<p>Next, I thought I'd try Linux Mint. Same thing, no dice.</p>
+<p>Next, I did some reading, and discovered that I'd bumped into a known
+issue, which may or may not be fixed in the latest pre-release of
+Ubuntu (12.10). I downloaded that. Also no dice.</p>
+<p>Next, I read some workarounds for Ubuntu 12.04, so I re-installed and
+tried those. Still no dice.</p>
+<p>I tried Linux Mint again, tweaking some display options. Still no luck.</p>
+<p>Then, I tried Ubuntu 12.04 again, and discovered that if I hit quit
+when asked whether I wanted to install Ubuntu 12.04, the screen would
+redraw, and everything looked fine. I installed, went to restart, and
+was presented with a pitch black screen.</p>
+<p>I discovered then that Ctrl-Alt-F1 got me a terminal<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>, but that
+wasn't going to help me build websites. I installed some things just
+for fun.</p>
+<p>Googling around brought me to <a href="http://askubuntu.com/a/130847" title="Ask Ubuntu - fixing the black screen problem">this answer</a>, which told me
+to type the magic incantation at the prompt:</p>
+<div class="codehilite"><pre><span class="n">sudo</span> <span class="n">service</span> <span class="n">lightdm</span> <span class="n">restart</span>
 </pre></div>
 
 
-<p>Then, when someone ran a search, and I wanted to display a result, I'd
-load up a template (which template I loaded depended on grabbing the
-model name, as recommended in <a href="http://django-haystack.readthedocs.org/en/v1.2.7/best_practices.html#content-type-specific-templates" title="Use a filter to generate the template name for your search results.">the docs</a>), and any
-attributes of the model I wanted to display required doing a database
-lookup to fetch the data, like this:</p>
-<div class="codehilite"><pre><span class="nt">&lt;h2&gt;</span>{{ result.object.title }}<span class="nt">&lt;/h2&gt;</span>
-{{ result.object.details|linebreaks }}
+<p>A <a href="http://blog.bodhizazen.net/linux/ubuntu-12-04-gma500-poulsbo-boot-options/" title="The blog post that got me fixed">blog post</a> linked from that answer told me to edit
+<code>/etc/default/grub</code> and add this line (in place of the previous
+setting of <code>GRUB_CMDLINE_LINUX_DEFAULT</code>):</p>
+<div class="codehilite"><pre><span class="n">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="p">=</span>&quot;<span class="n">quiet</span> <span class="n">console</span><span class="p">=</span><span class="n">tty1</span> <span class="n">acpi_backlight</span><span class="p">=</span><span class="n">vendor</span><span class="o">\</span>
+<span class="n">acpi_osi</span><span class="p">=</span><span class="n">Linux</span> <span class="n">acer_wmi</span><span class="p">.</span><span class="n">blacklist</span><span class="p">=</span><span class="n">yes</span> <span class="n">mem</span><span class="p">=</span>1920<span class="n">mb</span>&quot;
 </pre></div>
 
 
-<p>This has a fairly obvious problem - each time you display a search
-result, you do a database query.</p>
-<h1>Better - avoiding database lookups</h1>
-<p>I tried avoiding that problem like this:</p>
-<div class="codehilite"><pre><span class="k">class</span> <span class="nc">RegularEventIndex</span><span class="p">(</span><span class="n">indexes</span><span class="o">.</span><span class="n">SearchIndex</span><span class="p">):</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">document</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_template</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">modified</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">model_attr</span><span class="o">=</span><span class="s">&#39;modified&#39;</span><span class="p">)</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">model_attr</span><span class="o">=</span><span class="s">&#39;title&#39;</span><span class="p">)</span>
-    <span class="n">details</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">model_attr</span><span class="o">=</span><span class="s">&#39;details&#39;</span><span class="p">,</span> <span class="n">null</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</pre></div>
-
-
-<p>Which meant writing templates like this<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>:</p>
-<div class="codehilite"><pre><span class="nt">&lt;h2&gt;</span>{{ result.title|safe }}<span class="nt">&lt;/h2&gt;</span>
-{{ result.details|safe|linebreaks }}
-</pre></div>
-
-
-<p>The downside of this was that any attributes of the model I wanted to
-display had to be hooked up in the <code>SearchIndex</code>. This was made worse
-by the fact that you had to remember to keep whether or not a
-particular field could be null in sync between the model and the
-<code>SearchIndex</code> (spot the <code>null=True</code> in the <code>details</code> attribute above).</p>
-<h1>Betterer - pre-render search result templates</h1>
-<p>At the point when the index is built, templates have access to the
-model instance. This doesn't involve any extra queries (we already had
-to load the instance to generate the index for it), and is done once
-per object change (instead of once per inclusion in search results),
-which is probably a win for most sites.</p>
-<p>So, I added a field to my <code>SearchIndex</code> that looked like this:</p>
-<div class="codehilite"><pre><span class="k">class</span> <span class="nc">RegularEventIndex</span><span class="p">(</span><span class="n">indexes</span><span class="o">.</span><span class="n">SearchIndex</span><span class="p">):</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">document</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_template</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">modified</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="n">model_attr</span><span class="o">=</span><span class="s">&#39;modified&#39;</span><span class="p">)</span>
-    <span class="n">rendered</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">use_template</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-</pre></div>
-
-
-<p>I then moved my template that was previously used to render search
-results on the fly, to the location used by Haystack to look for
-search templates
-(<code>search/indexes/kanisa/&lt;object_name&gt;_rendered.txt</code>). In that template
-I have full access to the model (i.e. I can call methods on it, which
-wasn't possible without a database query before).</p>
-<p>My new template looks like this<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>:</p>
-<div class="codehilite"><pre><span class="nt">&lt;h2&gt;</span>{{ object.title }}<span class="nt">&lt;/h2&gt;</span>
-{{ object.details|linebreaks }}
-</pre></div>
-
-
-<h1>Best - do all this stuff in a base class</h1>
-<p>Once I'd added my new <code>rendered</code> attribute to my various
-SearchIndexes, I realised that all my SearchIndexes were more or less
-the same. I no longer needed all the attributes on them which I had
-before (since they were only there to avoid database lookups when
-generating templates on the fly), so I could now just have a base
-<code>SearchIndex</code>, which would be fine for most my models<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>.</p>
-<p>It looks like this:</p>
-<div class="codehilite"><pre><span class="k">class</span> <span class="nc">KanisaBaseSearchIndex</span><span class="p">(</span><span class="n">indexes</span><span class="o">.</span><span class="n">SearchIndex</span><span class="p">):</span>
-    <span class="n">text</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">document</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_template</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">rendered</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">use_template</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
-    <span class="n">title</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">model_attr</span><span class="o">=</span><span class="s">&#39;title&#39;</span><span class="p">)</span>
-
-    <span class="k">def</span> <span class="nf">get_updated_field</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="s">&#39;modified&#39;</span>
-</pre></div>
-
-
-<p>Almost all my models can use this as is, which makes adding new models
-to my site search just a case of registering them in
-<code>search_indexes.py</code> and adding two templates (<code>&lt;object_name&gt;_text.txt</code>
-for the searchable content, and <code>&lt;object_name&gt;_rendered.txt</code> for the
-displayable search result).</p>
+<p>Once I'd done that, it all worked.</p>
+<p>Not for the first time, I had a feeling that I didn't really know what
+I was doing (though I am of course very happy to be using my vendor's
+acpi_backlight, I hope he doesn't mind).</p>
+<p>Admittedly my laptop's a little old (I think it came out three
+years ago or so), but that was a serious amount of pain just to get
+things working. Now I've got things working, it's great, but I can't
+help wondering how many people would have been sufficiently stubborn
+to get this far. I had a similarly painful experience upgrading my
+Desktop from Ubuntu 11 to Ubuntu 12, so maybe I've just got really,
+really bad luck.</p>
+<h1>Good Things</h1>
+<p>All this means that the editing environment I use on my laptop is now
+identical to the one I use on my desktop. I've synced my emacs
+configurations with Dropbox, and logged in to Google Chrome so my
+bookmarks are synced. I now get to work in a development environment
+where I can use <a href="http://www.doughellmann.com/projects/virtualenvwrapper/" title="virtualenvwrapper - for, erm, wrapping your virtualenvs">virtualenvwrapper</a> and where most
+things are pip-installable. Even better, I didn't have to spend a load
+of money on a Macbook Air, and I get to retain my free-software
+smugness.</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>This took me a while to figure out, but attributes going in to
-  Haystack have already been escaped once, so need to be marked as
-  <code>safe</code>.&#160;<a href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>As far as speed goes at least. Its average velocity, my A-level
+  physics teacher would probably wish me to point out, is roughly
+  0 miles per hour.&#160;<a href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>This is the same as the template above, I've just replaced
-  <code>result.object</code> with <code>object</code>.&#160;<a href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>The top half of the screen would redraw to display whatever your
+  mouse was on, which made progress a challenge, but not impossible.&#160;<a href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>A couple of them have custom titles, which is an attribute I
-  access directly on search results.&#160;<a href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>A couple of people seemed surprised that I didn't know that - I
+  guess it's the sort of thing you learn once and then just
+  assume.&#160;<a href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -182,6 +174,49 @@ displayable search result).</p>
                     <ol id="posts-list" class="hfeed">
             
         
+        
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                        <h1><a href=".././order-n-haystack.html" rel="bookmark" title="Permalink to Avoiding database queries with Haystack">Avoiding database queries with Haystack</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-07-05T17:20:00">
+                Thursday 05 July 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href=".././author/dominic-rodger.html">Dominic Rodger</a>
+        </address>
+        
+<p>In <a href=".././category/code.html">code</a>. </p>
+
+
+
+</footer><!-- /.post-info -->
+                <h1>Order(n) is a pretty bad idea.</h1>
+<p>Originally, my SearchIndexes for <a href="http://haystacksearch.org/" title="Haystack is a search solution for Django apps">Haystack</a> looked a bit
+like this:</p>
+<div class="codehilite"><pre><span class="k">class</span> <span class="nc">RegularEventIndex</span><span class="p">(</span><span class="n">indexes</span><span class="o">.</span><span class="n">SearchIndex</span><span class="p">):</span>
+    <span class="n">text</span> <span class="o">=</span> <span class="n">indexes</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">document</span><span class="o">=</span><span class="bp">True</span><span class="p">,</span> <span class="n">use_template</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+
+
+<p>Then, when someone ran a search, and I wanted to display a result, I'd
+load up a template (which template I ...</p>
+                <a class="readmore" href=".././order-n-haystack.html">read more</a>
+                
+                </div><!-- /.entry-content -->
+            </article></li>
         
         
         
