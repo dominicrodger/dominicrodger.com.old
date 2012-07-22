@@ -115,12 +115,16 @@ tests look like this:</p>
 
     <span class="n">PASSWORD_HASHERS</span> <span class="o">=</span> <span class="p">(</span>
         <span class="s">&#39;django.contrib.auth.hashers.MD5PasswordHasher&#39;</span><span class="p">,</span>
+        <span class="s">&#39;django.contrib.auth.hashers.SHA1PasswordHasher&#39;</span><span class="p">,</span>
     <span class="p">)</span>
 </pre></div>
 
 
 <p>Doing that took a sample run of the tests for my <a href="https://github.com/dominicrodger/kanisa" title="View Kanisa on GitHub">new project</a>
 down from 3.6s to 1.0s, which is pretty good for 3 lines of code.</p>
+<p>Django uses the first entry in the list for storing passwords, and the
+other entries in the list are also available. If you want Django's
+test suite to pass, you'll need to include the SHA1 hasher.</p>
 <div class="footnote">
 <hr />
 <ol>

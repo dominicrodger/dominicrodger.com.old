@@ -26,12 +26,12 @@ instead of having to type:
 
     ::bash
     python manage.py test --settings=test_settings
-    
+
 I can now just type:
 
     ::bash
     python manage.py test
-    
+
 and the faster settings get loaded.
 
 This morning I was perusing
@@ -57,10 +57,15 @@ tests look like this:
 
         PASSWORD_HASHERS = (
             'django.contrib.auth.hashers.MD5PasswordHasher',
+            'django.contrib.auth.hashers.SHA1PasswordHasher',
         )
 
 Doing that took a sample run of the tests for my [new project][kanisa]
 down from 3.6s to 1.0s, which is pretty good for 3 lines of code.
+
+Django uses the first entry in the list for storing passwords, and the
+other entries in the list are also available. If you want Django's
+test suite to pass, you'll need to include the SHA1 hasher.
 
 [^1]: This is probably something everyone who works with Django should
       do, it's a great way of finding out what's coming up, and also

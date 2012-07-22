@@ -256,12 +256,16 @@ tests look like this:&lt;/p&gt;
 
     &lt;span class="n"&gt;PASSWORD_HASHERS&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;(&lt;/span&gt;
         &lt;span class="s"&gt;&amp;#39;django.contrib.auth.hashers.MD5PasswordHasher&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="s"&gt;&amp;#39;django.contrib.auth.hashers.SHA1PasswordHasher&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
     &lt;span class="p"&gt;)&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
 
 
 &lt;p&gt;Doing that took a sample run of the tests for my &lt;a href="https://github.com/dominicrodger/kanisa" title="View Kanisa on GitHub"&gt;new project&lt;/a&gt;
 down from 3.6s to 1.0s, which is pretty good for 3 lines of code.&lt;/p&gt;
+&lt;p&gt;Django uses the first entry in the list for storing passwords, and the
+other entries in the list are also available. If you want Django's
+test suite to pass, you'll need to include the SHA1 hasher.&lt;/p&gt;
 &lt;div class="footnote"&gt;
 &lt;hr /&gt;
 &lt;ol&gt;
