@@ -29,9 +29,9 @@ again.&lt;/p&gt;
 &lt;p&gt;First, I tried downloading the latest release of Ubuntu (12.04),
 dumping it on a USB stick, and booting from that. I quickly got into
 Ubuntu, only to get an &lt;code&gt;io-remap&lt;/code&gt; error, at which point the bottom of
-the screen to go black, and the top half of the screen tried to
-display both halves simultaneously. I went through the installation
-process anyway&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;, hoping the problem would go away. It didn't.&lt;/p&gt;
+the screen went black, and the top half of the screen tried to display
+both halves simultaneously. I went through the installation process
+anyway&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;, hoping the problem would go away. It didn't.&lt;/p&gt;
 &lt;p&gt;Next, I thought I'd try Linux Mint. Same thing, no dice.&lt;/p&gt;
 &lt;p&gt;Next, I did some reading, and discovered that I'd bumped into a known
 issue, which may or may not be fixed in the latest pre-release of

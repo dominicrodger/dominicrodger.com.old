@@ -42,9 +42,9 @@ again.
 First, I tried downloading the latest release of Ubuntu (12.04),
 dumping it on a USB stick, and booting from that. I quickly got into
 Ubuntu, only to get an `io-remap` error, at which point the bottom of
-the screen to go black, and the top half of the screen tried to
-display both halves simultaneously. I went through the installation
-process anyway[^2], hoping the problem would go away. It didn't.
+the screen went black, and the top half of the screen tried to display
+both halves simultaneously. I went through the installation process
+anyway[^2], hoping the problem would go away. It didn't.
 
 Next, I thought I'd try Linux Mint. Same thing, no dice.
 
