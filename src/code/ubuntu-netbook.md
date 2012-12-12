@@ -28,7 +28,7 @@ Vista, which may not have helped).
 It's really quite a lot better as a portable laptop than the rather
 heavy Dell I was using - mostly because it's light, it's narrower
 (which is good for the fairly small seats on the train), and its
-battery lasts for approximately a millenium.
+battery lasts for approximately a millennium.
 
 Having got used to (and grown rather fond of) Ubuntu on my desktop, I
 thought it was worth a go trying it on my Aspire One. It's taken me
