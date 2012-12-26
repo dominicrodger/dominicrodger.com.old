@@ -33,7 +33,7 @@ right-hand side were each `span2`s. This worked - sort of. On large
 enough screens (basically screens at least 768px wide), I'd get the
 "featured" card on the left-hand side, and the list of thumbnails on
 the right-hand side. The problem with this was that it was all or
-nothing - above 768px it'd look like the full desktop site, belows
+nothing - above 768px it'd look like the full desktop site, below
 768px, it'd just be a single column - with a single thumbnail on each
 row below the featured image.
 
@@ -41,8 +41,9 @@ row below the featured image.
 
 What I really wanted was the featured card on the left, and a set of
 thumbnails on the right, which remained unless there was no space for
-thumbnails at all. So, I started from scratch - here is how the
-list of thumbnails worked[^2]:
+thumbnails at all, at which point the thumbnails would drop beneath
+the featured card. So, I started from scratch - here is the source for
+the list of thumbnails[^2]:
 
     ::html
     <div style="float: left; margin-right: 20px">
@@ -87,14 +88,21 @@ displays. We give the wrapper around our thumbnails the class
 This means that we only apply the left margin to our list of
 thumbnails if our viewport is at least 420px[^4].
 
-This gets us a bit closer - but doesn't work great for displays only
-slightly wider than 420px - we still end up with the margin to the
-left of our list of thumbnails, but if there's not space to the right
-of our featured image for at least one thumbnail, we're back to the
-earlier problem, where the containing element for the list of
+This gets us a bit closer - but doesn't work very well for displays
+only slightly wider than 420px - we still end up with the margin to
+the left of our list of thumbnails, but if there's not space to the
+right of our featured image for at least one thumbnail, we're back to
+the earlier problem, where the containing element for the list of
 thumbnails gets pushed below our featured image, and has a blank space
 to the left. This is easily fixed by adjusting our `min-width` to
-768px, or something similar.
+768px, or something similar:
+
+    ::css
+    @media (min-width: 768px) {
+        .additional-cards {
+            margin-left: 420px;
+        }
+    }
 
 # min-height too!
 
@@ -105,10 +113,12 @@ thumbnails again have a large empty space to the left of them.
 One way to fix this is with `position: fixed`, but this causes
 problems for browsers which aren't tall enough to display the entire
 featured image and its description - since they're not visible in the
-browser's viewport at load time, and you can't scroll to seee it.
+browser's viewport at load time, and you can't scroll to see the rest
+of it.
 
 For this site, we know that all images are 350px high, so we probably
-need a viewport about 600px high to see them:
+need a viewport about 600px high to see the image and its associated
+description:
 
     ::css
     @media (min-height: 600px) {
@@ -122,6 +132,13 @@ And that's almost it: there's a tiny bit more to our responsive
 layout, but not a great deal - you can take a look at
 [the CSS][layout-css]. If you're interested - all the code that powers
 the site is on [GitHub][github-squigcards].
+
+# Concluding Thoughts
+
+All this was complicated enough to get (hopefully largely) right on a
+site that is effectively just a single page site - but hopefully the
+things I've learned in the attempt will be useful as I work on more
+complex sites too.
 
 If you've spotted things I've done wrong - feel free to send me a pull
 request, or ping me on [Twitter][dom-twitter].

@@ -24,14 +24,15 @@ right-hand side were each &lt;code&gt;span2&lt;/code&gt;s. This worked - sort of
 enough screens (basically screens at least 768px wide), I'd get the
 "featured" card on the left-hand side, and the list of thumbnails on
 the right-hand side. The problem with this was that it was all or
-nothing - above 768px it'd look like the full desktop site, belows
+nothing - above 768px it'd look like the full desktop site, below
 768px, it'd just be a single column - with a single thumbnail on each
 row below the featured image.&lt;/p&gt;
 &lt;h1&gt;Hey, look! No span[0-9]!&lt;/h1&gt;
 &lt;p&gt;What I really wanted was the featured card on the left, and a set of
 thumbnails on the right, which remained unless there was no space for
-thumbnails at all. So, I started from scratch - here is how the
-list of thumbnails worked&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+thumbnails at all, at which point the thumbnails would drop beneath
+the featured card. So, I started from scratch - here is the source for
+the list of thumbnails&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;style=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;float: left; margin-right: 20px&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
     &lt;span class="nt"&gt;&amp;lt;img&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;card1-thumbnail.jpg&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
 &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
@@ -73,14 +74,22 @@ displays. We give the wrapper around our thumbnails the class
 
 &lt;p&gt;This means that we only apply the left margin to our list of
 thumbnails if our viewport is at least 420px&lt;sup id="fnref:4"&gt;&lt;a href="#fn:4" rel="footnote"&gt;4&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
-&lt;p&gt;This gets us a bit closer - but doesn't work great for displays only
-slightly wider than 420px - we still end up with the margin to the
-left of our list of thumbnails, but if there's not space to the right
-of our featured image for at least one thumbnail, we're back to the
-earlier problem, where the containing element for the list of
+&lt;p&gt;This gets us a bit closer - but doesn't work very well for displays
+only slightly wider than 420px - we still end up with the margin to
+the left of our list of thumbnails, but if there's not space to the
+right of our featured image for at least one thumbnail, we're back to
+the earlier problem, where the containing element for the list of
 thumbnails gets pushed below our featured image, and has a blank space
 to the left. This is easily fixed by adjusting our &lt;code&gt;min-width&lt;/code&gt; to
-768px, or something similar.&lt;/p&gt;
+768px, or something similar:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;@media&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;min-width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;768px&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nc"&gt;.additional-cards&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;420px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
 &lt;h1&gt;min-height too!&lt;/h1&gt;
 &lt;p&gt;One slight irritation is that once you've got enough thumbnails, as
 you scroll down, the featured image scrolls off the page, and the
@@ -88,9 +97,11 @@ thumbnails again have a large empty space to the left of them.&lt;/p&gt;
 &lt;p&gt;One way to fix this is with &lt;code&gt;position: fixed&lt;/code&gt;, but this causes
 problems for browsers which aren't tall enough to display the entire
 featured image and its description - since they're not visible in the
-browser's viewport at load time, and you can't scroll to seee it.&lt;/p&gt;
+browser's viewport at load time, and you can't scroll to see the rest
+of it.&lt;/p&gt;
 &lt;p&gt;For this site, we know that all images are 350px high, so we probably
-need a viewport about 600px high to see them:&lt;/p&gt;
+need a viewport about 600px high to see the image and its associated
+description:&lt;/p&gt;
 &lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;@media&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;min-height&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;600px&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
     &lt;span class="nc"&gt;.primary-card&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
         &lt;span class="k"&gt;position&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;fixed&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
@@ -104,6 +115,11 @@ need a viewport about 600px high to see them:&lt;/p&gt;
 layout, but not a great deal - you can take a look at
 &lt;a href="https://raw.github.com/dominicrodger/squigcards/master/static/squigcards/css/base.css" title="View the CSS that lays out griffinalters.com"&gt;the CSS&lt;/a&gt;. If you're interested - all the code that powers
 the site is on &lt;a href="https://github.com/dominicrodger/squigcards" title="View the source for griffinalters.com"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;h1&gt;Concluding Thoughts&lt;/h1&gt;
+&lt;p&gt;All this was complicated enough to get (hopefully largely) right on a
+site that is effectively just a single page site - but hopefully the
+things I've learned in the attempt will be useful as I work on more
+complex sites too.&lt;/p&gt;
 &lt;p&gt;If you've spotted things I've done wrong - feel free to send me a pull
 request, or ping me on &lt;a href="http://www.twitter.com/dominicrodger" title="View my Twitter profile"&gt;Twitter&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="footnote"&gt;

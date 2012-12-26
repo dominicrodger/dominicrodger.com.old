@@ -89,14 +89,15 @@ right-hand side were each <code>span2</code>s. This worked - sort of. On large
 enough screens (basically screens at least 768px wide), I'd get the
 "featured" card on the left-hand side, and the list of thumbnails on
 the right-hand side. The problem with this was that it was all or
-nothing - above 768px it'd look like the full desktop site, belows
+nothing - above 768px it'd look like the full desktop site, below
 768px, it'd just be a single column - with a single thumbnail on each
 row below the featured image.</p>
 <h1>Hey, look! No span[0-9]!</h1>
 <p>What I really wanted was the featured card on the left, and a set of
 thumbnails on the right, which remained unless there was no space for
-thumbnails at all. So, I started from scratch - here is how the
-list of thumbnails worked<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>:</p>
+thumbnails at all, at which point the thumbnails would drop beneath
+the featured card. So, I started from scratch - here is the source for
+the list of thumbnails<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>:</p>
 <div class="codehilite"><pre><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">&quot;float: left; margin-right: 20px&quot;</span><span class="nt">&gt;</span>
     <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;card1-thumbnail.jpg&quot;</span> <span class="nt">/&gt;</span>
 <span class="nt">&lt;/div&gt;</span>
@@ -138,14 +139,22 @@ displays. We give the wrapper around our thumbnails the class
 
 <p>This means that we only apply the left margin to our list of
 thumbnails if our viewport is at least 420px<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>.</p>
-<p>This gets us a bit closer - but doesn't work great for displays only
-slightly wider than 420px - we still end up with the margin to the
-left of our list of thumbnails, but if there's not space to the right
-of our featured image for at least one thumbnail, we're back to the
-earlier problem, where the containing element for the list of
+<p>This gets us a bit closer - but doesn't work very well for displays
+only slightly wider than 420px - we still end up with the margin to
+the left of our list of thumbnails, but if there's not space to the
+right of our featured image for at least one thumbnail, we're back to
+the earlier problem, where the containing element for the list of
 thumbnails gets pushed below our featured image, and has a blank space
 to the left. This is easily fixed by adjusting our <code>min-width</code> to
-768px, or something similar.</p>
+768px, or something similar:</p>
+<div class="codehilite"><pre><span class="k">@media</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">768px</span><span class="o">)</span> <span class="p">{</span>
+    <span class="nc">.additional-cards</span> <span class="p">{</span>
+        <span class="k">margin-left</span><span class="o">:</span> <span class="m">420px</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
 <h1>min-height too!</h1>
 <p>One slight irritation is that once you've got enough thumbnails, as
 you scroll down, the featured image scrolls off the page, and the
@@ -153,9 +162,11 @@ thumbnails again have a large empty space to the left of them.</p>
 <p>One way to fix this is with <code>position: fixed</code>, but this causes
 problems for browsers which aren't tall enough to display the entire
 featured image and its description - since they're not visible in the
-browser's viewport at load time, and you can't scroll to seee it.</p>
+browser's viewport at load time, and you can't scroll to see the rest
+of it.</p>
 <p>For this site, we know that all images are 350px high, so we probably
-need a viewport about 600px high to see them:</p>
+need a viewport about 600px high to see the image and its associated
+description:</p>
 <div class="codehilite"><pre><span class="k">@media</span> <span class="o">(</span><span class="nt">min-height</span><span class="o">:</span> <span class="nt">600px</span><span class="o">)</span> <span class="p">{</span>
     <span class="nc">.primary-card</span> <span class="p">{</span>
         <span class="k">position</span><span class="o">:</span> <span class="k">fixed</span><span class="p">;</span>
@@ -169,6 +180,11 @@ need a viewport about 600px high to see them:</p>
 layout, but not a great deal - you can take a look at
 <a href="https://raw.github.com/dominicrodger/squigcards/master/static/squigcards/css/base.css" title="View the CSS that lays out griffinalters.com">the CSS</a>. If you're interested - all the code that powers
 the site is on <a href="https://github.com/dominicrodger/squigcards" title="View the source for griffinalters.com">GitHub</a>.</p>
+<h1>Concluding Thoughts</h1>
+<p>All this was complicated enough to get (hopefully largely) right on a
+site that is effectively just a single page site - but hopefully the
+things I've learned in the attempt will be useful as I work on more
+complex sites too.</p>
 <p>If you've spotted things I've done wrong - feel free to send me a pull
 request, or ping me on <a href="http://www.twitter.com/dominicrodger" title="View my Twitter profile">Twitter</a>.</p>
 <div class="footnote">
