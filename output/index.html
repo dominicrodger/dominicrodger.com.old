@@ -49,10 +49,10 @@
         
             <aside id="featured" class="body">
                 <article>
-                    <h1 class="entry-title"><a href="./ubuntu-netbook.html">Moving to Ubuntu for mobile development</a></h1> 
+                    <h1 class="entry-title"><a href="./responsive-beginnings.html">Forays into Responsive Design</a></h1> 
                     <footer class="post-info">
-        <abbr class="published" title="2012-07-09T17:46:00">
-                Monday 09 July 2012
+        <abbr class="published" title="2012-12-26T20:09:00">
+                Wednesday 26 December 2012
         </abbr>
 
         
@@ -64,103 +64,136 @@
 
 
 
-</footer><!-- /.post-info --><h1>My mobile office</h1>
-<p>My web-development office is a fast-moving place.</p>
-<p>It averages around 50 miles per hour<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>, and I work on a laptop
-normally squished between two people on the train to and from the
-office.</p>
-<p>When I happen to have a spare moment to build websites at home, I tend
-to use my desktop, which is running Ubuntu. I do my editing in emacs,
-where I've gradually got things set up more or less as I like them.</p>
-<p>On my laptop that I've been using on the train, I'm working in
-Notepad++, because I've never got around to installing emacs on
-Windows.</p>
-<h1>Hurrah for tiny laptops</h1>
-<p>I've recently (re-)acquired an Asus Aspire One. It's a pretty cheap
-computer that I bought about 3 years ago. I gradually stopped using
-it, as it tended to be too slow to do much with (it came with Windows
-Vista, which may not have helped).</p>
-<p>It's really quite a lot better as a portable laptop than the rather
-heavy Dell I was using - mostly because it's light, it's narrower
-(which is good for the fairly small seats on the train), and its
-battery lasts for approximately a millennium.</p>
-<p>Having got used to (and grown rather fond of) Ubuntu on my desktop, I
-thought it was worth a go trying it on my Aspire One. It's taken me
-several hours (most of which was spent watching progress bars and a
-<a href="http://www.bbc.co.uk/sport/0/tennis/18755331" title="Roger Federer beat Andy Murray in 4 sets">tragically inevitable Wimbledon final</a>), so I thought
-I'd write up how I got it working, partly in case I ever need to do it
-again.</p>
-<h1>Pain</h1>
-<p>First, I tried downloading the latest release of Ubuntu (12.04),
-dumping it on a USB stick, and booting from that. I quickly got into
-Ubuntu, only to get an <code>io-remap</code> error, at which point the bottom of
-the screen went black, and the top half of the screen tried to display
-both halves simultaneously. I went through the installation process
-anyway<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>, hoping the problem would go away. It didn't.</p>
-<p>Next, I thought I'd try Linux Mint. Same thing, no dice.</p>
-<p>Next, I did some reading, and discovered that I'd bumped into a known
-issue, which may or may not be fixed in the latest pre-release of
-Ubuntu (12.10). I downloaded that. Also no dice.</p>
-<p>Next, I read some workarounds for Ubuntu 12.04, so I re-installed and
-tried those. Still no dice.</p>
-<p>I tried Linux Mint again, tweaking some display options. Still no luck.</p>
-<p>Then, I tried Ubuntu 12.04 again, and discovered that if I hit quit
-when asked whether I wanted to install Ubuntu 12.04, the screen would
-redraw, and everything looked fine. I installed, went to restart, and
-was presented with a pitch black screen.</p>
-<p>I discovered then that Ctrl-Alt-F1 got me a terminal<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup>, but that
-wasn't going to help me build websites. I installed some things just
-for fun.</p>
-<p>Googling around brought me to <a href="http://askubuntu.com/a/130847" title="Ask Ubuntu - fixing the black screen problem">this answer</a>, which told me
-to type the magic incantation at the prompt:</p>
-<div class="codehilite"><pre><span class="n">sudo</span> <span class="n">service</span> <span class="n">lightdm</span> <span class="n">restart</span>
+</footer><!-- /.post-info --><h1>The Project</h1>
+<p>A good friend of mine alters cards for <em>Magic: The Gathering</em> for fun
+and profit. Previously, he posted them on his
+<a href="http://www.twitter.com/JamesTMS" title="James' Twitter Feed">Twitter feed</a>, along with a brief description, but
+that doesn't provide a great way of seeing at a glance the sort of
+things he does - a place to point people who ask for examples of his
+work.</p>
+<p>Initially, I suggested <a href="http://www.flickr.com" title="Flickr: A photo-sharing site">Flickr</a>, but it didn't do quite what
+he wanted. Since I had a few hours to spare, I did what any
+self-respecting engineer would do, and offered to build something. I
+launched the resulting site today:
+<a href="http://www.griffinalters.com" title="Take a look at griffinalters.com - my first responsive site">griffinalters.com</a><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>.</p>
+<p>Since it was a fairly simple site, which basically has only one
+interesting page, I thought now was as good a time as any to get
+started down the <a href="http://www.alistapart.com/articles/responsive-web-design/" title="Read Ethan Marcotte's seminal essay on Responsive Web Design, 2010">responsive design</a> path.</p>
+<h1>Bootstrap First</h1>
+<p><em>NB. You'll probably understand the rest of this article better if you
+ take a look at <a href="http://www.griffinalters.com" title="Take a look at griffinalters.com - my first responsive site">griffinalters.com</a> first.</em></p>
+<p>I started off by using the grid that Bootstrap gives you, along with
+the extra responsive CSS file (<code>bootstrap-responsive.css</code>). The card
+on the left-hand side was a <code>span4</code>, and the card thumbnails on the
+right-hand side were each <code>span2</code>s. This worked - sort of. On large
+enough screens (basically screens at least 768px wide), I'd get the
+"featured" card on the left-hand side, and the list of thumbnails on
+the right-hand side. The problem with this was that it was all or
+nothing - above 768px it'd look like the full desktop site, belows
+768px, it'd just be a single column - with a single thumbnail on each
+row below the featured image.</p>
+<h1>Hey, look! No span[0-9]!</h1>
+<p>What I really wanted was the featured card on the left, and a set of
+thumbnails on the right, which remained unless there was no space for
+thumbnails at all. So, I started from scratch - here is how the
+list of thumbnails worked<sup id="fnref:2"><a href="#fn:2" rel="footnote">2</a></sup>:</p>
+<div class="codehilite"><pre><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">&quot;float: left; margin-right: 20px&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;card1-thumbnail.jpg&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
 </pre></div>
 
 
-<p>A <a href="http://blog.bodhizazen.net/linux/ubuntu-12-04-gma500-poulsbo-boot-options/" title="The blog post that got me fixed">blog post</a> linked from that answer told me to edit
-<code>/etc/default/grub</code> and add this line (in place of the previous
-setting of <code>GRUB_CMDLINE_LINUX_DEFAULT</code>):</p>
-<div class="codehilite"><pre><span class="n">GRUB_CMDLINE_LINUX_DEFAULT</span><span class="p">=</span>&quot;<span class="n">quiet</span> <span class="n">console</span><span class="p">=</span><span class="n">tty1</span> <span class="n">acpi_backlight</span><span class="p">=</span><span class="n">vendor</span><span class="o">\</span>
-<span class="n">acpi_osi</span><span class="p">=</span><span class="n">Linux</span> <span class="n">acer_wmi</span><span class="p">.</span><span class="n">blacklist</span><span class="p">=</span><span class="n">yes</span> <span class="n">mem</span><span class="p">=</span>1920<span class="n">mb</span>&quot;
+<p>This works more or less as intended<sup id="fnref:3"><a href="#fn:3" rel="footnote">3</a></sup> - the wider the viewport, the more
+thumbnails there'll be on any given row.</p>
+<p>To position the primary card, I floated it left, and wrapped the
+thumbnails:</p>
+<div class="codehilite"><pre><span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">&quot;width: 400px; float: left&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;card1-primary.jpg&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/div&gt;</span>
+<span class="nt">&lt;div</span> <span class="na">style=</span><span class="s">&quot;margin-left: 420px&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;thumbnail&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;card1-thumbnail.jpg&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;div</span> <span class="na">class=</span><span class="s">&quot;thumbnail&quot;</span><span class="nt">&gt;</span>
+        <span class="nt">&lt;img</span> <span class="na">src=</span><span class="s">&quot;card2-thumbnail.jpg&quot;</span> <span class="nt">/&gt;</span>
+    <span class="nt">&lt;/div&gt;</span>
+    ...
+<span class="nt">&lt;/div&gt;</span>
 </pre></div>
 
 
-<p>Once I'd done that, it all worked.</p>
-<p>Not for the first time, I had a feeling that I didn't really know what
-I was doing (though I am of course very happy to be using my vendor's
-acpi_backlight, I hope he doesn't mind).</p>
-<p>Admittedly my laptop's a little old (I think it came out three
-years ago or so), but that was a serious amount of pain just to get
-things working. Now I've got things working, it's great, but I can't
-help wondering how many people would have been sufficiently stubborn
-to get this far. I had a similarly painful experience upgrading my
-Desktop from Ubuntu 11 to Ubuntu 12, so maybe I've just got really,
-really bad luck.</p>
-<h1>Good Things</h1>
-<p>All this means that the editing environment I use on my laptop is now
-identical to the one I use on my desktop. I've synced my emacs
-configurations with Dropbox, and logged in to Google Chrome so my
-bookmarks are synced. I now get to work in a development environment
-where I can use <a href="http://www.doughellmann.com/projects/virtualenvwrapper/" title="virtualenvwrapper - for, erm, wrapping your virtualenvs">virtualenvwrapper</a> and where most
-things are pip-installable. Even better, I didn't have to spend a load
-of money on a Macbook Air, and I get to retain my free-software
-smugness.</p>
+<p>This works great for displays bigger than 420px, but the <code>margin-left</code>
+means that if we can't fit any thumbnails to the right of the featured
+card, then we end up having a blank space to the left of our
+thumbnails.</p>
+<p>To fix this, we scope the <code>margin-left</code> rule to "reasonably large"
+displays. We give the wrapper around our thumbnails the class
+"additional-cards", and then in our CSS file we write:</p>
+<div class="codehilite"><pre><span class="k">@media</span> <span class="o">(</span><span class="nt">min-width</span><span class="o">:</span> <span class="nt">420px</span><span class="o">)</span> <span class="p">{</span>
+    <span class="nc">.additional-cards</span> <span class="p">{</span>
+        <span class="k">margin-left</span><span class="o">:</span> <span class="m">420px</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>This means that we only apply the left margin to our list of
+thumbnails if our viewport is at least 420px<sup id="fnref:4"><a href="#fn:4" rel="footnote">4</a></sup>.</p>
+<p>This gets us a bit closer - but doesn't work great for displays only
+slightly wider than 420px - we still end up with the margin to the
+left of our list of thumbnails, but if there's not space to the right
+of our featured image for at least one thumbnail, we're back to the
+earlier problem, where the containing element for the list of
+thumbnails gets pushed below our featured image, and has a blank space
+to the left. This is easily fixed by adjusting our <code>min-width</code> to
+768px, or something similar.</p>
+<h1>min-height too!</h1>
+<p>One slight irritation is that once you've got enough thumbnails, as
+you scroll down, the featured image scrolls off the page, and the
+thumbnails again have a large empty space to the left of them.</p>
+<p>One way to fix this is with <code>position: fixed</code>, but this causes
+problems for browsers which aren't tall enough to display the entire
+featured image and its description - since they're not visible in the
+browser's viewport at load time, and you can't scroll to seee it.</p>
+<p>For this site, we know that all images are 350px high, so we probably
+need a viewport about 600px high to see them:</p>
+<div class="codehilite"><pre><span class="k">@media</span> <span class="o">(</span><span class="nt">min-height</span><span class="o">:</span> <span class="nt">600px</span><span class="o">)</span> <span class="p">{</span>
+    <span class="nc">.primary-card</span> <span class="p">{</span>
+        <span class="k">position</span><span class="o">:</span> <span class="k">fixed</span><span class="p">;</span>
+        <span class="k">float</span><span class="o">:</span> <span class="k">none</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+
+
+<p>And that's almost it: there's a tiny bit more to our responsive
+layout, but not a great deal - you can take a look at
+<a href="https://raw.github.com/dominicrodger/squigcards/master/static/squigcards/css/base.css" title="View the CSS that lays out griffinalters.com">the CSS</a>. If you're interested - all the code that powers
+the site is on <a href="https://github.com/dominicrodger/squigcards" title="View the source for griffinalters.com">GitHub</a>.</p>
+<p>If you've spotted things I've done wrong - feel free to send me a pull
+request, or ping me on <a href="http://www.twitter.com/dominicrodger" title="View my Twitter profile">Twitter</a>.</p>
 <div class="footnote">
 <hr />
 <ol>
 <li id="fn:1">
-<p>As far as speed goes at least. Its average velocity, my A-level
-  physics teacher would probably wish me to point out, is roughly
-  0 miles per hour.&#160;<a href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+<p>You'll have to excuse the somewhat basic theming of
+  <a href="http://twitter.github.com/bootstrap/" title="Twitter Bootstrap">Bootstrap</a> - it uses a fairly unchanged version of
+  the <a href="http://bootswatch.com/cyborg/" title="The Cyborg theme for Bootstrap">Cyborg theme</a>.&#160;<a href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text">&#8617;</a></p>
 </li>
 <li id="fn:2">
-<p>The top half of the screen would redraw to display whatever your
-  mouse was on, which made progress a challenge, but not impossible.&#160;<a href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+<p>In real life, I didn't use inline styles, hopefully you get the
+  idea.&#160;<a href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text">&#8617;</a></p>
 </li>
 <li id="fn:3">
-<p>A couple of people seemed surprised that I didn't know that - I
-  guess it's the sort of thing you learn once and then just
-  assume.&#160;<a href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+<p>The "less" is for the fact that I can't find a neat way to
+  remove the right margin on the last element in each row. This
+  means that the last thumbnail in each row can't get any closer
+  than 20px from the right hand side of the containing element. I
+  know it's possible to figure this out in JavaScript, but I'm not
+  sure it's worth the effort.&#160;<a href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+<li id="fn:4">
+<p>Yes, I know this isn't a large enough <code>min-width</code> - we'll get
+  there in a moment.&#160;<a href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
@@ -174,6 +207,45 @@ smugness.</p>
                     <ol id="posts-list" class="hfeed">
             
         
+        
+        
+        
+            
+
+        
+         
+            
+            <li><article class="hentry">    
+                <header>
+                        <h1><a href="./ubuntu-netbook.html" rel="bookmark" title="Permalink to Moving to Ubuntu for mobile development">Moving to Ubuntu for mobile development</a></h1>
+                </header>
+                
+                <div class="entry-content">
+                <footer class="post-info">
+        <abbr class="published" title="2012-07-09T17:46:00">
+                Monday 09 July 2012
+        </abbr>
+
+        
+        <address class="vcard author">
+                By <a class="url fn" href="./author/dominic-rodger.html">Dominic Rodger</a>
+        </address>
+        
+<p>In <a href="./category/code.html">code</a>. </p>
+
+
+
+</footer><!-- /.post-info -->
+                <h1>My mobile office</h1>
+<p>My web-development office is a fast-moving place.</p>
+<p>It averages around 50 miles per hour<sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>, and I work on a laptop
+normally squished between two people on the train to and from the
+office.</p>
+<p>When I happen to have a spare moment to build websites at home ...</p>
+                <a class="readmore" href="./ubuntu-netbook.html">read more</a>
+                
+                </div><!-- /.entry-content -->
+            </article></li>
         
         
         

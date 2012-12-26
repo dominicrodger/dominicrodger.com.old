@@ -1,5 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>dominicrodger.com</title><link href="http://dominicrodger.com/" rel="alternate"></link><link href="http://dominicrodger.com/feeds/code.atom.xml" rel="self"></link><id>http://dominicrodger.com/</id><updated>2012-07-09T17:46:00+01:00</updated><entry><title>Moving to Ubuntu for mobile development</title><link href="http://dominicrodger.com/ubuntu-netbook.html" rel="alternate"></link><updated>2012-07-09T17:46:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-07-09:ubuntu-netbook.html</id><summary type="html">&lt;h1&gt;My mobile office&lt;/h1&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>dominicrodger.com</title><link href="http://dominicrodger.com/" rel="alternate"></link><link href="http://dominicrodger.com/feeds/code.atom.xml" rel="self"></link><id>http://dominicrodger.com/</id><updated>2012-12-26T20:09:00+00:00</updated><entry><title>Forays into Responsive Design</title><link href="http://dominicrodger.com/responsive-beginnings.html" rel="alternate"></link><updated>2012-12-26T20:09:00+00:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-12-26:responsive-beginnings.html</id><summary type="html">&lt;h1&gt;The Project&lt;/h1&gt;
+&lt;p&gt;A good friend of mine alters cards for &lt;em&gt;Magic: The Gathering&lt;/em&gt; for fun
+and profit. Previously, he posted them on his
+&lt;a href="http://www.twitter.com/JamesTMS" title="James' Twitter Feed"&gt;Twitter feed&lt;/a&gt;, along with a brief description, but
+that doesn't provide a great way of seeing at a glance the sort of
+things he does - a place to point people who ask for examples of his
+work.&lt;/p&gt;
+&lt;p&gt;Initially, I suggested &lt;a href="http://www.flickr.com" title="Flickr: A photo-sharing site"&gt;Flickr&lt;/a&gt;, but it didn't do quite what
+he wanted. Since I had a few hours to spare, I did what any
+self-respecting engineer would do, and offered to build something. I
+launched the resulting site today:
+&lt;a href="http://www.griffinalters.com" title="Take a look at griffinalters.com - my first responsive site"&gt;griffinalters.com&lt;/a&gt;&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;Since it was a fairly simple site, which basically has only one
+interesting page, I thought now was as good a time as any to get
+started down the &lt;a href="http://www.alistapart.com/articles/responsive-web-design/" title="Read Ethan Marcotte's seminal essay on Responsive Web Design, 2010"&gt;responsive design&lt;/a&gt; path.&lt;/p&gt;
+&lt;h1&gt;Bootstrap First&lt;/h1&gt;
+&lt;p&gt;&lt;em&gt;NB. You'll probably understand the rest of this article better if you
+ take a look at &lt;a href="http://www.griffinalters.com" title="Take a look at griffinalters.com - my first responsive site"&gt;griffinalters.com&lt;/a&gt; first.&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;I started off by using the grid that Bootstrap gives you, along with
+the extra responsive CSS file (&lt;code&gt;bootstrap-responsive.css&lt;/code&gt;). The card
+on the left-hand side was a &lt;code&gt;span4&lt;/code&gt;, and the card thumbnails on the
+right-hand side were each &lt;code&gt;span2&lt;/code&gt;s. This worked - sort of. On large
+enough screens (basically screens at least 768px wide), I'd get the
+"featured" card on the left-hand side, and the list of thumbnails on
+the right-hand side. The problem with this was that it was all or
+nothing - above 768px it'd look like the full desktop site, belows
+768px, it'd just be a single column - with a single thumbnail on each
+row below the featured image.&lt;/p&gt;
+&lt;h1&gt;Hey, look! No span[0-9]!&lt;/h1&gt;
+&lt;p&gt;What I really wanted was the featured card on the left, and a set of
+thumbnails on the right, which remained unless there was no space for
+thumbnails at all. So, I started from scratch - here is how the
+list of thumbnails worked&lt;sup id="fnref:2"&gt;&lt;a href="#fn:2" rel="footnote"&gt;2&lt;/a&gt;&lt;/sup&gt;:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;style=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;float: left; margin-right: 20px&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;img&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;card1-thumbnail.jpg&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This works more or less as intended&lt;sup id="fnref:3"&gt;&lt;a href="#fn:3" rel="footnote"&gt;3&lt;/a&gt;&lt;/sup&gt; - the wider the viewport, the more
+thumbnails there'll be on any given row.&lt;/p&gt;
+&lt;p&gt;To position the primary card, I floated it left, and wrapped the
+thumbnails:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;style=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;width: 400px; float: left&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;img&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;card1-primary.jpg&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;style=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;margin-left: 420px&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;thumbnail&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;img&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;card1-thumbnail.jpg&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;div&lt;/span&gt; &lt;span class="na"&gt;class=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;thumbnail&amp;quot;&lt;/span&gt;&lt;span class="nt"&gt;&amp;gt;&lt;/span&gt;
+        &lt;span class="nt"&gt;&amp;lt;img&lt;/span&gt; &lt;span class="na"&gt;src=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;card2-thumbnail.jpg&amp;quot;&lt;/span&gt; &lt;span class="nt"&gt;/&amp;gt;&lt;/span&gt;
+    &lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+    ...
+&lt;span class="nt"&gt;&amp;lt;/div&amp;gt;&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This works great for displays bigger than 420px, but the &lt;code&gt;margin-left&lt;/code&gt;
+means that if we can't fit any thumbnails to the right of the featured
+card, then we end up having a blank space to the left of our
+thumbnails.&lt;/p&gt;
+&lt;p&gt;To fix this, we scope the &lt;code&gt;margin-left&lt;/code&gt; rule to "reasonably large"
+displays. We give the wrapper around our thumbnails the class
+"additional-cards", and then in our CSS file we write:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;@media&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;min-width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;420px&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nc"&gt;.additional-cards&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;margin-left&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="m"&gt;420px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;This means that we only apply the left margin to our list of
+thumbnails if our viewport is at least 420px&lt;sup id="fnref:4"&gt;&lt;a href="#fn:4" rel="footnote"&gt;4&lt;/a&gt;&lt;/sup&gt;.&lt;/p&gt;
+&lt;p&gt;This gets us a bit closer - but doesn't work great for displays only
+slightly wider than 420px - we still end up with the margin to the
+left of our list of thumbnails, but if there's not space to the right
+of our featured image for at least one thumbnail, we're back to the
+earlier problem, where the containing element for the list of
+thumbnails gets pushed below our featured image, and has a blank space
+to the left. This is easily fixed by adjusting our &lt;code&gt;min-width&lt;/code&gt; to
+768px, or something similar.&lt;/p&gt;
+&lt;h1&gt;min-height too!&lt;/h1&gt;
+&lt;p&gt;One slight irritation is that once you've got enough thumbnails, as
+you scroll down, the featured image scrolls off the page, and the
+thumbnails again have a large empty space to the left of them.&lt;/p&gt;
+&lt;p&gt;One way to fix this is with &lt;code&gt;position: fixed&lt;/code&gt;, but this causes
+problems for browsers which aren't tall enough to display the entire
+featured image and its description - since they're not visible in the
+browser's viewport at load time, and you can't scroll to seee it.&lt;/p&gt;
+&lt;p&gt;For this site, we know that all images are 350px high, so we probably
+need a viewport about 600px high to see them:&lt;/p&gt;
+&lt;div class="codehilite"&gt;&lt;pre&gt;&lt;span class="k"&gt;@media&lt;/span&gt; &lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nt"&gt;min-height&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nt"&gt;600px&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+    &lt;span class="nc"&gt;.primary-card&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+        &lt;span class="k"&gt;position&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;fixed&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+        &lt;span class="k"&gt;float&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="k"&gt;none&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+    &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+
+
+&lt;p&gt;And that's almost it: there's a tiny bit more to our responsive
+layout, but not a great deal - you can take a look at
+&lt;a href="https://raw.github.com/dominicrodger/squigcards/master/static/squigcards/css/base.css" title="View the CSS that lays out griffinalters.com"&gt;the CSS&lt;/a&gt;. If you're interested - all the code that powers
+the site is on &lt;a href="https://github.com/dominicrodger/squigcards" title="View the source for griffinalters.com"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;If you've spotted things I've done wrong - feel free to send me a pull
+request, or ping me on &lt;a href="http://www.twitter.com/dominicrodger" title="View my Twitter profile"&gt;Twitter&lt;/a&gt;.&lt;/p&gt;
+&lt;div class="footnote"&gt;
+&lt;hr /&gt;
+&lt;ol&gt;
+&lt;li id="fn:1"&gt;
+&lt;p&gt;You'll have to excuse the somewhat basic theming of
+  &lt;a href="http://twitter.github.com/bootstrap/" title="Twitter Bootstrap"&gt;Bootstrap&lt;/a&gt; - it uses a fairly unchanged version of
+  the &lt;a href="http://bootswatch.com/cyborg/" title="The Cyborg theme for Bootstrap"&gt;Cyborg theme&lt;/a&gt;.&amp;#160;&lt;a href="#fnref:1" rev="footnote" title="Jump back to footnote 1 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:2"&gt;
+&lt;p&gt;In real life, I didn't use inline styles, hopefully you get the
+  idea.&amp;#160;&lt;a href="#fnref:2" rev="footnote" title="Jump back to footnote 2 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:3"&gt;
+&lt;p&gt;The "less" is for the fact that I can't find a neat way to
+  remove the right margin on the last element in each row. This
+  means that the last thumbnail in each row can't get any closer
+  than 20px from the right hand side of the containing element. I
+  know it's possible to figure this out in JavaScript, but I'm not
+  sure it's worth the effort.&amp;#160;&lt;a href="#fnref:3" rev="footnote" title="Jump back to footnote 3 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li id="fn:4"&gt;
+&lt;p&gt;Yes, I know this isn't a large enough &lt;code&gt;min-width&lt;/code&gt; - we'll get
+  there in a moment.&amp;#160;&lt;a href="#fnref:4" rev="footnote" title="Jump back to footnote 4 in the text"&gt;&amp;#8617;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;</summary></entry><entry><title>Moving to Ubuntu for mobile development</title><link href="http://dominicrodger.com/ubuntu-netbook.html" rel="alternate"></link><updated>2012-07-09T17:46:00+01:00</updated><author><name>Dominic Rodger</name></author><id>tag:dominicrodger.com,2012-07-09:ubuntu-netbook.html</id><summary type="html">&lt;h1&gt;My mobile office&lt;/h1&gt;
 &lt;p&gt;My web-development office is a fast-moving place.&lt;/p&gt;
 &lt;p&gt;It averages around 50 miles per hour&lt;sup id="fnref:1"&gt;&lt;a href="#fn:1" rel="footnote"&gt;1&lt;/a&gt;&lt;/sup&gt;, and I work on a laptop
 normally squished between two people on the train to and from the
