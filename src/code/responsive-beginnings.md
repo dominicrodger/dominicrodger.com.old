@@ -149,7 +149,7 @@ request, or ping me on [Twitter][dom-twitter].
 [bootstrap]: http://twitter.github.com/bootstrap/ "Twitter Bootstrap"
 [cyborg]: http://bootswatch.com/cyborg/ "The Cyborg theme for Bootstrap"
 [responsive-design]: http://www.alistapart.com/articles/responsive-web-design/ "Read Ethan Marcotte's seminal essay on Responsive Web Design, 2010"
-[layout-css]: https://raw.github.com/dominicrodger/squigcards/master/static/squigcards/css/base.css "View the CSS that lays out griffinalters.com"
+[layout-css]: https://raw.github.com/dominicrodger/squigcards/master/squigcards/static/squigcards/css/base.css "View the CSS that lays out griffinalters.com"
 [github-squigcards]: https://github.com/dominicrodger/squigcards "View the source for griffinalters.com"
 [dom-twitter]: http://www.twitter.com/dominicrodger "View my Twitter profile"
 

@@ -113,7 +113,7 @@ description:&lt;/p&gt;
 
 &lt;p&gt;And that's almost it: there's a tiny bit more to our responsive
 layout, but not a great deal - you can take a look at
-&lt;a href="https://raw.github.com/dominicrodger/squigcards/master/static/squigcards/css/base.css" title="View the CSS that lays out griffinalters.com"&gt;the CSS&lt;/a&gt;. If you're interested - all the code that powers
+&lt;a href="https://raw.github.com/dominicrodger/squigcards/master/squigcards/static/squigcards/css/base.css" title="View the CSS that lays out griffinalters.com"&gt;the CSS&lt;/a&gt;. If you're interested - all the code that powers
 the site is on &lt;a href="https://github.com/dominicrodger/squigcards" title="View the source for griffinalters.com"&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 &lt;h1&gt;Concluding Thoughts&lt;/h1&gt;
 &lt;p&gt;All this was complicated enough to get (hopefully largely) right on a
