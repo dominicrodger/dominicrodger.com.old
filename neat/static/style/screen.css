@@ -68,6 +68,7 @@ pre {
     margin-top: 20px;
     overflow-x: auto;
     padding: 10px 20px;
+    font-size: 90%;
 }
 
 pre code {
@@ -148,13 +149,7 @@ article .body {
     line-height: 1.5em;
 }
 
-article .body h3 {
-    color: #003153;
-    font-size: 21px;
-    margin: 20px 0;
-}
-
-article .body h4 {
+article .body h1 {
     border-bottom: 1px #ddd solid;
     color: #2a5e82;
     font-size: 18px;
@@ -336,4 +331,9 @@ footer nav ul {
 footer nav ul li {
     float: left;
     padding-left: 25px;
+}
+
+sup a {
+    font-size: 60%;
+    vertical-align: super;
 }
