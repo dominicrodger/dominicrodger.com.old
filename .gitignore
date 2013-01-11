@@ -1,5 +1,5 @@
 env/
-output/drafts/
+output/
 .venv
 *.draft.md
 *.pyc
