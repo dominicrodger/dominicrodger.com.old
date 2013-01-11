@@ -63,7 +63,10 @@
                 <h3>About me</h3>
                 <img alt="Me!" class="avatar"
                      src="http://www.gravatar.com/avatar/{{ AUTHOR_EMAIL_HASH }}?size=64">
-                <p>{{ AUTHOR_SHORTBIO }}</p>
+                <p>
+                  I'm a software engineer working in London. At work I
+                  use C++ and Python; hobby projects are in Django. Read more <a href="{{ SITEURL }}/pages/about-me.html">about me</a>.
+
                 {% if GITHUB_USERNAME and GITHUB_BADGE %}
                 <div class="github-badge">
                     <iframe src="http://githubbadge.appspot.com/badge/{{ GITHUB_USERNAME }}?s=1"
