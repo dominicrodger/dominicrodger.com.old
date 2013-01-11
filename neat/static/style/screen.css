@@ -18,7 +18,7 @@ ul {
 
 h2 {
     color: #003153;
-    font-size: 25px;
+    font-size: 28px;
     margin-bottom: 10px;
 }
 
@@ -312,4 +312,35 @@ footer nav ul li {
 sup a {
     font-size: 60%;
     vertical-align: super;
+}
+
+dt {
+    font-weight: bold;
+}
+
+dd {
+    margin-bottom: 1em;
+}
+
+body .splash li {
+    float: left;
+    margin-right: 2em;
+    font-weight: bold;
+}
+
+.splash {
+    min-height: 1em;
+}
+
+div.body ol {
+    margin: 1em 0;
+}
+
+@media screen and (max-width: 710px) {
+    .splash,
+    .container,
+    .bottom,
+    footer {
+        padding-left: 10px; padding-right: 10px;
+    }
 }
