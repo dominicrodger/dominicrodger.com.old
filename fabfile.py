@@ -1,4 +1,4 @@
-from fabric.api import env, hosts, run, cd, hide, prefix
+from fabric.api import env, hosts, run, cd, hide, prefix, local
 
 env.use_ssh_config = True
 env.hosts = ['dmr', ]
