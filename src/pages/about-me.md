@@ -1,4 +1,4 @@
-Title: about me
+Title: About Me
 Slug: about-me
 
 I spend my days working in C++, and the odd evening working in Python.
@@ -33,7 +33,7 @@ This blog is written with [Pelican][pelican].
 The code (and all blog posts) are available on [GitHub][github-repo],
 and the site is hosted by [WebFaction][webfaction].
 
-## Kanisa
+# Kanisa
 
 My current major project (as of June 2012) is [Kanisa][kanisa], a system for
 managing Church websites. I've somewhat stalled on developing Kal&#233;o, for
