@@ -4,6 +4,7 @@ env.use_ssh_config = True
 env.hosts = ['dmr', ]
 
 def deploy():
+    local("git push")
     with cd('~/dominicrodger.com'):
         run("git pull")
         with prefix('source .env/bin/activate'):
