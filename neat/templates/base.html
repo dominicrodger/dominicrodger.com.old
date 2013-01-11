@@ -32,6 +32,14 @@
     <div class="splash">
         <div class="container">
             <div class="welcome">{{ SITE_TAGLINE }}</div>
+            <nav><ul>
+                <li><a href="{{ SITEURL }}/archives.html" title="Archive">Archive</a></li>
+                {% if DISPLAY_PAGES_ON_MENU %}
+                {% for page in PAGES %}
+                <li><a href="{{ SITEURL }}/{{ page.url }}">{{ page.title }}</a></li>
+                {% endfor %}
+                {% endif %}
+              </ul></nav>
         </div>
     </div>
 
@@ -85,7 +93,6 @@
             </span>
             <nav>
                 <ul>
-                    <li><a href="archives.html" title="Archive"><strong>Archive</strong></a></li>
                     {% if SITE_SOURCE %}
                     <li><a href="{{ SITE_SOURCE }}" title="Source code">Source code</a></li>
                     {% endif %}
