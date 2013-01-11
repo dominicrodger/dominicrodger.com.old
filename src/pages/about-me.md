@@ -3,6 +3,13 @@ Slug: about-me
 
 I spend my days working in C++, and the odd evening working in Python.
 
+Currently, my published open source projects are:
+
+* [django-board][django-board]: a reusable Django app for managing a
+  page about an organisation's board members;
+* [django-tinycontent][django-tinycontent]: a reusable Django app for
+  managing tiny snippets of reusable content for Django templates.
+
 For fun, I build websites - currently I look after:
 
  * [This site][dominicrodger]: my personal blog, where I write about code;
@@ -17,7 +24,9 @@ For fun, I build websites - currently I look after:
  * [ministrytoday.org.uk][mt]: a journal for those in Christian leadership,
    built using my open-source projects [django-magazine][django-magazine] and
    [django-board][django-board];
- * [aarongriffin.co.uk][ajg]: A photography site for my brother-in-law.
+ * [aarongriffin.co.uk][ajg]: A photography site for my brother-in-law;
+ * [griffinalters.com][ga]: A portfolio site for another brother-in-law, this
+   time focussing on alters to cards for Magic: The Gathering.
 
 This blog is written with [Pelican][pelican].
 
@@ -55,7 +64,9 @@ I am looking forward to the pain of the [Second-system effect][sse].
 [mt]: http://www.ministrytoday.org.uk "A journal for those in Christian leadership, chaired by my minister"
 [django-magazine]: https://github.com/dominicrodger/django-magazine "A system for managing magazines"
 [django-board]: https://github.com/dominicrodger/django-board "A system for managing profile pages for boards of organisations"
+[django-tinycontent]: https://github.com/dominicrodger/django-tinycontent "A system for managing tiny snippets of reusable content"
 [ajg]: http://aarongriffin.co.uk "My brother-in-law's site - a photography portfolio"
+[ga]: http://www.griffinalters.com "My brother-in-law's site - a portfolio of alters for Magic: The Gathering"
 [pelican]: http://pelican.readthedocs.org/en/latest/ "Find out about Pelican"
 [webfaction]: http://www.webfaction.com?affiliate=dominicrodger "Get hosting from WebFaction"
 [github-repo]: https://github.com/dominicrodger/dominicrodger.com "Use the source, Luke!"
