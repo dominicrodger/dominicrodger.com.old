@@ -24,7 +24,6 @@ h2 {
 
 header, footer, nav, article, section, div {
     display: block;
-    overflow: hidden;
 }
 
 blockquote {
@@ -95,25 +94,6 @@ header .logo {
     font-weight: bold;
 }
 
-article > header.float {
-    background: none repeat scroll 0 0 #fff;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-    -ms-box-sizing: border-box;
-    -o-box-sizing: border-box;
-    overflow: hidden;
-    padding: 0 8px 11px;
-    position: fixed;
-    top: 0;
-    max-width: 716px;
-    margin: 0 -8px;
-    width: 100%;
-    z-index: 999;
-    box-shadow: 0px 6px 10px 0px #888;
-    border-radius: 0 0 5px 5px;
-}
-
 .splash {
     background-color: #dff2ff;
     border-bottom: 1px solid #d1e3ef;
@@ -175,10 +155,6 @@ article .body ul {
     margin-bottom: 10px;
 }
 
-article .body-padding {
-    padding-top: 58px;
-}
-
 article ul.tags {
     float: right;
 }
@@ -228,7 +204,7 @@ article ul.tags {
 
 .footnote {
     border-top: 1px solid #ddd;
-    font-size: 11px;
+    font-size: 90%;
     margin-bottom: 25px;
     padding-top: 5px;
 }
