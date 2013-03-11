@@ -1,4 +1,4 @@
-Date: 2013-03-1 22:47
+Date: 2013-03-11 22:47
 Title: Using a local cache for pip packages
 Slug: local-pip-cache
 
