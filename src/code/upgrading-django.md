@@ -2,9 +2,9 @@ Date: 2013-03-30 10:32
 Title: Bulk Upgrading Django Sites
 Slug: upgrading-django
 
-A [new version of Django][django-1-5-1] was released today. I'm
-currently at 11 sites using Django, so upgrading them all manually
-(which I did last time) is a pain.
+A [new version of Django][django-1-5-1] was released a couple of days
+ago. I'm currently at 11 sites using Django, so upgrading them all
+manually (which I did last time) is a pain.
 
 To help me out, I wrote a tiny [Fabric][fabfile] script to spin
 through my sites, check if they're using the version of Django that
@@ -71,7 +71,7 @@ Never again will I have to do a Django upgrade ["by hand"][stupid].
 
 You can take a look at the full code on [GitHub][gist].
 
-[django-1-5-1]: https://www.djangoproject.com/weblog/2013/mar/28/django-151/ "Read about the Django 1.5.1"
+[django-1-5-1]: https://www.djangoproject.com/weblog/2013/mar/28/django-151/ "Read about the Django 1.5.1 release, on March 28th 2013"
 [fabfile]: http://www.fabfile.org "Read about Fabric"
 [webfaction]: http://www.webfaction.com/?affiliate=dominicrodger "Sign up for Webfaction and help me out a bit!"
 [stupid]: https://twitter.com/dominicrodger/status/112520438617350145 "How I used to do this, to my shame"
