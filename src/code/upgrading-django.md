@@ -15,12 +15,12 @@ was upgraded, and if they are, upgrade them.
 It's worth noting that this only works because all of my sites are
 fairly low traffic, and I don't mind too much just taking them offline
 for a minute or two. Also, they're all hosted on
-[Webfaction][webfaction], and have very similar setups[^2].
+[Webfaction][webfaction], and have very similar setups[^1].
 
 # The code
 
 We'll start off by looking at the actual command I run,
-`upgrade_django`, which I run across all my Webfaction accounts[^1]:
+`upgrade_django`, which I run across all my Webfaction accounts[^2]:
 
 
     ::python
@@ -77,7 +77,7 @@ You can take a look at the full code on [GitHub][gist].
 [stupid]: https://twitter.com/dominicrodger/status/112520438617350145 "How I used to do this, to my shame"
 [gist]: https://gist.github.com/dominicrodger/5276253 "View all the code for this blog post"
 
-[^1]: Since I run sites for various organisations, most of them have
-      their own Webfaction account.
-[^2]: They all have their virtualenv in `webapps/appname/env`, for
+[^1]: They all have their virtualenv in `webapps/appname/env`, for
       example.
+[^2]: Since I run sites for various organisations, most of them have
+      their own Webfaction account.
