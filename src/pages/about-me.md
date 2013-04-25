@@ -31,7 +31,7 @@ For fun, I build websites - currently I look after:
 This blog is written with [Pelican][pelican].
 
 The code (and all blog posts) are available on [GitHub][github-repo],
-and the site is hosted by [WebFaction][webfaction].
+and the site is hosted by [Digital Ocean][digital-ocean].
 
 # Kanisa
 
@@ -68,7 +68,7 @@ I am looking forward to the pain of the [Second-system effect][sse].
 [ajg]: http://aarongriffin.co.uk "My brother-in-law's site - a photography portfolio"
 [ga]: http://www.griffinalters.com "My brother-in-law's site - a portfolio of alters for Magic: The Gathering"
 [pelican]: http://pelican.readthedocs.org/en/latest/ "Find out about Pelican"
-[webfaction]: http://www.webfaction.com?affiliate=dominicrodger "Get hosting from WebFaction"
+[digital-ocean]: http://www.digitalocean.com "Get hosting from Digital Ocean"
 [github-repo]: https://github.com/dominicrodger/dominicrodger.com "Use the source, Luke!"
 [kanisa]: https://github.com/dominicrodger/kanisa "View Kanisa on GitHub"
 [sse]: http://en.wikipedia.org/wiki/Second-system_effect "Read about 'the tendency of small, elegant, and successful systems to have elephantine, feature-laden monstrosities as their successors' on Wikipedia"
