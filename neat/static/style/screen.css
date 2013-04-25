@@ -155,6 +155,10 @@ article .body ul {
     margin-bottom: 10px;
 }
 
+article .summary sup {
+    display: none;
+}
+
 article ul.tags {
     float: right;
 }
