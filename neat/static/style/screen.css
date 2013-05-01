@@ -315,6 +315,7 @@ footer nav ul li {
 sup a {
     font-size: 60%;
     vertical-align: super;
+    line-height: 0;
 }
 
 dt {
