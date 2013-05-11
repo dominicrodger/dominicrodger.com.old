@@ -24,8 +24,6 @@ TWITTER_USERNAME = 'dominicrodger'
 GITHUB_USERNAME = 'dominicrodger'
 DEFAULT_PAGINATION = 5
 
-GOOGLE_ANALYTICS = 'UA-11204085-1'
-
 GITHUB_URL = 'https://github.com/dominicrodger/dominicrodger.com'
 GITHUB_BADGE = True
 SITE_SOURCE = GITHUB_URL
