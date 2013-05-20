@@ -53,7 +53,7 @@ tell you anything about whether your code works, and is probably more
 effort than it's worth on a project rather more serious than my tiny
 blogging application.
 
-*However*, I do think it is worth at least understanding *why* your
+However, I do think it is worth at least understanding *why* your
 code coverage isn't 100% - take a look at the lines you're missing and ask yourself these questions:
 
 1. Would you expect your tests to hit this code?
