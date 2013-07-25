@@ -9,7 +9,7 @@ I'm not very good at running them. It turns out that unit tests aren't
 very useful if you don't run them, so I wanted to make sure that every
 time I pushed code to it, the tests run. Enter Travis CI.
 
-## Easy Unit Testing for Reusable Apps
+# Easy Unit Testing for Reusable Apps
 
 django-magazine is a reusable app - that is, it doesn't ship with
 settings files, so you can't run its tests just after installing
@@ -25,7 +25,7 @@ That allows me to run the tests without any extra set-up, though I
 still haven't worked out how to allow people who've just installed
 from pip[^3] to run the tests right out of the box.
 
-## .travis.yml
+# `.travis.yml`
 
 There are just two things you need to do to get Travis CI working for
 your project.
@@ -70,13 +70,13 @@ fixed and broken). Go take a look at an [example build result][build].
 The `--use-mirrors` stuff is an attempt to help Travis CI avoid
 overloading PyPI.
 
-## Bonus Points: PEP-8
+# Bonus Points: PEP 8
 
-I've recently discovered PEP-8, which I half knew about, but I'd never
+I've recently discovered PEP 8, which I half knew about, but I'd never
 attempted to make my code meet it. Then [someone forked][fork]
-django-magazine to make it meet PEP-8, and I was shamed into fixing
+django-magazine to make it meet PEP 8, and I was shamed into fixing
 it. I've added a line to my `.travis.yml` file so the build fails if
-checked-in code is not PEP-8 friendly.
+checked-in code is not PEP 8 friendly.
 
 ## Advertise Your Status
 
