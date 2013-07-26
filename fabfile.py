@@ -1,7 +1,7 @@
 from fabric.api import env, run, cd, prefix, local
 
 env.use_ssh_config = True
-env.hosts = ['scuba', ]
+env.hosts = ['kitchen', ]
 
 def deploy():
     local("git push")
