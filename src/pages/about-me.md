@@ -24,7 +24,6 @@ For fun, I build websites - currently I look after:
  * [ministrytoday.org.uk][mt]: a journal for those in Christian leadership,
    built using my open-source projects [django-magazine][django-magazine] and
    [django-board][django-board];
- * [aarongriffin.co.uk][ajg]: A photography site for my brother-in-law;
  * [griffinalters.com][ga]: A portfolio site for another brother-in-law, this
    time focussing on alters to cards for Magic: The Gathering.
 
@@ -65,7 +64,6 @@ I am looking forward to the pain of the [Second-system effect][sse].
 [django-magazine]: https://github.com/dominicrodger/django-magazine "A system for managing magazines"
 [django-board]: https://github.com/dominicrodger/django-board "A system for managing profile pages for boards of organisations"
 [django-tinycontent]: https://github.com/dominicrodger/django-tinycontent "A system for managing tiny snippets of reusable content"
-[ajg]: http://aarongriffin.co.uk "My brother-in-law's site - a photography portfolio"
 [ga]: http://www.griffinalters.com "My brother-in-law's site - a portfolio of alters for Magic: The Gathering"
 [pelican]: http://pelican.readthedocs.org/en/latest/ "Find out about Pelican"
 [digital-ocean]: http://www.digitalocean.com/?refcode=9ecca08ed68a "Get hosting from Digital Ocean (and use my referral code)"
