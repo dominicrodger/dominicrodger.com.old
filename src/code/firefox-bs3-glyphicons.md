@@ -1,4 +1,4 @@
-Date: 2014-01-18 18:09
+Date: 2014-01-19 18:09
 Title: Firefox & Bootstrap 3 Glyphicons
 Slug: firefox-bs3-glyphicons.md
 
