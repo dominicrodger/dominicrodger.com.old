@@ -1,6 +1,6 @@
 Date: 2014-01-19 18:09
 Title: Firefox & Bootstrap 3 Glyphicons
-Slug: firefox-bs3-glyphicons.md
+Slug: firefox-bs3-glyphicons
 
 I'm currently working on a site which uses Bootstrap 3, and makes
 significant use of glyphicons. As of Bootstrap 3, glyphicons are back
