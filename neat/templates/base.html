@@ -5,7 +5,7 @@
     <meta charset="utf-8">
         <title>{% block title %}{{ SITENAME }}{%endblock%}</title>
         <meta charset="utf-8" />
-        <link href='http://fonts.googleapis.com/css?family=ABeeZee|Carrois+Gothic|Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
+        <link href='//fonts.googleapis.com/css?family=ABeeZee|Carrois+Gothic|Source+Code+Pro:400,700' rel='stylesheet' type='text/css'>
         <link rel="stylesheet" href="{{ SITEURL }}/theme/style/reset.css" type="text/css" />
         <link rel="stylesheet" href="{{ SITEURL }}/theme/style/screen.css" type="text/css" />
         <link rel="stylesheet" href="{{ SITEURL }}/theme/style/print.css" type="text/css" media="print" />
@@ -18,7 +18,7 @@
         {% if FEED_RSS %}
         <link href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
         {% endif %}
-        <!--[if IE]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+        <!--[if IE]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
 </head>
 <body>
     <header id="main">
@@ -62,14 +62,14 @@
             <div class="about">
                 <h3>About me</h3>
                 <img alt="Me!" class="avatar"
-                     src="http://www.gravatar.com/avatar/{{ AUTHOR_EMAIL_HASH }}?size=64">
+                     src="//www.gravatar.com/avatar/{{ AUTHOR_EMAIL_HASH }}?size=64">
                 <p>
                   I'm a software engineer working in London. At work I
                   use C++ and Python; hobby projects are in Django. Read more <a href="{{ SITEURL }}/pages/about-me.html">about me</a>.
 
                 {% if GITHUB_USERNAME and GITHUB_BADGE %}
                 <div class="github-badge">
-                    <iframe src="http://githubbadge.appspot.com/badge/{{ GITHUB_USERNAME }}?s=1"
+                    <iframe src="//githubbadge.appspot.com/badge/{{ GITHUB_USERNAME }}?s=1"
                             style="border: 0; height: 150px; width: 200px; overflow: hidden;"></iframe>
                 </div>
                 {% endif %}
@@ -91,7 +91,7 @@
         <div class="container footer">
             <span>Powered by <a href="http://docs.getpelican.com">
                 Pelican</a> using the <a href="https://github.com/BYK/pelican-neat">
-                neat theme</a>. Site hosted by <a href="http://www.digitalocean.com/?refcode=9ecca08ed68a" title="Get hosted by Digital Ocean (and use my referral code)">Digital Ocean</a>.
+                neat theme</a>. Site hosted by <a href="https://www.digitalocean.com/?refcode=9ecca08ed68a" title="Get hosted by Digital Ocean (and use my referral code)">Digital Ocean</a>.
 
             </span>
             <nav>
