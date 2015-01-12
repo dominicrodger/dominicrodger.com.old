@@ -5,6 +5,9 @@ I spend my days working in C++, and the odd evening working in Python.
 
 Currently, my published open source projects are:
 
+* [django-recurrence][django-recurrence]: a Django app that I've
+  taken some responsibility for managing, though the code for
+  django-recurrence was mostly written by others originally;
 * [Kanisa][kanisa]: a Django app for managing Church websites;
 * [django-board][django-board]: a reusable Django app for managing a
   page about an organisation's board members;
@@ -19,12 +22,13 @@ For fun, I build websites - currently I look after:
  * [This site][dominicrodger]: my personal blog, where I write about code;
  * [centralbaptistchelmsford.org][cbc]: my Church's website, built with
    Kanisa.
- * [A][connected]
-   [few][trinity]
+ * [A few][trinity]
    [other][moorside]
    [sites][hadath], built with Kal&#233;o[^1] [^2];
- * [paulbeasleymurray.com][pbm]: my minister's personal site, containing
-   resources for ministers, including sermon transcripts, articles and a blog;
+ * [paulbeasleymurray.com][pbm]: the personal site of the previous
+   minister of [Central Baptist Church, Chelmsford][cbc], containing
+   resources for ministers, including sermon transcripts, articles
+   and a blog;
  * [ministrytoday.org.uk][mt]: a journal for those in Christian leadership,
    built using my open-source projects [django-magazine][django-magazine] and
    [django-board][django-board];
@@ -57,9 +61,9 @@ I've done for two reasons:
 [^2]: These sites aren't directly run by me - I just look after the
       software and the servers.
 
+[django-recurrence]: https://django-recurrence.readthedocs.org/en/latest/ "The documentation for django-recurrence"
 [dominicrodger]: https://dominicrodger.com "My personal blog"
 [cbc]: https://www.centralbaptistchelmsford.org "My Church - Central Baptist in the great city of Chelmsford"
-[connected]: http://connectedministries.org.uk "A network of Churches in Bradford"
 [trinity]: http://trinitychurchbradford.org.uk "Trinity Church, based in Bradford"
 [moorside]: http://moorsidechurch.org.uk "Moorside Church, based in Bradford"
 [hadath]: http://hadathbaptistchurch.org "Hadath Baptist Church, based in Lebanon"
