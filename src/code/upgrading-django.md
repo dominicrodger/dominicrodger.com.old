@@ -49,12 +49,12 @@ look at the `get_django_version` code:
 
     ::python
     def get_django_version(app):
-    with cd('~/webapps/%s/' % app):
-        with hide('running', 'stdout'):
-            with prefix('source env/bin/activate'):
-                result = run('pip freeze | grep "^Django=="')
-                django, version=result.split('==')
-                return version
+        with cd('~/webapps/%s/' % app):
+            with hide('running', 'stdout'):
+                with prefix('source env/bin/activate'):
+                    result = run('pip freeze | grep "^Django=="')
+                    django, version=result.split('==')
+                    return version
 
 If the version `get_django_version` returns matches the version I'm
 looking to upgrade, then we run `upgrade_django_install`, which is
