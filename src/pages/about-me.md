@@ -22,9 +22,8 @@ For fun, I build websites - currently I look after:
  * [This site][dominicrodger]: my personal blog, where I write about code;
  * [centralbaptistchelmsford.org][cbc]: my Church's website, built with
    Kanisa.
- * [A few][trinity]
-   [other][moorside]
-   [sites][hadath], built with Kal&#233;o[^1] [^2];
+ * [Two other][trinity]
+   [sites][moorside], built with Kal&#233;o[^1] [^2];
  * [paulbeasleymurray.com][pbm]: the personal site of the previous
    minister of [Central Baptist Church, Chelmsford][cbc], containing
    resources for ministers, including sermon transcripts, articles
@@ -66,7 +65,6 @@ I've done for two reasons:
 [cbc]: https://www.centralbaptistchelmsford.org "My Church - Central Baptist in the great city of Chelmsford"
 [trinity]: http://trinitychurchbradford.org.uk "Trinity Church, based in Bradford"
 [moorside]: http://moorsidechurch.org.uk "Moorside Church, based in Bradford"
-[hadath]: http://hadathbaptistchurch.org "Hadath Baptist Church, based in Lebanon"
 [pbm]: https://www.paulbeasleymurray.com "My minister's site"
 [mt]: https://www.ministrytoday.org.uk "A journal for those in Christian leadership, chaired by my minister"
 [django-magazine]: https://github.com/dominicrodger/django-magazine "A system for managing magazines"
