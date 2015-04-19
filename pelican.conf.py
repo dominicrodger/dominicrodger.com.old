@@ -27,3 +27,4 @@ DEFAULT_PAGINATION = 5
 GITHUB_URL = 'https://github.com/dominicrodger/dominicrodger.com'
 GITHUB_BADGE = True
 SITE_SOURCE = GITHUB_URL
+FEED_ATOM = 'feeds/all.atom.xml'
