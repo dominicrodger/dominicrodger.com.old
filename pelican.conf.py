@@ -4,7 +4,7 @@
 AUTHOR = u'Dominic Rodger'
 AUTHOR_EMAIL_HASH = 'c7cf7c3a34a6e902a26393c990fa9ca7'
 SITENAME = u'dominicrodger.com'
-SITEURL = u'http://dominicrodger.com'
+SITEURL = u'https://www.dominicrodger.com'
 
 TIMEZONE = u'Europe/London'
 
@@ -15,9 +15,9 @@ LINKS = (
 )
 
 SOCIAL = (
-    ('Twitter', 'http://twitter.com/dominicrodger'),
-    ('GitHub', 'http://github.com/dominicrodger'),
-    ('Stack Overflow', 'http://stackoverflow.com/users/20972/dominic-rodger'),
+    ('Twitter', 'https://twitter.com/dominicrodger'),
+    ('GitHub', 'https://github.com/dominicrodger'),
+    ('Stack Overflow', 'https://stackoverflow.com/users/20972/dominic-rodger'),
 )
 
 TWITTER_USERNAME = 'dominicrodger'
