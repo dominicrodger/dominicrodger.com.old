@@ -20,10 +20,8 @@ Currently, my published open source projects are:
 For fun, I build websites - currently I look after:
 
  * [This site][dominicrodger]: my personal blog, where I write about code;
- * [centralbaptistchelmsford.org][cbc]: my Church's website, built with
-   Kanisa.
- * [Two other][trinity]
-   [sites][moorside], built with Kal&#233;o[^1] [^2];
+ * [centralbaptistchelmsford.org][cbc]: my Church's website, and
+   [trinitychurchbradford.org.uk][trinity], built with Kanisa;
  * [paulbeasleymurray.com][pbm]: the personal site of the previous
    minister of [Central Baptist Church, Chelmsford][cbc], containing
    resources for ministers, including sermon transcripts, articles
@@ -32,40 +30,22 @@ For fun, I build websites - currently I look after:
    built using my open-source projects [django-magazine][django-magazine] and
    [django-board][django-board];
  * [griffinalters.com][ga]: A portfolio site for another brother-in-law, this
-   time focussing on alters to cards for Magic: The Gathering.
+   time focussing on alters to cards for Magic: The Gathering;
+ * [talitha.org.uk][talitha]: A site for Talitha Arts, a non-profit
+   groups of artists and art therapists working to restore hope,
+   dignity and worth through the creative arts.
 
 This blog is written with [Pelican][pelican].
 
 The code (and all blog posts) are available on [GitHub][github-repo],
 and the site is hosted by [Digital Ocean][digital-ocean].
 
-# Kanisa
-
-My current major project (as of April 2014) is [Kanisa][kanisa], a system for
-managing Church websites. It's a replacement for Kal&#233;o, which
-I've done for two reasons:
-
-1. Kal&#233;o was the first Django project I ever started, so there's
-   a lot of built up technical debt.
-2. Kal&#233;o was my first attempt at a system for managing Church
-   websites, so there's a lot of things I didn't anticipate that I
-   now need, and a lot of things I thought I'd need that it turned
-   out I didn't.
-
-[^1]: Kal&#233;o is a Django application which I've written for
-      managing websites for Churches. It's closed-source (mostly
-      because the code is fairly embarrassing), and I'm replacing it
-      with Kanisa (despite what I said in
-      [Starting Over](http://www.dominicrodger.com/starting-over.html)).
-[^2]: These sites aren't directly run by me - I just look after the
-      software and the servers.
 
 [django-recurrence]: https://django-recurrence.readthedocs.org/en/latest/ "The documentation for django-recurrence"
 [dominicrodger]: https://dominicrodger.com "My personal blog"
 [cbc]: https://www.centralbaptistchelmsford.org "My Church - Central Baptist in the great city of Chelmsford"
 [trinity]: http://trinitychurchbradford.org.uk "Trinity Church, based in Bradford"
-[moorside]: http://moorsidechurch.org.uk "Moorside Church, based in Bradford"
-[pbm]: https://www.paulbeasleymurray.com "My minister's site"
+[pbm]: https://www.paulbeasleymurray.com "The site of the former minister of Central Baptist Church, Chelmsford"
 [mt]: https://www.ministrytoday.org.uk "A journal for those in Christian leadership, chaired by my minister"
 [django-magazine]: https://github.com/dominicrodger/django-magazine "A system for managing magazines"
 [django-board]: https://github.com/dominicrodger/django-board "A system for managing profile pages for boards of organisations"
@@ -76,3 +56,4 @@ I've done for two reasons:
 [digital-ocean]: https://www.digitalocean.com/?refcode=9ecca08ed68a "Get hosting from Digital Ocean (and use my referral code)"
 [github-repo]: https://github.com/dominicrodger/dominicrodger.com "Use the source, Luke!"
 [kanisa]: https://github.com/dominicrodger/kanisa "View Kanisa on GitHub"
+[talitha]: https://www.talitha.org.uk "View the site for Talitha Arts, a non-profit groups of artists and art therapists"
